@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Saya - StreamHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Profil | IKAZZ - 48</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,1213 +14,882 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #f43f5e;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
+            --primary: #FF1744;
+            --primary-light: #FF5252;
+            --secondary: #6C63FF;
+            --accent: #00BCD4;
+            --dark: #1A1A2E;
+            --gray: #6B7280;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --gradient-1: linear-gradient(135deg, #FF1744 0%, #FF6B6B 100%);
+            --gradient-2: linear-gradient(135deg, #6C63FF 0%, #A855F7 100%);
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.16);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--white);
-            color: var(--gray-800);
+            background: var(--light);
             min-height: 100vh;
-            overflow-x: hidden;
+            padding-bottom: 100px;
         }
 
-        /* Background Decoration */
-        .bg-decoration {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            animation: floatBg 20s ease-in-out infinite;
-        }
-
-        .bg-circle:nth-child(1) {
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(244, 63, 94, 0.04));
-            top: -150px;
-            right: -150px;
-        }
-
-        .bg-circle:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(99, 102, 241, 0.03));
-            bottom: -100px;
-            left: -100px;
-            animation-delay: -7s;
-        }
-
-        .bg-circle:nth-child(3) {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(244, 63, 94, 0.05), rgba(99, 102, 241, 0.04));
-            top: 50%;
-            left: 30%;
-            animation-delay: -14s;
-        }
-
-        @keyframes floatBg {
-            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-            33% { transform: translateY(-25px) rotate(3deg) scale(1.02); }
-            66% { transform: translateY(15px) rotate(-3deg) scale(0.98); }
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            padding: 0.7rem 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .back-btn {
-            width: 44px;
-            height: 44px;
-            background: var(--gray-100);
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            color: var(--gray-700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: white;
-            transform: translateX(-3px);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .logo-text {
-            font-size: 1.4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-decoration: none;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--gray-700);
-            border: 2px solid var(--gray-200);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
-        }
-
-        .btn-danger {
-            background: transparent;
-            color: var(--danger);
-            border: 2px solid var(--danger);
-        }
-
-        .btn-danger:hover {
-            background: var(--danger);
-            color: white;
-        }
-
-        .btn-sm {
-            padding: 10px 18px;
-            font-size: 0.85rem;
-        }
-
-        /* Main Container */
-        .main-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 100px 2rem 4rem;
-        }
-
-        /* Profile Header */
-        .profile-header {
-            text-align: center;
-            padding: 3rem 0;
-            animation: fadeInUp 0.6s ease;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .profile-avatar-wrapper {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 1.5rem;
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), #fbbf24);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            font-weight: 800;
-            color: white;
-            position: relative;
-            animation: avatarPulse 3s ease-in-out infinite;
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        @keyframes avatarPulse {
-            0%, 100% { 
-                box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3), 0 0 0 0 rgba(99, 102, 241, 0.4);
-            }
-            50% { 
-                box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3), 0 0 0 15px rgba(99, 102, 241, 0);
-            }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .avatar-badge {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            width: 40px;
-            height: 40px;
-            background: var(--success);
-            border: 4px solid var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1rem;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-        }
-
-        .profile-name {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.75rem;
-            animation: fadeInUp 0.6s ease 0.1s both;
-        }
-
-        .profile-token {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(244, 63, 94, 0.08));
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 50px;
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.6s ease 0.2s both;
-        }
-
-        .profile-token i {
-            color: var(--primary);
-        }
-
-        .profile-token code {
-            font-family: 'Courier New', monospace;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: 3px;
-        }
-
-        .profile-token .copy-icon {
-            cursor: pointer;
-            color: var(--gray-400);
-            transition: all 0.3s ease;
-            padding: 5px;
-        }
-
-        .profile-token .copy-icon:hover {
-            color: var(--primary);
-            transform: scale(1.2);
-        }
-
-        .profile-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 50px;
-            color: var(--success);
-            font-size: 0.9rem;
-            font-weight: 600;
-            animation: fadeInUp 0.6s ease 0.3s both;
-        }
-
-        .profile-status i {
-            font-size: 8px;
-            animation: statusBlink 2s ease-in-out infinite;
-        }
-
-        @keyframes statusBlink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        /* Profile Cards Grid */
-        .profile-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .profile-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 2rem;
-            border: 1px solid var(--gray-200);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: cardSlideIn 0.5s ease both;
-        }
-
-        .profile-card:nth-child(1) { animation-delay: 0.1s; }
-        .profile-card:nth-child(2) { animation-delay: 0.2s; }
-        .profile-card:nth-child(3) { animation-delay: 0.3s; }
-
-        @keyframes cardSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .profile-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-            border-color: transparent;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .card-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-
-        .card-icon.info {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
-            color: var(--primary);
-        }
-
-        .card-icon.activity {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
-            color: var(--success);
-        }
-
-        .card-icon.action {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
-            color: var(--warning);
-        }
-
-        .card-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-
-        /* Info List */
-        .info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 18px;
-            background: var(--gray-50);
-            border-radius: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .info-item:hover {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(244, 63, 94, 0.03));
-            transform: translateX(5px);
-        }
-
-        .info-label {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--gray-500);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .info-label i {
-            width: 20px;
-            text-align: center;
-            color: var(--primary);
-        }
-
-        .info-value {
-            font-weight: 700;
-            color: var(--gray-800);
-        }
-
-        /* Activity List */
-        .activity-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .activity-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px;
-            background: var(--gray-50);
-            border-radius: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .activity-item:hover {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(99, 102, 241, 0.03));
-            transform: translateX(5px);
-        }
-
-        .activity-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .activity-icon.login {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-        }
-
-        .activity-icon.watch {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-        }
-
-        .activity-icon.create {
-            background: rgba(244, 63, 94, 0.1);
-            color: var(--secondary);
-        }
-
-        .activity-content {
-            flex: 1;
-        }
-
-        .activity-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--gray-800);
-        }
-
-        .activity-time {
-            font-size: 0.8rem;
-            color: var(--gray-400);
-            margin-top: 2px;
-        }
-
-        /* Quick Actions */
-        .quick-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .action-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 18px;
-            background: var(--gray-50);
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: var(--gray-800);
-        }
-
-        .action-item:hover {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(244, 63, 94, 0.05));
-            transform: translateX(5px);
-        }
-
-        .action-item .left {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-weight: 600;
-        }
-
-        .action-item .left i {
-            width: 22px;
-            text-align: center;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        .action-item .right i {
-            color: var(--gray-400);
-            transition: all 0.3s ease;
-        }
-
-        .action-item:hover .right i {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        /* Edit Profile Section */
-        .edit-section {
-            margin-top: 2rem;
-            animation: cardSlideIn 0.5s ease 0.4s both;
-        }
-
-        .edit-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 2rem;
-            border: 1px solid var(--gray-200);
-        }
-
-        .edit-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        .edit-title {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--gray-900);
-        }
-
-        .edit-title i {
-            color: var(--primary);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 0;
-        }
-
-        .form-group label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 0.6rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--gray-600);
-        }
-
-        .form-group label i {
-            color: var(--primary);
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 16px 20px;
-            background: var(--gray-50);
-            border: 2px solid var(--gray-200);
-            border-radius: 14px;
-            color: var(--gray-800);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: var(--white);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-group input::placeholder {
-            color: var(--gray-400);
-        }
-
-        .form-group select option {
-            background: var(--white);
-            color: var(--gray-800);
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--gray-100);
-        }
-
-        /* Logout Section */
-        .logout-section {
-            margin-top: 3rem;
-            text-align: center;
-            padding: 2.5rem;
-            animation: cardSlideIn 0.5s ease 0.5s both;
-        }
-
-        .logout-section p {
-            color: var(--gray-500);
-            margin-bottom: 1.25rem;
-            font-size: 0.95rem;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 2.5rem;
-            max-width: 420px;
-            width: 100%;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
-            animation: modalPop 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes modalPop {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1.5rem;
-        }
-
-        .modal-icon.warning {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-subtitle {
-            color: var(--gray-500);
-            font-size: 0.95rem;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .modal-actions .btn {
-            flex: 1;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            padding: 1rem 2rem;
-            background: var(--white);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 3000;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-            border: 1px solid var(--gray-200);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .toast.success {
-            border-left: 4px solid var(--success);
-        }
-
-        .toast.error {
-            border-left: 4px solid var(--danger);
-        }
-
-        .toast i {
-            font-size: 1.2rem;
-        }
-
-        .toast.success i {
-            color: var(--success);
-        }
-
-        .toast.error i {
-            color: var(--danger);
-        }
-
-        .toast-message {
-            font-weight: 600;
-            color: var(--gray-700);
-        }
-
-        /* Loading */
-        .loading-container {
-            position: fixed;
-            inset: 0;
-            background: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading-container.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-content {
-            text-align: center;
-        }
-
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid var(--gray-200);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1.5rem;
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        .loading-content h3 {
-            font-size: 1.3rem;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
+        /* Header */
+        .header {
+            background: var(--gradient-1);
+            padding: 24px 24px 100px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .loading-content p {
-            color: var(--gray-500);
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: float 8s ease-in-out infinite;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 90px 1rem 3rem;
-            }
-
-            .profile-avatar-wrapper {
-                width: 120px;
-                height: 120px;
-            }
-
-            .profile-avatar {
-                width: 120px;
-                height: 120px;
-                font-size: 3rem;
-            }
-
-            .avatar-badge {
-                width: 32px;
-                height: 32px;
-                font-size: 0.85rem;
-            }
-
-            .profile-name {
-                font-size: 1.8rem;
-            }
-
-            .profile-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
-
-            .form-actions .btn {
-                width: 100%;
-            }
-
-            .header-actions .btn span {
-                display: none;
-            }
-
-            .modal {
-                padding: 2rem 1.5rem;
-                margin: 1rem;
-            }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--light);
+            border-radius: 50px 50px 0 0;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--gray-100);
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--gray-300);
-            border-radius: 4px;
+        .header-title {
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
+        .logout-btn {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn:hover {
+            background: #DC2626;
+        }
+
+        .profile-section {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: var(--primary);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+            animation: scaleIn 0.5s ease;
+            position: relative;
+            border: 4px solid rgba(255,255,255,0.3);
+        }
+
+        .avatar.member::after {
+            content: '👑';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 28px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .user-name {
+            color: white;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .user-phone {
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .membership-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .membership-badge.active {
+            background: var(--gradient-gold);
+            color: #1A1A2E;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 600px;
+            margin: -30px auto 0;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+            animation: fadeInUp 0.6s ease backwards;
+            border: 1px solid #E5E7EB;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .card-icon.red { background: var(--gradient-1); }
+        .card-icon.purple { background: var(--gradient-2); }
+        .card-icon.gold { background: var(--gradient-gold); }
+        .card-icon.cyan { background: linear-gradient(135deg, #00BCD4 0%, #4DD0E1 100%); }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .card-subtitle {
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #E5E7EB;
+            border-radius: 14px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--light);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(255, 23, 68, 0.1);
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .input-icon i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        .input-icon input {
+            padding-left: 50px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: inherit;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+        }
+
+        .btn-gold {
+            background: var(--gradient-gold);
+            color: #1A1A2E;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Member Card */
+        .member-card {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border: 2px solid #F59E0B;
+        }
+
+        .member-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .member-info-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .member-info-text h4 {
+            font-size: 18px;
+            color: #92400E;
+            margin-bottom: 4px;
+        }
+
+        .member-info-text p {
+            font-size: 13px;
+            color: #B45309;
+        }
+
+        .member-expiry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 12px;
+        }
+
+        .member-expiry-label {
+            font-size: 13px;
+            color: #92400E;
+        }
+
+        .member-expiry-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: #B45309;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 16px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Messages */
+        .error-msg {
+            background: #FEF2F2;
+            border: 1px solid #FCA5A5;
+            color: #DC2626;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-msg.show {
+            display: flex;
+        }
+
+        .success-msg {
+            background: #D1FAE5;
+            border: 1px solid #6EE7B7;
+            color: #059669;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .success-msg.show {
+            display: flex;
+        }
+
+        /* Login Icon */
+        .login-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+            color: var(--gray);
+        }
+
+        .login-card {
+            text-align: center;
+        }
+
+        .login-card h3 {
+            font-size: 22px;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .login-card > p {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 12px 24px 28px;
+            box-shadow: 0 -4px 30px rgba(0,0,0,0.1);
+            z-index: 100;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--gray);
+            padding: 8px 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
             background: var(--primary);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
+        .toast.error { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .loading-overlay.hidden {
+            display: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 20px 90px;
+            }
+
+            .avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
+
+            .user-name {
+                font-size: 22px;
+            }
+
+            .card {
+                padding: 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Background Decoration -->
-    <div class="bg-decoration">
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-    </div>
-
     <!-- Loading -->
-    <div class="loading-container" id="loadingContainer">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h3>Memuat Profil...</h3>
-            <p>Mohon tunggu sebentar</p>
-        </div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+        <p style="margin-top: 20px; color: var(--gray);">Memuat profil...</p>
     </div>
 
     <!-- Header -->
-    <header id="header">
-        <div class="header-left">
-            <a href="index.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-play"></i>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <div class="header-title">
+                    <i class="fas fa-user-circle"></i>
+                    Profil Saya
                 </div>
-                <span class="logo-text">StreamHub</span>
-            </a>
-        </div>
-        <div class="header-actions">
-            <a href="index.html" class="btn btn-outline btn-sm">
-                <i class="fas fa-tv"></i>
-                <span>Jelajahi Live</span>
-            </a>
+                <button class="logout-btn" id="logoutBtn" style="display: none;" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Keluar
+                </button>
+            </div>
+
+            <div class="profile-section">
+                <div class="avatar" id="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h1 class="user-name" id="userName">Guest</h1>
+                <p class="user-phone" id="userPhone" style="display: none;">
+                    <i class="fab fa-whatsapp"></i>
+                    <span></span>
+                </p>
+                <div class="membership-badge" id="membershipBadge">
+                    <i class="fas fa-user"></i>
+                    <span>Non-Member</span>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="main-container">
-        <!-- Profile Header -->
-        <section class="profile-header">
-            <div class="profile-avatar-wrapper">
-                <div class="profile-avatar" id="profileAvatar">U</div>
-                <div class="avatar-badge">
-                    <i class="fas fa-check"></i>
+    <main class="main">
+        <!-- Guest View - Login/Register -->
+        <div id="guestView">
+            <!-- Token Login Card -->
+            <div class="card login-card">
+                <div class="login-icon">
+                    <i class="fas fa-ticket-alt"></i>
                 </div>
-            </div>
-            <h1 class="profile-name" id="profileName">Pengguna</h1>
-            <div class="profile-token">
-                <i class="fas fa-ticket-alt"></i>
-                <code id="profileToken">XXXXXXXX</code>
-                <i class="fas fa-copy copy-icon" onclick="copyToken()" title="Salin Token"></i>
-            </div>
-            <div class="profile-status">
-                <i class="fas fa-circle"></i>
-                Akun Aktif
-            </div>
-        </section>
+                <h3>Masuk dengan Token</h3>
+                <p>Masukkan token membership untuk akses premium</p>
+                
+                <div class="error-msg" id="loginError">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span></span>
+                </div>
 
-        <!-- Profile Cards -->
-        <div class="profile-grid">
-            <!-- Info Card -->
-            <div class="profile-card">
-                <div class="card-header">
-                    <div class="card-icon info">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3 class="card-title">Informasi Akun</h3>
-                </div>
-                <div class="info-list">
-                    <div class="info-item">
-                        <span class="info-label">
-                            <i class="fas fa-user"></i>
-                            Nama Lengkap
-                        </span>
-                        <span class="info-value" id="infoName">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">
-                            <i class="fas fa-venus-mars"></i>
-                            Jenis Kelamin
-                        </span>
-                        <span class="info-value" id="infoGender">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">
-                            <i class="fab fa-whatsapp"></i>
-                            WhatsApp
-                        </span>
-                        <span class="info-value" id="infoWhatsapp">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">
-                            <i class="fas fa-calendar-alt"></i>
-                            Bergabung
-                        </span>
-                        <span class="info-value" id="infoJoined">-</span>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fas fa-key"></i>
+                        <input type="text" id="tokenInput" placeholder="Masukkan token membership" autocomplete="off">
                     </div>
                 </div>
-            </div>
-
-            <!-- Activity Card -->
-            <div class="profile-card">
-                <div class="card-header">
-                    <div class="card-icon activity">
-                        <i class="fas fa-history"></i>
-                    </div>
-                    <h3 class="card-title">Aktivitas Terakhir</h3>
-                </div>
-                <div class="activity-list" id="activityList">
-                    <div class="activity-item">
-                        <div class="activity-icon login">
-                            <i class="fas fa-sign-in-alt"></i>
-                        </div>
-                        <div class="activity-content">
-                            <p class="activity-title">Login ke akun</p>
-                            <p class="activity-time">Baru saja</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Actions Card -->
-            <div class="profile-card">
-                <div class="card-header">
-                    <div class="card-icon action">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="card-title">Aksi Cepat</h3>
-                </div>
-                <div class="quick-actions">
-                    <a href="index.html" class="action-item">
-                        <div class="left">
-                            <i class="fas fa-play-circle"></i>
-                            <span>Tonton Live Streaming</span>
-                        </div>
-                        <div class="right">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </a>
-                    <div class="action-item" onclick="scrollToEdit()">
-                        <div class="left">
-                            <i class="fas fa-edit"></i>
-                            <span>Edit Profil</span>
-                        </div>
-                        <div class="right">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                    <div class="action-item" onclick="shareProfile()">
-                        <div class="left">
-                            <i class="fas fa-share-alt"></i>
-                            <span>Bagikan Profil</span>
-                        </div>
-                        <div class="right">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                    <div class="action-item" onclick="contactAdmin()">
-                        <div class="left">
-                            <i class="fas fa-headset"></i>
-                            <span>Hubungi Admin</span>
-                        </div>
-                        <div class="right">
-                            <i class="fas fa-chevron-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Edit Profile Section -->
-        <section class="edit-section" id="editSection">
-            <div class="edit-card">
-                <div class="edit-header">
-                    <h2 class="edit-title">
-                        <i class="fas fa-user-edit"></i>
-                        Edit Profil
-                    </h2>
-                </div>
-                <form id="editProfileForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>
-                                <i class="fas fa-user"></i>
-                                Nama Lengkap
-                            </label>
-                            <input type="text" id="editName" placeholder="Masukkan nama lengkap" required>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <i class="fas fa-venus-mars"></i>
-                                Jenis Kelamin
-                            </label>
-                            <select id="editGender" required>
-                                <option value="">Pilih jenis kelamin</option>
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <i class="fab fa-whatsapp"></i>
-                                Nomor WhatsApp
-                            </label>
-                            <input type="tel" id="editWhatsapp" placeholder="628xxxxxxxxxx" required>
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" class="btn btn-outline" onclick="resetForm()">
-                            <i class="fas fa-undo"></i>
-                            Reset
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i>
-                            Simpan Perubahan
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-        <!-- Logout Section -->
-        <section class="logout-section">
-            <p>Ingin keluar dari akun ini?</p>
-            <button class="btn btn-danger" onclick="showLogoutModal()">
-                <i class="fas fa-sign-out-alt"></i>
-                Keluar dari Akun
-            </button>
-        </section>
-    </main>
-
-    <!-- Logout Modal -->
-    <div class="modal-overlay" id="logoutModal">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-icon warning">
-                    <i class="fas fa-sign-out-alt"></i>
-                </div>
-                <h3 class="modal-title">Keluar dari Akun?</h3>
-                <p class="modal-subtitle">Anda perlu memasukkan token lagi untuk login kembali</p>
-            </div>
-            <div class="modal-actions">
-                <button class="btn btn-outline" onclick="closeLogoutModal()">Batal</button>
-                <button class="btn btn-danger" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Ya, Keluar
+                <button class="btn btn-gold" id="loginTokenBtn" onclick="loginWithToken()">
+                    <i class="fas fa-crown"></i>
+                    Aktivasi Membership
                 </button>
             </div>
+
+            <!-- Profile Form Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon purple">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Data Profil</div>
+                        <div class="card-subtitle">Isi data untuk menyimpan profil</div>
+                    </div>
+                </div>
+
+                <div class="success-msg" id="profileSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Profil berhasil disimpan!</span>
+                </div>
+
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="nameInput" placeholder="Masukkan nama lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <select id="genderInput" required>
+                            <option value="">Pilih jenis kelamin</option>
+                            <option value="male">Laki-laki</option>
+                            <option value="female">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor WhatsApp</label>
+                        <div class="input-icon">
+                            <i class="fab fa-whatsapp"></i>
+                            <input type="tel" id="whatsappInput" placeholder="08xxxxxxxxxx" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Simpan Profil
+                    </button>
+                </form>
+            </div>
         </div>
-    </div>
+
+        <!-- Member View -->
+        <div id="memberView" style="display: none;">
+            <!-- Membership Card -->
+            <div class="card member-card" id="memberCard">
+                <div class="member-info">
+                    <div class="member-info-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="member-info-text">
+                        <h4>Member Aktif</h4>
+                        <p>Akses ke semua live streaming</p>
+                    </div>
+                </div>
+                <div class="member-expiry">
+                    <span class="member-expiry-label">Berakhir pada</span>
+                    <span class="member-expiry-value" id="expiryDate">-</span>
+                </div>
+            </div>
+
+            <!-- Stats Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon cyan">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Statistik</div>
+                        <div class="card-subtitle">Ringkasan aktivitas</div>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="watchCount">0</div>
+                        <div class="stat-label">Live Ditonton</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="daysLeft">0</div>
+                        <div class="stat-label">Hari Tersisa</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Profile Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon red">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Edit Profil</div>
+                        <div class="card-subtitle">Perbarui informasi</div>
+                    </div>
+                </div>
+
+                <div class="success-msg" id="editSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Profil berhasil diperbarui!</span>
+                </div>
+
+                <form id="editProfileForm">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="editNameInput" placeholder="Masukkan nama lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <select id="editGenderInput" required>
+                            <option value="">Pilih jenis kelamin</option>
+                            <option value="male">Laki-laki</option>
+                            <option value="female">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor WhatsApp</label>
+                        <div class="input-icon">
+                            <i class="fab fa-whatsapp"></i>
+                            <input type="tel" id="editWhatsappInput" placeholder="08xxxxxxxxxx" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Simpan Perubahan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </a>
+            <a href="prof.html" class="nav-item active">
+                <i class="fas fa-user"></i>
+                <span>Profil</span>
+            </a>
+        </div>
+    </nav>
 
     <!-- Toast -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span class="toast-message" id="toastMessage">Berhasil!</span>
-    </div>
+    <div class="toast" id="toast"></div>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <script>
-        // ========== GANTI DENGAN FIREBASE CONFIG ANDA ==========
+        // ==========================================
+        // FIREBASE CONFIGURATION
+        // ==========================================
         const firebaseConfig = {
             apiKey: "AIzaSyAl6WmsHrmYkyotYYu_VIEqX5buTrMa-ec",
             authDomain: "live-abd72.firebaseapp.com",
@@ -1229,298 +898,411 @@
             messagingSenderId: "705044265931",
             appId: "1:705044265931:web:402b9615df1d38863f944e"
         };
-        // ========================================================
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Variables
-        let userData = null;
-        let tokenDocId = null;
+        // ==========================================
+        // DEVICE ID
+        // ==========================================
+        function getDeviceId() {
+            let deviceId = localStorage.getItem('ikazz_device_id');
+            if (!deviceId) {
+                deviceId = 'dev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('ikazz_device_id', deviceId);
+            }
+            return deviceId;
+        }
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Toast notification
-        function showToast(message, type = 'success') {
+        // ==========================================
+        // TOAST
+        // ==========================================
+        function showToast(message, type = 'info') {
             const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMessage');
-            const toastIcon = toast.querySelector('i');
-
-            toastMsg.textContent = message;
-            toast.className = `toast ${type}`;
-            toastIcon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
-
-            toast.classList.add('show');
+            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'info-circle';
+            toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
+            toast.className = 'toast show ' + type;
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // Initialize
-        async function init() {
-            const token = localStorage.getItem('userToken');
-
-            if (!token) {
-                window.location.href = 'index.html';
-                return;
-            }
-
-            try {
-                // Validate token
-                const snapshot = await db.collection('tokens')
-                    .where('token', '==', token)
-                    .where('isActive', '==', true)
-                    .get();
-
-                if (snapshot.empty) {
-                    localStorage.removeItem('userToken');
-                    localStorage.removeItem('tokenData');
-                    window.location.href = 'index.html';
-                    return;
-                }
-
-                tokenDocId = snapshot.docs[0].id;
-                userData = snapshot.docs[0].data();
-                userData.id = tokenDocId;
-
-                // Update last used
-                await db.collection('tokens').doc(tokenDocId).update({
-                    lastUsed: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                // Populate UI
-                populateProfile();
-                populateActivity();
-
-                // Hide loading
-                setTimeout(() => {
-                    document.getElementById('loadingContainer').classList.add('hidden');
-                }, 800);
-
-            } catch (error) {
-                console.error('Error:', error);
-                showToast('Terjadi kesalahan', 'error');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-            }
-        }
-
-        // Populate profile data
-        function populateProfile() {
-            const name = userData.userName || 'Pengguna';
-
-            // Header
-            document.getElementById('profileAvatar').textContent = name.charAt(0).toUpperCase();
-            document.getElementById('profileName').textContent = name;
-            document.getElementById('profileToken').textContent = userData.token;
-
-            // Info
-            document.getElementById('infoName').textContent = userData.userName || '-';
-            document.getElementById('infoGender').textContent = userData.gender || '-';
-            document.getElementById('infoWhatsapp').textContent = userData.whatsapp || '-';
-
-            if (userData.createdAt) {
-                const date = new Date(userData.createdAt.toDate());
-                document.getElementById('infoJoined').textContent = date.toLocaleDateString('id-ID', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                });
-            }
-
-            // Edit form
-            document.getElementById('editName').value = userData.userName || '';
-            document.getElementById('editGender').value = userData.gender || '';
-            document.getElementById('editWhatsapp').value = userData.whatsapp || '';
-        }
-
-        // Populate activity
-        function populateActivity() {
-            const activityList = document.getElementById('activityList');
-            let activities = [];
-
-            if (userData.lastUsed) {
-                activities.push({
-                    icon: 'sign-in-alt',
-                    iconClass: 'login',
-                    title: 'Login ke akun',
-                    time: formatTimeAgo(userData.lastUsed.toDate())
-                });
-            }
-
-            if (userData.createdAt) {
-                activities.push({
-                    icon: 'user-plus',
-                    iconClass: 'create',
-                    title: 'Akun dibuat',
-                    time: formatTimeAgo(userData.createdAt.toDate())
-                });
-            }
-
-            if (activities.length === 0) {
-                activityList.innerHTML = `
-                    <div class="activity-item">
-                        <div class="activity-icon login">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="activity-content">
-                            <p class="activity-title">Belum ada aktivitas</p>
-                            <p class="activity-time">-</p>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-
-            let html = '';
-            activities.forEach(activity => {
-                html += `
-                    <div class="activity-item">
-                        <div class="activity-icon ${activity.iconClass}">
-                            <i class="fas fa-${activity.icon}"></i>
-                        </div>
-                        <div class="activity-content">
-                            <p class="activity-title">${activity.title}</p>
-                            <p class="activity-time">${activity.time}</p>
-                        </div>
-                    </div>
-                `;
-            });
-
-            activityList.innerHTML = html;
-        }
-
-        // Format time ago
-        function formatTimeAgo(date) {
-            const now = new Date();
-            const diff = Math.floor((now - date) / 1000);
-
-            if (diff < 60) return 'Baru saja';
-            if (diff < 3600) return `${Math.floor(diff / 60)} menit yang lalu`;
-            if (diff < 86400) return `${Math.floor(diff / 3600)} jam yang lalu`;
-            if (diff < 604800) return `${Math.floor(diff / 86400)} hari yang lalu`;
-
+        // ==========================================
+        // FORMAT DATE
+        // ==========================================
+        function formatDate(date) {
             return date.toLocaleDateString('id-ID', {
                 day: 'numeric',
-                month: 'short',
+                month: 'long',
                 year: 'numeric'
             });
         }
 
-        // Edit profile form
+        // ==========================================
+        // HIDE LOADING
+        // ==========================================
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        // ==========================================
+        // CHECK MEMBERSHIP - FIXED
+        // ==========================================
+        async function checkMembership() {
+            const memberToken = localStorage.getItem('ikazz_member_token');
+            const deviceId = getDeviceId();
+
+            if (!memberToken) {
+                showGuestView();
+                return null;
+            }
+
+            try {
+                const tokenDoc = await db.collection('membershipTokens').doc(memberToken).get();
+                
+                if (tokenDoc.exists) {
+                    const data = tokenDoc.data();
+                    const expiresAt = data.expiresAt?.toDate ? data.expiresAt.toDate() : null;
+
+                    // Check device
+                    if (data.deviceId && data.deviceId !== deviceId) {
+                        localStorage.removeItem('ikazz_member_token');
+                        showToast('Token digunakan di perangkat lain', 'error');
+                        showGuestView();
+                        return null;
+                    }
+
+                    // Check expiry
+                    if (expiresAt && expiresAt > new Date()) {
+                        await showMemberView(data, memberToken);
+                        return data;
+                    } else if (expiresAt) {
+                        localStorage.removeItem('ikazz_member_token');
+                        showToast('Membership telah berakhir', 'error');
+                        showGuestView();
+                        return null;
+                    }
+                } else {
+                    localStorage.removeItem('ikazz_member_token');
+                }
+            } catch (e) {
+                console.error('Error checking membership:', e);
+                showToast('Error: ' + e.message, 'error');
+            }
+
+            showGuestView();
+            return null;
+        }
+
+        // ==========================================
+        // SHOW GUEST VIEW
+        // ==========================================
+        async function showGuestView() {
+            document.getElementById('guestView').style.display = 'block';
+            document.getElementById('memberView').style.display = 'none';
+            document.getElementById('logoutBtn').style.display = 'none';
+
+            // Load saved profile from localStorage
+            const savedProfile = localStorage.getItem('ikazz_profile');
+            if (savedProfile) {
+                try {
+                    const profile = JSON.parse(savedProfile);
+                    document.getElementById('nameInput').value = profile.name || '';
+                    document.getElementById('genderInput').value = profile.gender || '';
+                    document.getElementById('whatsappInput').value = profile.whatsapp || '';
+                    document.getElementById('userName').textContent = profile.name || 'Guest';
+                } catch (e) {
+                    console.error('Error parsing profile:', e);
+                }
+            }
+
+            // Also try loading from Firestore
+            const deviceId = getDeviceId();
+            try {
+                const userDoc = await db.collection('users').doc(deviceId).get();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    document.getElementById('nameInput').value = userData.name || '';
+                    document.getElementById('genderInput').value = userData.gender || '';
+                    document.getElementById('whatsappInput').value = userData.whatsapp || '';
+                    document.getElementById('userName').textContent = userData.name || 'Guest';
+                }
+            } catch (e) {
+                console.log('Could not load user from Firestore:', e.message);
+            }
+
+            hideLoading();
+        }
+
+        // ==========================================
+        // SHOW MEMBER VIEW
+        // ==========================================
+        async function showMemberView(memberData, token) {
+            document.getElementById('guestView').style.display = 'none';
+            document.getElementById('memberView').style.display = 'block';
+            document.getElementById('logoutBtn').style.display = 'flex';
+
+            // Update avatar
+            const avatar = document.getElementById('avatar');
+            avatar.classList.add('member');
+
+            // Update badge
+            const badge = document.getElementById('membershipBadge');
+            badge.classList.add('active');
+            badge.innerHTML = '<i class="fas fa-crown"></i><span>Member Premium</span>';
+
+            // Set expiry date
+            const expiresAt = memberData.expiresAt?.toDate ? memberData.expiresAt.toDate() : null;
+            if (expiresAt) {
+                document.getElementById('expiryDate').textContent = formatDate(expiresAt);
+                const daysLeft = Math.max(0, Math.ceil((expiresAt - new Date()) / (1000 * 60 * 60 * 24)));
+                document.getElementById('daysLeft').textContent = daysLeft;
+            }
+
+            // Load user profile from Firestore
+            const deviceId = getDeviceId();
+            try {
+                const userDoc = await db.collection('users').doc(deviceId).get();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    document.getElementById('userName').textContent = userData.name || 'Member';
+                    document.getElementById('editNameInput').value = userData.name || '';
+                    document.getElementById('editGenderInput').value = userData.gender || '';
+                    document.getElementById('editWhatsappInput').value = userData.whatsapp || '';
+
+                    if (userData.whatsapp) {
+                        document.getElementById('userPhone').style.display = 'flex';
+                        document.getElementById('userPhone').querySelector('span').textContent = userData.whatsapp;
+                    }
+
+                    document.getElementById('watchCount').textContent = userData.watchCount || 0;
+
+                    // Update avatar icon
+                    avatar.innerHTML = `<i class="fas fa-${userData.gender === 'female' ? 'user-astronaut' : 'user-tie'}"></i>`;
+                }
+            } catch (e) {
+                console.error('Error loading user profile:', e);
+            }
+
+            hideLoading();
+        }
+
+        // ==========================================
+        // LOGIN WITH TOKEN - FIXED
+        // ==========================================
+        async function loginWithToken() {
+            const tokenInput = document.getElementById('tokenInput');
+            const token = tokenInput.value.trim().toUpperCase();
+            const errorEl = document.getElementById('loginError');
+            const btn = document.getElementById('loginTokenBtn');
+            const deviceId = getDeviceId();
+
+            if (!token) {
+                errorEl.querySelector('span').textContent = 'Masukkan token terlebih dahulu';
+                errorEl.classList.add('show');
+                return;
+            }
+
+            btn.innerHTML = '<div class="loading"></div> Memverifikasi...';
+            btn.disabled = true;
+            errorEl.classList.remove('show');
+
+            try {
+                const tokenDoc = await db.collection('membershipTokens').doc(token).get();
+
+                if (!tokenDoc.exists) {
+                    throw new Error('Token tidak valid');
+                }
+
+                const tokenData = tokenDoc.data();
+
+                // Check if already used by another device
+                if (tokenData.used && tokenData.deviceId && tokenData.deviceId !== deviceId) {
+                    throw new Error('Token sudah digunakan di perangkat lain');
+                }
+
+                // Calculate expiry date
+                let expiresAt;
+                if (tokenData.expiresAt) {
+                    expiresAt = tokenData.expiresAt.toDate ? tokenData.expiresAt.toDate() : new Date(tokenData.expiresAt);
+                } else {
+                    expiresAt = new Date();
+                    expiresAt.setMonth(expiresAt.getMonth() + (tokenData.duration || 1));
+                }
+
+                // Check if expired
+                if (expiresAt < new Date()) {
+                    throw new Error('Token sudah kadaluarsa');
+                }
+
+                // Update token in Firestore
+                await db.collection('membershipTokens').doc(token).update({
+                    used: true,
+                    deviceId: deviceId,
+                    expiresAt: firebase.firestore.Timestamp.fromDate(expiresAt),
+                    activatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // Save token locally
+                localStorage.setItem('ikazz_member_token', token);
+
+                // Create/update user in Firestore
+                const savedProfile = localStorage.getItem('ikazz_profile');
+                const profile = savedProfile ? JSON.parse(savedProfile) : {};
+
+                await db.collection('users').doc(deviceId).set({
+                    name: profile.name || 'Member',
+                    gender: profile.gender || '',
+                    whatsapp: profile.whatsapp || '',
+                    isMember: true,
+                    memberToken: token,
+                    deviceId: deviceId,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+
+                showToast('Membership berhasil diaktifkan!', 'success');
+
+                // Reload page
+                setTimeout(() => location.reload(), 1500);
+
+            } catch (e) {
+                console.error('Login error:', e);
+                errorEl.querySelector('span').textContent = e.message;
+                errorEl.classList.add('show');
+                btn.innerHTML = '<i class="fas fa-crown"></i> Aktivasi Membership';
+                btn.disabled = false;
+            }
+        }
+
+        // ==========================================
+        // SAVE PROFILE (GUEST) - FIXED
+        // ==========================================
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('nameInput').value.trim();
+            const gender = document.getElementById('genderInput').value;
+            const whatsapp = document.getElementById('whatsappInput').value.trim();
+            const deviceId = getDeviceId();
+            const btn = e.target.querySelector('button[type="submit"]');
+
+            if (!name || !gender || !whatsapp) {
+                showToast('Lengkapi semua data', 'error');
+                return;
+            }
+
+            btn.innerHTML = '<div class="loading"></div> Menyimpan...';
+            btn.disabled = true;
+
+            try {
+                // Save to localStorage first
+                localStorage.setItem('ikazz_profile', JSON.stringify({ name, gender, whatsapp }));
+
+                // Save to Firestore
+                await db.collection('users').doc(deviceId).set({
+                    name: name,
+                    gender: gender,
+                    whatsapp: whatsapp,
+                    isMember: false,
+                    deviceId: deviceId,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+
+                document.getElementById('userName').textContent = name;
+                document.getElementById('profileSuccess').classList.add('show');
+                setTimeout(() => document.getElementById('profileSuccess').classList.remove('show'), 3000);
+                showToast('Profil berhasil disimpan!', 'success');
+
+            } catch (e) {
+                console.error('Save profile error:', e);
+                showToast('Error: ' + e.message, 'error');
+            }
+
+            btn.innerHTML = '<i class="fas fa-save"></i> Simpan Profil';
+            btn.disabled = false;
+        });
+
+        // ==========================================
+        // EDIT PROFILE (MEMBER) - FIXED
+        // ==========================================
         document.getElementById('editProfileForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const updateData = {
-                userName: document.getElementById('editName').value.trim(),
-                gender: document.getElementById('editGender').value,
-                whatsapp: document.getElementById('editWhatsapp').value.trim(),
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            };
+            const name = document.getElementById('editNameInput').value.trim();
+            const gender = document.getElementById('editGenderInput').value;
+            const whatsapp = document.getElementById('editWhatsappInput').value.trim();
+            const deviceId = getDeviceId();
+            const btn = e.target.querySelector('button[type="submit"]');
+
+            if (!name || !gender || !whatsapp) {
+                showToast('Lengkapi semua data', 'error');
+                return;
+            }
+
+            btn.innerHTML = '<div class="loading"></div> Menyimpan...';
+            btn.disabled = true;
 
             try {
-                await db.collection('tokens').doc(tokenDocId).update(updateData);
+                await db.collection('users').doc(deviceId).set({
+                    name: name,
+                    gender: gender,
+                    whatsapp: whatsapp,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
 
-                // Update local data
-                userData = { ...userData, ...updateData };
-                localStorage.setItem('tokenData', JSON.stringify(userData));
+                // Update localStorage
+                localStorage.setItem('ikazz_profile', JSON.stringify({ name, gender, whatsapp }));
 
-                // Refresh UI
-                populateProfile();
+                // Update UI
+                document.getElementById('userName').textContent = name;
+                document.getElementById('userPhone').style.display = 'flex';
+                document.getElementById('userPhone').querySelector('span').textContent = whatsapp;
 
+                document.getElementById('editSuccess').classList.add('show');
+                setTimeout(() => document.getElementById('editSuccess').classList.remove('show'), 3000);
                 showToast('Profil berhasil diperbarui!', 'success');
-            } catch (error) {
-                console.error('Error updating profile:', error);
-                showToast('Gagal memperbarui profil', 'error');
+
+            } catch (e) {
+                console.error('Edit profile error:', e);
+                showToast('Error: ' + e.message, 'error');
             }
+
+            btn.innerHTML = '<i class="fas fa-save"></i> Simpan Perubahan';
+            btn.disabled = false;
         });
 
-        // Reset form
-        function resetForm() {
-            document.getElementById('editName').value = userData.userName || '';
-            document.getElementById('editGender').value = userData.gender || '';
-            document.getElementById('editWhatsapp').value = userData.whatsapp || '';
-            showToast('Form direset', 'success');
-        }
+        // ==========================================
+        // LOGOUT
+        // ==========================================
+        async function logout() {
+            if (!confirm('Yakin ingin keluar dari membership?')) return;
 
-        // Scroll to edit section
-        function scrollToEdit() {
-            document.getElementById('editSection').scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => {
-                document.getElementById('editName').focus();
-            }, 500);
-        }
-
-        // Copy token
-        function copyToken() {
-            const token = document.getElementById('profileToken').textContent;
-            navigator.clipboard.writeText(token).then(() => {
-                showToast('Token disalin ke clipboard!', 'success');
-            }).catch(() => {
-                showToast('Gagal menyalin token', 'error');
-            });
-        }
-
-        // Share profile
-        async function shareProfile() {
-            const shareData = {
-                title: `Profil ${userData.userName || 'Pengguna'}`,
-                text: 'Lihat profil saya di StreamHub!',
-                url: window.location.href
-            };
-
-            try {
-                await navigator.share(shareData);
-            } catch {
-                navigator.clipboard.writeText(window.location.href);
-                showToast('Link profil disalin!', 'success');
-            }
-        }
-
-        // Contact admin (ganti dengan nomor WA admin)
-        function contactAdmin() {
-            const adminWhatsapp = '6285183885551'; // Ganti dengan nomor admin
-            const message = `Halo Admin, saya ${userData.userName || 'pengguna'} dengan token ${userData.token}. `;
-            window.open(`https://wa.me/${adminWhatsapp}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        // Logout modal
-        function showLogoutModal() {
-            document.getElementById('logoutModal').classList.add('active');
-        }
-
-        function closeLogoutModal() {
-            document.getElementById('logoutModal').classList.remove('active');
-        }
-
-        function logout() {
-            localStorage.removeItem('userToken');
-            localStorage.removeItem('tokenData');
+            localStorage.removeItem('ikazz_member_token');
             showToast('Berhasil keluar', 'success');
-
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1000);
+            setTimeout(() => location.reload(), 1000);
         }
 
-        // Close modal on overlay click
-        document.getElementById('logoutModal').addEventListener('click', (e) => {
-            if (e.target.id === 'logoutModal') {
-                closeLogoutModal();
+        // ==========================================
+        // ENTER KEY FOR TOKEN
+        // ==========================================
+        document.getElementById('tokenInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                loginWithToken();
             }
         });
 
-        // ESC key to close modal
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLogoutModal();
+        // ==========================================
+        // INITIALIZE
+        // ==========================================
+        window.addEventListener('load', async () => {
+            try {
+                await checkMembership();
+            } catch (e) {
+                console.error('Init error:', e);
+                hideLoading();
+                showToast('Error: ' + e.message, 'error');
             }
         });
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
+</html>

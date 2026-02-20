@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Live Room - StreamHub</title>
+    <title>Live Room | IKAZZ - 48</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,1066 +14,26 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #f43f5e;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
-            --header-height: 60px;
-        }
-
-        html, body {
-            height: 100%;
-            overflow: hidden;
+            --primary: #FF1744;
+            --primary-light: #FF5252;
+            --secondary: #6C63FF;
+            --accent: #00BCD4;
+            --dark: #1A1A2E;
+            --gray: #6B7280;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --gradient-1: linear-gradient(135deg, #FF1744 0%, #FF6B6B 100%);
+            --gradient-2: linear-gradient(135deg, #6C63FF 0%, #A855F7 100%);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.3);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--gray-900);
-            color: var(--gray-800);
-        }
-
-        /* ============================================
-           SCROLLBAR
-           ============================================ */
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--gray-400);
-            border-radius: 3px;
-        }
-
-        /* ============================================
-           LOADING SCREEN
-           ============================================ */
-        .loading-screen {
-            position: fixed;
-            inset: 0;
-            background: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loading-content {
-            text-align: center;
-        }
-
-        .loading-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            margin: 0 auto 1.5rem;
-            animation: loadingPulse 1.5s infinite ease-in-out;
-        }
-
-        @keyframes loadingPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid var(--gray-200);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loading-content h2 {
-            font-size: 1.25rem;
-            color: var(--gray-800);
-            margin-bottom: 0.5rem;
-        }
-
-        .loading-content p {
-            color: var(--gray-500);
-            font-size: 0.9rem;
-        }
-
-        /* ============================================
-           MAIN LAYOUT
-           ============================================ */
-        .app-container {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: var(--white);
-        }
-
-        /* Header */
-        .app-header {
-            height: var(--header-height);
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 1rem;
-            flex-shrink: 0;
-            z-index: 100;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .back-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--gray-100);
-            border: none;
-            border-radius: 12px;
-            color: var(--gray-700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            flex-shrink: 0;
-            text-decoration: none;
-        }
-
-        .back-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .room-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .room-title-header {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            white-space: nowrap;
+            background: #0a0a0a;
+            min-height: 100vh;
             overflow: hidden;
-            text-overflow: ellipsis;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .live-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: var(--secondary);
             color: white;
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .live-badge i {
-            font-size: 6px;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .room-meta {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 2px;
-        }
-
-        .room-meta span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .header-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--gray-100);
-            border: none;
-            border-radius: 12px;
-            color: var(--gray-700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .header-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .header-btn .badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: var(--secondary);
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 10px;
-            min-width: 18px;
-            text-align: center;
-        }
-
-        /* ============================================
-           CONTENT AREA
-           ============================================ */
-        .app-content {
-            flex: 1;
-            display: flex;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Video Section */
-        .video-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: var(--gray-900);
-            position: relative;
-        }
-
-        .video-wrapper {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Aspect ratio container for portrait mode */
-        .video-aspect-ratio {
-            width: 100%;
-            max-width: 100%;
-            position: relative;
-        }
-
-        #remoteVideo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #000;
-        }
-
-        .video-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--gray-800), var(--gray-900));
-            color: var(--gray-400);
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .video-overlay.hidden {
-            display: none;
-        }
-
-        .video-overlay-icon {
-            width: 100px;
-            height: 100px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .video-overlay-icon i {
-            font-size: 3rem;
-            color: var(--primary);
-            animation: pulseIcon 2s infinite;
-        }
-
-        @keyframes pulseIcon {
-            0%, 100% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-
-        .video-overlay h3 {
-            font-size: 1.25rem;
-            color: var(--white);
-            margin-bottom: 0.5rem;
-        }
-
-        .video-overlay p {
-            font-size: 0.9rem;
-            color: var(--gray-400);
-            margin-bottom: 1rem;
-        }
-
-        .connecting-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .connecting-dots span {
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: bounce 1.4s infinite ease-in-out;
-        }
-
-        .connecting-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .connecting-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-
-        /* Video Controls */
-        .video-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .video-wrapper:hover .video-controls,
-        .video-controls.visible {
-            opacity: 1;
-        }
-
-        .controls-left,
-        .controls-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .control-btn {
-            width: 44px;
-            height: 44px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-
-        .control-btn:hover {
-            background: var(--primary);
-            transform: scale(1.1);
-        }
-
-        .control-btn.active {
-            background: var(--primary);
-        }
-
-        .volume-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .volume-slider {
-            width: 80px;
-            height: 4px;
-            -webkit-appearance: none;
-            background: rgba(255,255,255,0.3);
-            border-radius: 2px;
-            cursor: pointer;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 14px;
-            height: 14px;
-            background: white;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        }
-
-        /* Time/Duration */
-        .time-display {
-            color: white;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0,0,0,0.5);
-            padding: 6px 12px;
-            border-radius: 20px;
-        }
-
-        /* Video Info Bar */
-        .video-info-bar {
-            background: var(--white);
-            padding: 1rem 1.25rem;
-            border-top: 1px solid var(--gray-200);
-        }
-
-        .video-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-
-        .video-stats {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .video-stat {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            color: var(--gray-500);
-        }
-
-        .video-stat i {
-            color: var(--primary);
-        }
-
-        .video-stat.live {
-            color: var(--secondary);
-        }
-
-        .video-stat.live i {
-            color: var(--secondary);
-            animation: blink 1s infinite;
-        }
-
-        /* ============================================
-           CHAT SECTION
-           ============================================ */
-        .chat-section {
-            width: 380px;
-            background: var(--white);
-            border-left: 1px solid var(--gray-200);
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-        }
-
-        .chat-header {
-            padding: 1rem 1.25rem;
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-header h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chat-header h3 i {
-            color: var(--primary);
-        }
-
-        .chat-count {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-
-        .chat-close {
-            display: none;
-            width: 36px;
-            height: 36px;
-            background: var(--gray-100);
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            color: var(--gray-600);
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .chat-message {
-            display: flex;
-            gap: 10px;
-            animation: messageSlide 0.3s ease;
-        }
-
-        @keyframes messageSlide {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .chat-avatar {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 0.85rem;
-            flex-shrink: 0;
-        }
-
-        .chat-bubble {
-            flex: 1;
-            background: var(--gray-100);
-            padding: 10px 14px;
-            border-radius: 14px;
-            border-top-left-radius: 4px;
-        }
-
-        .chat-user {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--gray-800);
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .chat-user .host-tag {
-            background: var(--secondary);
-            color: white;
-            font-size: 0.6rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .chat-text {
-            font-size: 0.9rem;
-            color: var(--gray-700);
-            line-height: 1.4;
-            word-break: break-word;
-        }
-
-        .chat-time {
-            font-size: 0.7rem;
-            color: var(--gray-400);
-            margin-top: 4px;
-        }
-
-        .chat-system {
-            text-align: center;
-            padding: 10px;
-            background: var(--gray-50);
-            border-radius: 10px;
-            font-size: 0.8rem;
-            color: var(--gray-500);
-        }
-
-        .chat-input-wrapper {
-            padding: 1rem;
-            border-top: 1px solid var(--gray-200);
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 12px 16px;
-            background: var(--gray-100);
-            border: 2px solid var(--gray-200);
-            border-radius: 14px;
-            font-family: inherit;
-            font-size: 0.9rem;
-            color: var(--gray-800);
-            transition: all 0.3s;
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: var(--white);
-        }
-
-        .chat-input::placeholder {
-            color: var(--gray-400);
-        }
-
-        .chat-send {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border: none;
-            border-radius: 14px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1.1rem;
-        }
-
-        .chat-send:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-        }
-
-        /* ============================================
-           MOBILE CHAT PANEL
-           ============================================ */
-        .chat-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 998;
-        }
-
-        .chat-overlay.active {
-            display: block;
-        }
-
-        /* ============================================
-           TOAST
-           ============================================ */
-        .toast-container {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3000;
-        }
-
-        .toast {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            border: 1px solid var(--gray-200);
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .toast.success { border-left: 4px solid var(--success); }
-        .toast.error { border-left: 4px solid var(--danger); }
-        .toast.success i { color: var(--success); }
-        .toast.error i { color: var(--danger); }
-
-        .toast-message {
-            font-weight: 600;
-            color: var(--gray-700);
-        }
-
-        /* ============================================
-           FULLSCREEN MODE
-           ============================================ */
-        .app-container.fullscreen .app-header,
-        .app-container.fullscreen .chat-section,
-        .app-container.fullscreen .video-info-bar {
-            display: none;
-        }
-
-        .app-container.fullscreen .video-section {
-            position: fixed;
-            inset: 0;
-            z-index: 9000;
-        }
-
-        .app-container.fullscreen .video-wrapper {
-            height: 100vh;
-        }
-
-        /* ============================================
-           RESPONSIVE - TABLET
-           ============================================ */
-        @media (max-width: 1024px) {
-            .chat-section {
-                position: fixed;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                max-width: 400px;
-                z-index: 999;
-                transform: translateX(100%);
-                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            .chat-section.open {
-                transform: translateX(0);
-            }
-
-            .chat-close {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        }
-
-        /* ============================================
-           RESPONSIVE - MOBILE PORTRAIT
-           ============================================ */
-        @media (max-width: 768px) {
-            :root {
-                --header-height: 56px;
-            }
-
-            .app-header {
-                padding: 0 0.75rem;
-            }
-
-            .back-btn,
-            .header-btn {
-                width: 36px;
-                height: 36px;
-                border-radius: 10px;
-            }
-
-            .room-title-header {
-                font-size: 0.9rem;
-            }
-
-            .room-meta {
-                font-size: 0.75rem;
-            }
-
-            .live-badge {
-                font-size: 0.6rem;
-                padding: 2px 6px;
-            }
-
-            /* Portrait Mode: 16:9 aspect ratio */
-            .video-wrapper {
-                background: #000;
-            }
-
-            .video-container {
-                width: 100%;
-                aspect-ratio: 16/9;
-                height: auto;
-                max-height: 100%;
-            }
-
-            .video-info-bar {
-                padding: 0.75rem 1rem;
-            }
-
-            .video-title {
-                font-size: 1rem;
-            }
-
-            .video-stats {
-                gap: 1rem;
-            }
-
-            .video-stat {
-                font-size: 0.8rem;
-            }
-
-            .video-controls {
-                padding: 1rem;
-            }
-
-            .control-btn {
-                width: 40px;
-                height: 40px;
-            }
-
-            .volume-wrapper {
-                display: none;
-            }
-
-            .chat-section {
-                max-width: 100%;
-            }
-
-            .video-overlay-icon {
-                width: 80px;
-                height: 80px;
-            }
-
-            .video-overlay-icon i {
-                font-size: 2rem;
-            }
-
-            .video-overlay h3 {
-                font-size: 1.1rem;
-            }
-
-            .video-overlay p {
-                font-size: 0.85rem;
-            }
-        }
-
-        /* ============================================
-           RESPONSIVE - LANDSCAPE MODE
-           ============================================ */
-        @media (max-width: 900px) and (orientation: landscape) {
-            .app-header {
-                height: 50px;
-            }
-
-            .video-container {
-                width: 100%;
-                height: 100%;
-                aspect-ratio: auto;
-            }
-
-            .video-info-bar {
-                display: none;
-            }
-
-            .video-wrapper {
-                height: calc(100vh - 50px);
-            }
-
-            .video-controls {
-                padding: 1rem 1.5rem;
-            }
-
-            .control-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 0.9rem;
-            }
-
-            /* Auto hide header in landscape for immersive view */
-            .app-container.immersive .app-header {
-                transform: translateY(-100%);
-                position: absolute;
-            }
-
-            .app-container.immersive .video-wrapper {
-                height: 100vh;
-            }
-        }
-
-        /* ============================================
-           FULLSCREEN LANDSCAPE
-           ============================================ */
-        @media (orientation: landscape) and (max-height: 500px) {
-            .app-header {
-                height: 45px;
-            }
-
-            .back-btn,
-            .header-btn {
-                width: 32px;
-                height: 32px;
-            }
-
-            .room-title-header {
-                font-size: 0.85rem;
-            }
-
-            .video-controls {
-                padding: 0.75rem 1rem;
-            }
-
-            .control-btn {
-                width: 34px;
-                height: 34px;
-                font-size: 0.85rem;
-            }
-
-            .time-display {
-                font-size: 0.75rem;
-                padding: 4px 10px;
-            }
-        }
-
-        /* ============================================
-           ORIENTATION CHANGE ANIMATION
-           ============================================ */
-        @media (orientation: landscape) {
-            .video-container {
-                animation: expandVideo 0.3s ease forwards;
-            }
-        }
-
-        @media (orientation: portrait) {
-            .video-container {
-                animation: contractVideo 0.3s ease forwards;
-            }
-        }
-
-        @keyframes expandVideo {
-            from { opacity: 0.8; }
-            to { opacity: 1; }
-        }
-
-        @keyframes contractVideo {
-            from { opacity: 0.8; }
-            to { opacity: 1; }
-        }
-
-        /* ============================================
-           LANDSCAPE FULLSCREEN HINT
-           ============================================ */
-        .rotate-hint {
-            display: none;
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            z-index: 100;
-            animation: fadeInOut 3s ease forwards;
-        }
-
-        .rotate-hint i {
-            margin-right: 8px;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-        }
-
-        @media (max-width: 768px) and (orientation: portrait) {
-            .rotate-hint {
-                display: block;
-            }
-        }
-
-        /* ============================================
-           PIP INDICATOR
-           ============================================ */
-        .pip-indicator {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.9);
-            color: white;
-            padding: 20px 30px;
-            border-radius: 16px;
-            text-align: center;
-            z-index: 5000;
-        }
-
-        .pip-indicator.show {
-            display: block;
-            animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
@@ -1081,190 +41,709 @@
             to { opacity: 1; }
         }
 
-        .pip-indicator i {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--primary);
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .pip-indicator p {
-            font-size: 0.9rem;
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes livePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 23, 68, 0.6); }
+            50% { box-shadow: 0 0 0 12px rgba(255, 23, 68, 0); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255,23,68,0.5)); }
+            50% { filter: drop-shadow(0 0 30px rgba(255,23,68,0.8)); }
+        }
+
+        /* Room Header */
+        .room-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 24px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 100;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .back-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+
+        .room-info {
+            text-align: center;
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .room-title-header {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .live-badge-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--primary);
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: livePulse 2s ease infinite;
+        }
+
+        .live-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1s ease infinite;
+        }
+
+        .quality-badge {
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .viewer-count {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .viewer-count i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #remoteVideo, #localVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: transparent;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .video-placeholder-icon {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .video-placeholder-icon i {
+            font-size: 50px;
+            color: rgba(255,255,255,0.5);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .video-placeholder h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .video-placeholder p {
+            color: rgba(255,255,255,0.5);
+            font-size: 15px;
+            max-width: 300px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 30px auto 0;
+        }
+
+        /* Connection Status */
+        .connection-status {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 101;
+            animation: fadeInDown 0.5s ease;
+            transition: all 0.3s ease;
+        }
+
+        .connection-status.connecting {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.9) 0%, rgba(217, 119, 6, 0.9) 100%);
+        }
+
+        .connection-status.connected {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(5, 150, 105, 0.9) 100%);
+        }
+
+        .connection-status.error {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%);
+        }
+
+        .connection-status.hidden {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-20px);
+            pointer-events: none;
+        }
+
+        .connection-status .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 24px 40px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+            z-index: 100;
+            animation: slideInUp 0.6s ease;
+        }
+
+        .controls-inner {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Exit Button */
+        .exit-btn {
+            padding: 18px 36px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .exit-btn:hover {
+            background: #DC2626;
+            border-color: #DC2626;
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.4);
+        }
+
+        .exit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .exit-btn i {
+            font-size: 18px;
+        }
+
+        /* Admin Controls */
+        .admin-controls {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-btn {
+            padding: 16px 28px;
+            border-radius: 16px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: inherit;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .admin-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .admin-btn.screen {
+            background: var(--gradient-2);
+            color: white;
+        }
+
+        .admin-btn.screen:hover {
+            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.5);
+        }
+
+        .admin-btn.screen.active {
+            background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 100%);
+        }
+
+        .admin-btn.start {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .admin-btn.start:hover {
+            box-shadow: 0 8px 30px rgba(255, 23, 68, 0.5);
+        }
+
+        .admin-btn.stop {
+            background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+            color: white;
+        }
+
+        .admin-btn.stop:hover {
+            box-shadow: 0 8px 30px rgba(220, 38, 38, 0.5);
+        }
+
+        .admin-btn i {
+            font-size: 16px;
+        }
+
+        /* Room Stats */
+        .room-stats {
+            position: fixed;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 24px;
+            padding: 16px 28px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            animation: fadeInUp 0.6s ease 0.3s backwards;
+        }
+
+        .room-stat {
+            text-align: center;
+        }
+
+        .room-stat-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .room-stat-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-logo {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-1);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 50px rgba(255, 23, 68, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 24px;
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0,0,0,0.95);
+            color: white;
+            padding: 18px 32px;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.95) 0%, rgba(220, 38, 38, 0.95) 100%);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .toast i {
+            font-size: 18px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .room-header {
+                padding: 16px 16px;
+            }
+
+            .back-btn {
+                width: 44px;
+                height: 44px;
+            }
+
+            .room-title-header {
+                font-size: 15px;
+            }
+
+            .viewer-count {
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+
+            .controls {
+                padding: 24px 16px 32px;
+            }
+
+            .exit-btn {
+                padding: 16px 28px;
+                font-size: 14px;
+            }
+
+            .admin-btn {
+                padding: 14px 22px;
+                font-size: 13px;
+            }
+
+            .room-stats {
+                bottom: 130px;
+                padding: 14px 24px;
+                gap: 20px;
+            }
+
+            .room-stat-value {
+                font-size: 18px;
+            }
+
+            .video-placeholder-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .video-placeholder-icon i {
+                font-size: 36px;
+            }
+
+            .video-placeholder h3 {
+                font-size: 20px;
+            }
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <div class="loading-logo">
-                <i class="fas fa-play"></i>
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-logo">48</div>
+        <div class="loader"></div>
+        <p class="loading-text">Menghubungkan ke live stream...</p>
+    </div>
+
+    <!-- Header -->
+    <div class="room-header">
+        <button class="back-btn" onclick="exitRoom()" title="Keluar">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="room-info">
+            <h1 class="room-title-header" id="roomTitle">Loading...</h1>
+            <div class="live-badge-container">
+                <span class="live-badge" id="liveBadge">LIVE</span>
+                <span class="quality-badge">HD</span>
             </div>
-            <div class="loading-spinner"></div>
-            <h2>Memuat Stream</h2>
-            <p>Mohon tunggu sebentar...</p>
+        </div>
+        <div class="viewer-count">
+            <i class="fas fa-eye"></i>
+            <span id="viewerCount">0</span>
         </div>
     </div>
 
-    <!-- Main App -->
-    <div class="app-container" id="appContainer">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-left">
-                <a href="index.html" class="back-btn">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                <div class="room-info">
-                    <div class="room-title-header" id="roomTitleHeader">
-                        <span>Memuat...</span>
-                        <span class="live-badge" id="liveBadgeHeader" style="display: none;">
-                            <i class="fas fa-circle"></i> LIVE
-                        </span>
-                    </div>
-                    <div class="room-meta">
-                        <span><i class="fas fa-eye"></i> <span id="viewerCountHeader">0</span></span>
-                        <span><i class="fas fa-clock"></i> <span id="durationHeader">00:00</span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="header-right">
-                <button class="header-btn" id="chatToggleBtn" onclick="toggleChat()">
-                    <i class="fas fa-comments"></i>
-                    <span class="badge" id="chatBadge">0</span>
-                </button>
-                <button class="header-btn" onclick="toggleFullscreen()">
-                    <i class="fas fa-expand" id="fullscreenIcon"></i>
-                </button>
-                <button class="header-btn" onclick="shareRoom()">
-                    <i class="fas fa-share-alt"></i>
-                </button>
-            </div>
-        </header>
+    <!-- Connection Status -->
+    <div class="connection-status connecting" id="connectionStatus">
+        <div class="spinner"></div>
+        <span>Menghubungkan...</span>
+    </div>
 
-        <!-- Content -->
-        <div class="app-content">
-            <!-- Video Section -->
-            <div class="video-section">
-                <div class="video-wrapper" id="videoWrapper">
-                    <div class="video-container" id="videoContainer">
-                        <video id="remoteVideo" autoplay playsinline></video>
-                        
-                        <!-- Overlay -->
-                        <div class="video-overlay" id="videoOverlay">
-                            <div class="video-overlay-icon">
-                                <i class="fas fa-broadcast-tower"></i>
-                            </div>
-                            <h3 id="overlayTitle">Menghubungkan...</h3>
-                            <p id="overlayText">Mempersiapkan koneksi streaming</p>
-                            <div class="connecting-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <div class="video-controls" id="videoControls">
-                            <div class="controls-left">
-                                <button class="control-btn" onclick="togglePlay()" id="playBtn">
-                                    <i class="fas fa-play" id="playIcon"></i>
-                                </button>
-                                <div class="volume-wrapper">
-                                    <button class="control-btn" onclick="toggleMute()" id="muteBtn">
-                                        <i class="fas fa-volume-up" id="volumeIcon"></i>
-                                    </button>
-                                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100" oninput="setVolume(this.value)">
-                                </div>
-                                <div class="time-display">
-                                    <i class="fas fa-clock"></i>
-                                    <span id="durationDisplay">00:00:00</span>
-                                </div>
-                            </div>
-                            <div class="controls-right">
-                                <button class="control-btn" onclick="togglePiP()" title="Picture in Picture">
-                                    <i class="fas fa-clone"></i>
-                                </button>
-                                <button class="control-btn" onclick="toggleFullscreen()">
-                                    <i class="fas fa-expand" id="fullscreenIconControl"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Video Container -->
+    <div class="video-container">
+        <div class="video-wrapper">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <video id="localVideo" autoplay playsinline muted style="display: none;"></video>
+            <div class="video-placeholder" id="videoPlaceholder">
+                <div class="video-placeholder-icon">
+                    <i class="fas fa-broadcast-tower"></i>
                 </div>
-
-                <!-- Video Info -->
-                <div class="video-info-bar">
-                    <h2 class="video-title" id="videoTitle">Memuat...</h2>
-                    <div class="video-stats">
-                        <div class="video-stat live" id="liveIndicator" style="display: none;">
-                            <i class="fas fa-circle"></i>
-                            <span>LIVE</span>
-                        </div>
-                        <div class="video-stat">
-                            <i class="fas fa-eye"></i>
-                            <span id="viewerCount">0 penonton</span>
-                        </div>
-                        <div class="video-stat">
-                            <i class="fas fa-clock"></i>
-                            <span id="streamDuration">00:00:00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chat Overlay -->
-            <div class="chat-overlay" id="chatOverlay" onclick="closeChat()"></div>
-
-            <!-- Chat Section -->
-            <div class="chat-section" id="chatSection">
-                <div class="chat-header">
-                    <h3><i class="fas fa-comments"></i> Live Chat</h3>
-                    <span class="chat-count" id="chatCount">0</span>
-                    <button class="chat-close" onclick="closeChat()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="chat-messages" id="chatMessages">
-                    <div class="chat-system">
-                        👋 Selamat datang di live chat!
-                    </div>
-                </div>
-                <div class="chat-input-wrapper">
-                    <input type="text" class="chat-input" id="chatInput" placeholder="Tulis pesan..." maxlength="200">
-                    <button class="chat-send" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
+                <h3>Menunggu Stream</h3>
+                <p>Live stream akan dimulai segera, mohon tunggu sebentar...</p>
+                <div class="loading-spinner"></div>
             </div>
         </div>
     </div>
 
-    <!-- Rotate Hint (Mobile Portrait) -->
-    <div class="rotate-hint" id="rotateHint">
-        <i class="fas fa-mobile-alt"></i> Putar HP untuk layar penuh
+    <!-- Room Stats -->
+    <div class="room-stats" id="roomStats">
+        <div class="room-stat">
+            <div class="room-stat-value" id="statViewers">0</div>
+            <div class="room-stat-label">Penonton</div>
+        </div>
+        <div class="room-stat">
+            <div class="room-stat-value" id="statDuration">00:00</div>
+            <div class="room-stat-label">Durasi</div>
+        </div>
     </div>
 
-    <!-- PIP Indicator -->
-    <div class="pip-indicator" id="pipIndicator">
-        <i class="fas fa-clone"></i>
-        <p>Video sedang dalam mode Picture-in-Picture</p>
+    <!-- Controls -->
+    <div class="controls">
+        <div class="controls-inner" id="viewerControls">
+            <button class="exit-btn" onclick="exitRoom()">
+                <i class="fas fa-sign-out-alt"></i>
+                Keluar dari Live
+            </button>
+        </div>
+        <div class="admin-controls" id="adminControls" style="display: none;">
+            <button class="admin-btn screen" id="screenShareBtn" onclick="toggleScreenShare()">
+                <i class="fas fa-desktop"></i>
+                Share Screen
+            </button>
+            <button class="admin-btn start" id="startLiveBtn" onclick="startBroadcast()">
+                <i class="fas fa-broadcast-tower"></i>
+                Mulai Live
+            </button>
+            <button class="admin-btn stop" id="stopLiveBtn" onclick="stopBroadcast()" style="display: none;">
+                <i class="fas fa-stop-circle"></i>
+                Stop Live
+            </button>
+            <button class="exit-btn" onclick="exitRoom()">
+                <i class="fas fa-sign-out-alt"></i>
+                Keluar
+            </button>
+        </div>
     </div>
 
     <!-- Toast -->
-    <div class="toast-container">
-        <div class="toast" id="toast">
-            <i class="fas fa-check-circle"></i>
-            <span class="toast-message" id="toastMessage">Berhasil!</span>
-        </div>
-    </div>
+    <div class="toast" id="toast"></div>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
     <script>
-        // ============================================
-        // FIREBASE CONFIG
-        // ============================================
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAl6WmsHrmYkyotYYu_VIEqX5buTrMa-ec",
             authDomain: "live-abd72.firebaseapp.com",
@@ -1276,536 +755,608 @@
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        const auth = firebase.auth();
 
-        // ============================================
-        // VARIABLES
-        // ============================================
-        const urlParams = new URLSearchParams(window.location.search);
-        const roomId = urlParams.get('id');
-
-        let userData = null;
-        let roomData = null;
-        let peerConnection = null;
-        let streamStartTime = null;
-        let durationInterval = null;
-        let controlsTimeout = null;
-        let isFullscreen = false;
-
+        // WebRTC Configuration - Multiple STUN/TURN servers for better connectivity
         const rtcConfig = {
             iceServers: [
                 { urls: 'stun:stun.l.google.com:19302' },
                 { urls: 'stun:stun1.l.google.com:19302' },
-                { urls: 'stun:stun2.l.google.com:19302' }
-            ]
+                { urls: 'stun:stun2.l.google.com:19302' },
+                { urls: 'stun:stun3.l.google.com:19302' },
+                { urls: 'stun:stun4.l.google.com:19302' },
+                { urls: 'stun:stun.stunprotocol.org:3478' }
+            ],
+            iceCandidatePoolSize: 10
         };
 
+        // State
+        let localStream = null;
+        let peerConnections = {};
+        let roomId = null;
+        let isAdmin = false;
+        let isBroadcasting = false;
+        let viewerId = null;
+        let unsubscribers = [];
+        let durationInterval = null;
+        let startTime = null;
+
+        // Elements
+        const localVideo = document.getElementById('localVideo');
         const remoteVideo = document.getElementById('remoteVideo');
-        const videoOverlay = document.getElementById('videoOverlay');
+        const videoPlaceholder = document.getElementById('videoPlaceholder');
+        const connectionStatus = document.getElementById('connectionStatus');
 
-        // ============================================
-        // TOAST
-        // ============================================
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMessage');
-            const toastIcon = toast.querySelector('i');
+        // Get URL Params
+        const urlParams = new URLSearchParams(window.location.search);
+        roomId = urlParams.get('id');
+        const isAdminMode = urlParams.get('admin') === 'true';
+        viewerId = 'viewer_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
-            toastMsg.textContent = message;
-            toast.className = `toast ${type}`;
-            toastIcon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
-
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+        // Format Duration
+        function formatDuration(seconds) {
+            const hrs = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = Math.floor(seconds % 60);
+            if (hrs > 0) {
+                return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }
 
-        // ============================================
-        // INIT
-        // ============================================
+        // Update Duration
+        function updateDuration() {
+            if (startTime) {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                document.getElementById('statDuration').textContent = formatDuration(elapsed);
+            }
+        }
+
+        // Initialize
         async function init() {
-            // Check token
-            const token = localStorage.getItem('userToken');
-            if (!token || !roomId) {
-                window.location.href = 'index.html';
+            if (!roomId) {
+                showToast('Room tidak ditemukan', 'error');
+                setTimeout(() => window.location.href = 'index.html', 2000);
                 return;
             }
 
             try {
-                // Validate token
-                const tokenSnapshot = await db.collection('tokens')
-                    .where('token', '==', token)
-                    .where('isActive', '==', true)
-                    .get();
-
-                if (tokenSnapshot.empty) {
-                    localStorage.removeItem('userToken');
-                    window.location.href = 'index.html';
+                // Load room info
+                const roomDoc = await db.collection('rooms').doc(roomId).get();
+                if (!roomDoc.exists) {
+                    showToast('Room tidak ditemukan', 'error');
+                    setTimeout(() => window.location.href = 'index.html', 2000);
                     return;
                 }
 
-                userData = tokenSnapshot.docs[0].data();
-                userData.id = tokenSnapshot.docs[0].id;
+                const room = roomDoc.data();
+                document.getElementById('roomTitle').textContent = room.title;
+                document.getElementById('viewerCount').textContent = room.viewers || 0;
+                document.getElementById('statViewers').textContent = room.viewers || 0;
 
-                // Load room
-                await loadRoom();
-                
-                // Setup WebRTC
-                setupWebRTC();
-                
-                // Load chat
-                loadChat();
-                
-                // Add viewer
-                addViewer();
-
-                // Hide loading
-                setTimeout(() => {
-                    document.getElementById('loadingScreen').classList.add('hidden');
-                }, 1000);
-
-                // Setup event listeners
-                setupEventListeners();
-
-                // Show rotate hint on mobile
-                if (window.innerWidth <= 768 && window.innerHeight > window.innerWidth) {
-                    document.getElementById('rotateHint').style.display = 'block';
-                    setTimeout(() => {
-                        document.getElementById('rotateHint').style.display = 'none';
-                    }, 4000);
+                if (room.startedAt) {
+                    startTime = room.startedAt.toDate().getTime();
+                    durationInterval = setInterval(updateDuration, 1000);
                 }
 
-            } catch (error) {
-                console.error('Init error:', error);
-                showToast('Terjadi kesalahan', 'error');
-            }
-        }
-
-        // ============================================
-        // LOAD ROOM
-        // ============================================
-        async function loadRoom() {
-            return new Promise((resolve, reject) => {
-                db.collection('rooms').doc(roomId).onSnapshot(doc => {
-                    if (!doc.exists) {
-                        showToast('Room tidak ditemukan', 'error');
-                        setTimeout(() => window.location.href = 'index.html', 2000);
-                        return;
-                    }
-
-                    roomData = doc.data();
-                    roomData.id = doc.id;
-
-                    // Update UI
-                    document.getElementById('roomTitleHeader').innerHTML = `
-                        <span>${roomData.title}</span>
-                        ${roomData.isLive ? '<span class="live-badge" id="liveBadgeHeader"><i class="fas fa-circle"></i> LIVE</span>' : ''}
-                    `;
-                    document.getElementById('videoTitle').textContent = roomData.title;
-                    document.getElementById('viewerCountHeader').textContent = roomData.viewers || 0;
-                    document.getElementById('viewerCount').textContent = `${roomData.viewers || 0} penonton`;
-
-                    // Live indicator
-                    document.getElementById('liveIndicator').style.display = roomData.isLive ? 'flex' : 'none';
-
-                    // Overlay
-                    if (!roomData.isLive) {
-                        document.getElementById('overlayTitle').textContent = 'Stream Offline';
-                        document.getElementById('overlayText').textContent = 'Host belum memulai streaming';
-                    }
-
-                    // Duration
-                    if (roomData.isLive && roomData.startedAt) {
-                        streamStartTime = roomData.startedAt.toDate();
-                        startDurationCounter();
-                    } else {
-                        if (durationInterval) clearInterval(durationInterval);
-                    }
-
-                    resolve();
-                }, error => {
-                    reject(error);
-                });
-            });
-        }
-
-        // ============================================
-        // WEBRTC
-        // ============================================
-        function setupWebRTC() {
-            db.collection('rooms').doc(roomId).collection('webrtc').doc('offer').onSnapshot(async doc => {
-                if (!doc.exists || !doc.data()?.offer) return;
-
-                try {
-                    if (peerConnection) peerConnection.close();
-
-                    peerConnection = new RTCPeerConnection(rtcConfig);
-
-                    peerConnection.ontrack = event => {
-                        remoteVideo.srcObject = event.streams[0];
-                        videoOverlay.classList.add('hidden');
-                    };
-
-                    peerConnection.onicecandidate = event => {
-                        if (event.candidate) {
-                            db.collection('rooms').doc(roomId).collection('webrtc').doc('answer')
-                                .collection('candidates').add(event.candidate.toJSON());
-                        }
-                    };
-
-                    peerConnection.onconnectionstatechange = () => {
-                        if (peerConnection.connectionState === 'disconnected' || 
-                            peerConnection.connectionState === 'failed') {
-                            videoOverlay.classList.remove('hidden');
-                            document.getElementById('overlayTitle').textContent = 'Koneksi Terputus';
-                            document.getElementById('overlayText').textContent = 'Mencoba menghubungkan kembali...';
-                        }
-                    };
-
-                    await peerConnection.setRemoteDescription(new RTCSessionDescription(doc.data().offer));
-                    
-                    const answer = await peerConnection.createAnswer();
-                    await peerConnection.setLocalDescription(answer);
-
-                    await db.collection('rooms').doc(roomId).collection('webrtc').doc('answer').set({
-                        answer: { type: answer.type, sdp: answer.sdp },
-                        oderId: userData.id
-                    });
-
-                    db.collection('rooms').doc(roomId).collection('webrtc').doc('offer')
-                        .collection('candidates').onSnapshot(snapshot => {
-                            snapshot.docChanges().forEach(async change => {
-                                if (change.type === 'added' && peerConnection) {
-                                    try {
-                                        await peerConnection.addIceCandidate(new RTCIceCandidate(change.doc.data()));
-                                    } catch (e) {
-                                        console.error('ICE candidate error:', e);
-                                    }
-                                }
-                            });
-                        });
-
-                } catch (error) {
-                    console.error('WebRTC error:', error);
-                    document.getElementById('overlayTitle').textContent = 'Koneksi Gagal';
-                    document.getElementById('overlayText').textContent = 'Tidak dapat terhubung ke stream';
-                }
-            });
-        }
-
-        // ============================================
-        // VIEWER COUNT
-        // ============================================
-        async function addViewer() {
-            await db.collection('rooms').doc(roomId).update({
-                viewers: firebase.firestore.FieldValue.increment(1)
-            });
-
-            window.addEventListener('beforeunload', () => {
-                navigator.sendBeacon && db.collection('rooms').doc(roomId).update({
-                    viewers: firebase.firestore.FieldValue.increment(-1)
-                });
-            });
-
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'hidden') {
-                    db.collection('rooms').doc(roomId).update({
-                        viewers: firebase.firestore.FieldValue.increment(-1)
-                    });
-                } else {
-                    db.collection('rooms').doc(roomId).update({
-                        viewers: firebase.firestore.FieldValue.increment(1)
-                    });
-                }
-            });
-        }
-
-        // ============================================
-        // DURATION COUNTER
-        // ============================================
-        function startDurationCounter() {
-            if (durationInterval) clearInterval(durationInterval);
-
-            const update = () => {
-                if (!streamStartTime) return;
-                const diff = Math.floor((new Date() - streamStartTime) / 1000);
-                const h = Math.floor(diff / 3600).toString().padStart(2, '0');
-                const m = Math.floor((diff % 3600) / 60).toString().padStart(2, '0');
-                const s = (diff % 60).toString().padStart(2, '0');
-                const time = `${h}:${m}:${s}`;
-                document.getElementById('durationDisplay').textContent = time;
-                document.getElementById('streamDuration').textContent = time;
-                document.getElementById('durationHeader').textContent = `${m}:${s}`;
-            };
-
-            update();
-            durationInterval = setInterval(update, 1000);
-        }
-
-        // ============================================
-        // VIDEO CONTROLS
-        // ============================================
-        function togglePlay() {
-            if (remoteVideo.paused) {
-                remoteVideo.play();
-                document.getElementById('playIcon').className = 'fas fa-pause';
-            } else {
-                remoteVideo.pause();
-                document.getElementById('playIcon').className = 'fas fa-play';
-            }
-        }
-
-        function toggleMute() {
-            remoteVideo.muted = !remoteVideo.muted;
-            document.getElementById('volumeIcon').className = remoteVideo.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-        }
-
-        function setVolume(value) {
-            remoteVideo.volume = value / 100;
-            document.getElementById('volumeIcon').className = value == 0 ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-        }
-
-        function toggleFullscreen() {
-            const container = document.getElementById('appContainer');
-            
-            if (!document.fullscreenElement) {
-                if (container.requestFullscreen) {
-                    container.requestFullscreen();
-                } else if (container.webkitRequestFullscreen) {
-                    container.webkitRequestFullscreen();
-                }
-                container.classList.add('fullscreen');
-                document.getElementById('fullscreenIcon').className = 'fas fa-compress';
-                document.getElementById('fullscreenIconControl').className = 'fas fa-compress';
-                isFullscreen = true;
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                }
-                container.classList.remove('fullscreen');
-                document.getElementById('fullscreenIcon').className = 'fas fa-expand';
-                document.getElementById('fullscreenIconControl').className = 'fas fa-expand';
-                isFullscreen = false;
-            }
-        }
-
-        async function togglePiP() {
-            try {
-                if (document.pictureInPictureElement) {
-                    await document.exitPictureInPicture();
-                    document.getElementById('pipIndicator').classList.remove('show');
-                } else if (remoteVideo.srcObject) {
-                    await remoteVideo.requestPictureInPicture();
-                    document.getElementById('pipIndicator').classList.add('show');
-                } else {
-                    showToast('Video belum tersedia', 'error');
-                }
-            } catch (error) {
-                showToast('PiP tidak didukung', 'error');
-            }
-        }
-
-        remoteVideo.addEventListener('leavepictureinpicture', () => {
-            document.getElementById('pipIndicator').classList.remove('show');
-        });
-
-        // ============================================
-        // CHAT
-        // ============================================
-        function loadChat() {
-            db.collection('rooms').doc(roomId).collection('chat')
-                .orderBy('timestamp', 'asc')
-                .limitToLast(100)
-                .onSnapshot(snapshot => {
-                    const container = document.getElementById('chatMessages');
-                    
-                    snapshot.docChanges().forEach(change => {
-                        if (change.type === 'added') {
-                            const msg = change.doc.data();
-                            const time = msg.timestamp ? new Date(msg.timestamp.toDate()).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) : '';
-                            
-                            const msgEl = document.createElement('div');
-                            msgEl.className = 'chat-message';
-                            msgEl.innerHTML = `
-                                <div class="chat-avatar">${(msg.userName || 'U').charAt(0).toUpperCase()}</div>
-                                <div class="chat-bubble">
-                                    <div class="chat-user">
-                                        ${escapeHtml(msg.userName || 'Anonymous')}
-                                        ${msg.isHost ? '<span class="host-tag">HOST</span>' : ''}
-                                    </div>
-                                    <div class="chat-text">${escapeHtml(msg.message)}</div>
-                                    <div class="chat-time">${time}</div>
-                                </div>
-                            `;
-                            container.appendChild(msgEl);
-                        }
-                    });
-
-                    document.getElementById('chatCount').textContent = snapshot.size;
-                    document.getElementById('chatBadge').textContent = snapshot.size;
-                    container.scrollTop = container.scrollHeight;
-                });
-        }
-
-        async function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            if (!message) return;
-
-            try {
-                await db.collection('rooms').doc(roomId).collection('chat').add({
-                    message: message,
-                    userName: userData.userName || 'Anonymous',
-                    userId: userData.id,
-                    isHost: false,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                input.value = '';
-            } catch (error) {
-                showToast('Gagal mengirim pesan', 'error');
-            }
-        }
-
-        document.getElementById('chatInput').addEventListener('keypress', e => {
-            if (e.key === 'Enter') sendMessage();
-        });
-
-        function toggleChat() {
-            document.getElementById('chatSection').classList.toggle('open');
-            document.getElementById('chatOverlay').classList.toggle('active');
-        }
-
-        function closeChat() {
-            document.getElementById('chatSection').classList.remove('open');
-            document.getElementById('chatOverlay').classList.remove('active');
-        }
-
-        // ============================================
-        // SHARE
-        // ============================================
-        async function shareRoom() {
-            const shareData = {
-                title: roomData?.title || 'Live Stream',
-                text: 'Tonton live streaming ini!',
-                url: window.location.href
-            };
-
-            try {
-                await navigator.share(shareData);
-            } catch {
-                navigator.clipboard.writeText(window.location.href);
-                showToast('Link disalin!');
-            }
-        }
-
-        // ============================================
-        // EVENT LISTENERS
-        // ============================================
-        function setupEventListeners() {
-            const videoWrapper = document.getElementById('videoWrapper');
-            const videoControls = document.getElementById('videoControls');
-
-            // Show controls on interaction
-            function showControls() {
-                videoControls.classList.add('visible');
-                clearTimeout(controlsTimeout);
-                controlsTimeout = setTimeout(() => {
-                    videoControls.classList.remove('visible');
-                }, 3000);
-            }
-
-            videoWrapper.addEventListener('mousemove', showControls);
-            videoWrapper.addEventListener('touchstart', showControls);
-            videoWrapper.addEventListener('click', e => {
-                if (e.target === videoWrapper || e.target === document.getElementById('videoContainer') || e.target === remoteVideo) {
-                    showControls();
-                }
-            });
-
-            // Double click/tap for fullscreen
-            let lastTap = 0;
-            videoWrapper.addEventListener('touchend', e => {
-                const now = Date.now();
-                if (now - lastTap < 300) {
-                    toggleFullscreen();
-                }
-                lastTap = now;
-            });
-
-            videoWrapper.addEventListener('dblclick', toggleFullscreen);
-
-            // Orientation change
-            window.addEventListener('orientationchange', () => {
-                setTimeout(() => {
-                    if (window.innerWidth > window.innerHeight) {
-                        // Landscape
-                        document.getElementById('rotateHint').style.display = 'none';
-                    } else {
-                        // Portrait
-                        if (window.innerWidth <= 768) {
-                            document.getElementById('rotateHint').style.display = 'block';
+                // Check if admin
+                if (isAdminMode) {
+                    auth.onAuthStateChanged(async (user) => {
+                        if (user && user.email === 'ikazz@kazz.id') {
+                            isAdmin = true;
+                            document.getElementById('adminControls').style.display = 'flex';
+                            document.getElementById('viewerControls').style.display = 'none';
+                            document.getElementById('roomStats').style.display = 'none';
+                            localVideo.style.display = 'block';
+                            remoteVideo.style.display = 'none';
+                            hideLoading();
+                            updateConnectionStatus('connected', 'Mode Admin Aktif');
                             setTimeout(() => {
-                                document.getElementById('rotateHint').style.display = 'none';
+                                connectionStatus.classList.add('hidden');
                             }, 3000);
+                        } else {
+                            window.location.href = 'index.html';
+                        }
+                    });
+                } else {
+                    // Viewer mode
+                    await joinAsViewer();
+                }
+
+                // Listen to room updates
+                const unsubRoom = db.collection('rooms').doc(roomId).onSnapshot((doc) => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        document.getElementById('viewerCount').textContent = data.viewers || 0;
+                        document.getElementById('statViewers').textContent = data.viewers || 0;
+                        
+                        if (!data.isLive && !isAdmin) {
+                            showToast('Live telah berakhir', 'error');
+                            setTimeout(() => window.location.href = 'index.html', 2000);
+                        }
+
+                        if (data.startedAt && !startTime) {
+                            startTime = data.startedAt.toDate().getTime();
+                            durationInterval = setInterval(updateDuration, 1000);
                         }
                     }
-                }, 100);
-            });
+                });
+                unsubscribers.push(unsubRoom);
 
-            // Fullscreen change
-            document.addEventListener('fullscreenchange', () => {
-                if (!document.fullscreenElement) {
-                    document.getElementById('appContainer').classList.remove('fullscreen');
-                    document.getElementById('fullscreenIcon').className = 'fas fa-expand';
-                    document.getElementById('fullscreenIconControl').className = 'fas fa-expand';
-                    isFullscreen = false;
-                }
-            });
-
-            // Keyboard shortcuts
-            document.addEventListener('keydown', e => {
-                switch (e.key) {
-                    case ' ':
-                        e.preventDefault();
-                        togglePlay();
-                        break;
-                    case 'f':
-                    case 'F':
-                        toggleFullscreen();
-                        break;
-                    case 'm':
-                    case 'M':
-                        toggleMute();
-                        break;
-                    case 'Escape':
-                        closeChat();
-                        break;
-                }
-            });
-
-            // Video play state
-            remoteVideo.addEventListener('play', () => {
-                document.getElementById('playIcon').className = 'fas fa-pause';
-            });
-
-            remoteVideo.addEventListener('pause', () => {
-                document.getElementById('playIcon').className = 'fas fa-play';
-            });
+            } catch (e) {
+                console.error('Init error:', e);
+                showToast('Gagal memuat room', 'error');
+            }
         }
 
-        // ============================================
-        // HELPERS
-        // ============================================
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+        // Join as Viewer
+        async function joinAsViewer() {
+            updateConnectionStatus('connecting', 'Menghubungkan ke stream...');
+
+            try {
+                // Increment viewer count
+                await db.collection('rooms').doc(roomId).update({
+                    viewers: firebase.firestore.FieldValue.increment(1)
+                });
+
+                // Listen for broadcaster offer
+                const unsubOffer = db.collection('rooms').doc(roomId)
+                    .collection('offer').doc('broadcaster')
+                    .onSnapshot(async (doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            if (data.sdp) {
+                                await setupViewerConnection(data);
+                            }
+                        }
+                    });
+                unsubscribers.push(unsubOffer);
+
+                hideLoading();
+
+            } catch (e) {
+                console.error('Join error:', e);
+                updateConnectionStatus('error', 'Gagal terhubung');
+            }
         }
 
-        // ============================================
-        // INIT ON LOAD
-        // ============================================
-        document.addEventListener('DOMContentLoaded', init);
+        // Setup Viewer Connection
+        async function setupViewerConnection(offerData) {
+            // Close existing connection if any
+            if (peerConnections[viewerId]) {
+                peerConnections[viewerId].close();
+            }
+
+            const pc = new RTCPeerConnection(rtcConfig);
+            peerConnections[viewerId] = pc;
+
+            // Handle incoming tracks
+            pc.ontrack = (event) => {
+                console.log('Received track:', event.track.kind);
+                if (event.streams && event.streams[0]) {
+                    remoteVideo.srcObject = event.streams[0];
+                    videoPlaceholder.style.display = 'none';
+                    remoteVideo.style.display = 'block';
+                    updateConnectionStatus('connected', 'Terhubung');
+                    setTimeout(() => {
+                        connectionStatus.classList.add('hidden');
+                    }, 3000);
+                }
+            };
+
+            // Handle ICE candidates
+            pc.onicecandidate = async (event) => {
+                if (event.candidate) {
+                    try {
+                        await db.collection('rooms').doc(roomId)
+                            .collection('viewerCandidates').doc(viewerId)
+                            .collection('candidates').add(event.candidate.toJSON());
+                    } catch (e) {
+                        console.error('Error adding ICE candidate:', e);
+                    }
+                }
+            };
+
+            // Handle connection state changes
+            pc.onconnectionstatechange = () => {
+                console.log('Connection state:', pc.connectionState);
+                switch (pc.connectionState) {
+                    case 'connected':
+                        updateConnectionStatus('connected', 'Terhubung');
+                        setTimeout(() => connectionStatus.classList.add('hidden'), 3000);
+                        break;
+                    case 'disconnected':
+                        updateConnectionStatus('connecting', 'Menghubungkan ulang...');
+                        connectionStatus.classList.remove('hidden');
+                        break;
+                    case 'failed':
+                        updateConnectionStatus('error', 'Koneksi terputus');
+                        connectionStatus.classList.remove('hidden');
+                        break;
+                }
+            };
+
+            pc.oniceconnectionstatechange = () => {
+                console.log('ICE connection state:', pc.iceConnectionState);
+            };
+
+            try {
+                // Set remote description (offer from broadcaster)
+                await pc.setRemoteDescription(new RTCSessionDescription(offerData));
+
+                // Create answer
+                const answer = await pc.createAnswer();
+                await pc.setLocalDescription(answer);
+
+                // Save answer to Firestore
+                await db.collection('rooms').doc(roomId)
+                    .collection('answers').doc(viewerId)
+                    .set({
+                        sdp: answer.sdp,
+                        type: answer.type,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                // Listen for ICE candidates from broadcaster
+                const unsubCandidates = db.collection('rooms').doc(roomId)
+                    .collection('broadcasterCandidates').doc('main')
+                    .collection('candidates')
+                    .onSnapshot((snapshot) => {
+                        snapshot.docChanges().forEach((change) => {
+                            if (change.type === 'added') {
+                                const candidate = new RTCIceCandidate(change.doc.data());
+                                pc.addIceCandidate(candidate).catch(err => {
+                                    console.error('Error adding remote ICE candidate:', err);
+                                });
+                            }
+                        });
+                    });
+                unsubscribers.push(unsubCandidates);
+
+            } catch (e) {
+                console.error('Setup viewer connection error:', e);
+                updateConnectionStatus('error', 'Gagal terhubung');
+            }
+        }
+
+        // Toggle Screen Share
+        async function toggleScreenShare() {
+            const btn = document.getElementById('screenShareBtn');
+            
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+                localStream = null;
+                localVideo.srcObject = null;
+                videoPlaceholder.style.display = 'flex';
+                btn.innerHTML = '<i class="fas fa-desktop"></i> Share Screen';
+                btn.classList.remove('active');
+                showToast('Screen share dihentikan', 'success');
+                return;
+            }
+
+            try {
+                // Request screen share with audio
+                localStream = await navigator.mediaDevices.getDisplayMedia({
+                    video: {
+                        cursor: 'always',
+                        width: { ideal: 1920, max: 1920 },
+                        height: { ideal: 1080, max: 1080 },
+                        frameRate: { ideal: 30, max: 60 }
+                    },
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        sampleRate: 44100
+                    }
+                });
+
+                localVideo.srcObject = localStream;
+                videoPlaceholder.style.display = 'none';
+                btn.innerHTML = '<i class="fas fa-stop"></i> Stop Share';
+                btn.classList.add('active');
+                showToast('Screen share aktif', 'success');
+
+                // Handle when user stops sharing via browser UI
+                localStream.getVideoTracks()[0].onended = () => {
+                    toggleScreenShare();
+                };
+
+            } catch (e) {
+                console.error('Screen share error:', e);
+                if (e.name === 'NotAllowedError') {
+                    showToast('Izin screen share ditolak', 'error');
+                } else {
+                    showToast('Gagal membagikan layar: ' + e.message, 'error');
+                }
+            }
+        }
+
+        // Start Broadcast
+        async function startBroadcast() {
+            if (!localStream) {
+                showToast('Aktifkan screen share terlebih dahulu', 'error');
+                return;
+            }
+
+            const startBtn = document.getElementById('startLiveBtn');
+            startBtn.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px;"></div> Memulai...';
+            startBtn.disabled = true;
+
+            try {
+                updateConnectionStatus('connecting', 'Memulai broadcast...');
+                connectionStatus.classList.remove('hidden');
+
+                // Clear old signaling data
+                const batch = db.batch();
+                
+                // Update room status
+                await db.collection('rooms').doc(roomId).update({
+                    isLive: true,
+                    startedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    viewers: 0
+                });
+
+                startTime = Date.now();
+                durationInterval = setInterval(updateDuration, 1000);
+
+                const pc = new RTCPeerConnection(rtcConfig);
+                peerConnections['broadcaster'] = pc;
+
+                // Add all tracks from local stream
+                localStream.getTracks().forEach(track => {
+                    console.log('Adding track:', track.kind);
+                    pc.addTrack(track, localStream);
+                });
+
+                // Handle ICE candidates
+                pc.onicecandidate = async (event) => {
+                    if (event.candidate) {
+                        try {
+                            await db.collection('rooms').doc(roomId)
+                                .collection('broadcasterCandidates').doc('main')
+                                .collection('candidates').add(event.candidate.toJSON());
+                        } catch (e) {
+                            console.error('Error adding broadcaster ICE candidate:', e);
+                        }
+                    }
+                };
+
+                pc.oniceconnectionstatechange = () => {
+                    console.log('Broadcaster ICE state:', pc.iceConnectionState);
+                };
+
+                // Create offer
+                const offer = await pc.createOffer({
+                    offerToReceiveAudio: false,
+                    offerToReceiveVideo: false
+                });
+                await pc.setLocalDescription(offer);
+
+                // Save offer to Firestore
+                await db.collection('rooms').doc(roomId)
+                    .collection('offer').doc('broadcaster')
+                    .set({
+                        sdp: offer.sdp,
+                        type: offer.type,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                // Listen for answers from viewers
+                const unsubAnswers = db.collection('rooms').doc(roomId)
+                    .collection('answers')
+                    .onSnapshot(async (snapshot) => {
+                        for (const change of snapshot.docChanges()) {
+                            if (change.type === 'added') {
+                                const viewerIdFromDoc = change.doc.id;
+                                const answerData = change.doc.data();
+                                
+                                console.log('New viewer answer:', viewerIdFromDoc);
+                                
+                                // Create new peer connection for each viewer
+                                const viewerPC = new RTCPeerConnection(rtcConfig);
+                                
+                                // Add tracks
+                                localStream.getTracks().forEach(track => {
+                                    viewerPC.addTrack(track, localStream);
+                                });
+
+                                // Handle ICE candidates for this viewer
+                                viewerPC.onicecandidate = async (event) => {
+                                    if (event.candidate) {
+                                        await db.collection('rooms').doc(roomId)
+                                            .collection('broadcasterCandidates').doc('main')
+                                            .collection('candidates').add(event.candidate.toJSON());
+                                    }
+                                };
+
+                                try {
+                                    // Create offer for this viewer
+                                    const viewerOffer = await viewerPC.createOffer();
+                                    await viewerPC.setLocalDescription(viewerOffer);
+                                    
+                                    // Set the answer
+                                    await viewerPC.setRemoteDescription(new RTCSessionDescription({
+                                        sdp: answerData.sdp,
+                                        type: answerData.type
+                                    }));
+
+                                    peerConnections[viewerIdFromDoc] = viewerPC;
+
+                                    // Listen for viewer ICE candidates
+                                    db.collection('rooms').doc(roomId)
+                                        .collection('viewerCandidates').doc(viewerIdFromDoc)
+                                        .collection('candidates')
+                                        .onSnapshot((candidateSnapshot) => {
+                                            candidateSnapshot.docChanges().forEach((candidateChange) => {
+                                                if (candidateChange.type === 'added') {
+                                                    const candidate = new RTCIceCandidate(candidateChange.doc.data());
+                                                    viewerPC.addIceCandidate(candidate).catch(console.error);
+                                                }
+                                            });
+                                        });
+
+                                } catch (e) {
+                                    console.error('Error handling viewer:', e);
+                                }
+                            }
+                        }
+                    });
+                unsubscribers.push(unsubAnswers);
+
+                isBroadcasting = true;
+                document.getElementById('startLiveBtn').style.display = 'none';
+                document.getElementById('stopLiveBtn').style.display = 'flex';
+                updateConnectionStatus('connected', 'Live aktif - Broadcasting');
+                setTimeout(() => connectionStatus.classList.add('hidden'), 3000);
+                showToast('🎬 Live dimulai!', 'success');
+
+            } catch (e) {
+                console.error('Broadcast error:', e);
+                showToast('Gagal memulai live: ' + e.message, 'error');
+                updateConnectionStatus('error', 'Gagal memulai');
+            }
+
+            startBtn.innerHTML = '<i class="fas fa-broadcast-tower"></i> Mulai Live';
+            startBtn.disabled = false;
+        }
+
+        // Stop Broadcast
+        async function stopBroadcast() {
+            if (!confirm('Yakin ingin menghentikan live?')) return;
+
+            try {
+                // Close all peer connections
+                Object.values(peerConnections).forEach(pc => {
+                    if (pc && pc.close) pc.close();
+                });
+                peerConnections = {};
+
+                // Stop local stream
+                if (localStream) {
+                    localStream.getTracks().forEach(track => track.stop());
+                    localStream = null;
+                }
+
+                localVideo.srcObject = null;
+                videoPlaceholder.style.display = 'flex';
+
+                // Clear duration interval
+                if (durationInterval) {
+                    clearInterval(durationInterval);
+                    durationInterval = null;
+                }
+                startTime = null;
+
+                // Update room status
+                await db.collection('rooms').doc(roomId).update({
+                    isLive: false,
+                    endedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    viewers: 0
+                });
+
+                isBroadcasting = false;
+                document.getElementById('startLiveBtn').style.display = 'flex';
+                document.getElementById('stopLiveBtn').style.display = 'none';
+                document.getElementById('screenShareBtn').innerHTML = '<i class="fas fa-desktop"></i> Share Screen';
+                document.getElementById('screenShareBtn').classList.remove('active');
+                
+                updateConnectionStatus('connected', 'Live berakhir');
+                connectionStatus.classList.remove('hidden');
+                showToast('Live dihentikan', 'success');
+
+            } catch (e) {
+                console.error('Stop broadcast error:', e);
+                showToast('Gagal menghentikan live', 'error');
+            }
+        }
+
+        // Exit Room
+        async function exitRoom() {
+            try {
+                // Close all peer connections
+                Object.values(peerConnections).forEach(pc => {
+                    if (pc && pc.close) pc.close();
+                });
+
+                // Stop local stream
+                if (localStream) {
+                    localStream.getTracks().forEach(track => track.stop());
+                }
+
+                // Unsubscribe all listeners
+                unsubscribers.forEach(unsub => {
+                    if (typeof unsub === 'function') unsub();
+                });
+
+                // Clear interval
+                if (durationInterval) {
+                    clearInterval(durationInterval);
+                }
+
+                // Decrement viewer count if not admin
+                if (!isAdmin && roomId) {
+                    await db.collection('rooms').doc(roomId).update({
+                        viewers: firebase.firestore.FieldValue.increment(-1)
+                    }).catch(console.error);
+                }
+
+            } catch (e) {
+                console.error('Exit error:', e);
+            }
+
+            window.location.href = 'index.html';
+        }
+
+        // Update Connection Status
+        function updateConnectionStatus(status, text) {
+            connectionStatus.className = 'connection-status ' + status;
+            if (status === 'connecting') {
+                connectionStatus.innerHTML = `<div class="spinner"></div><span>${text}</span>`;
+            } else {
+                const icon = status === 'connected' ? 'check-circle' : 'exclamation-triangle';
+                connectionStatus.innerHTML = `<i class="fas fa-${icon}"></i><span>${text}</span>`;
+            }
+        }
+
+        // Hide Loading
+        function hideLoading() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 800);
+        }
+
+        // Toast
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'info-circle';
+            toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
+            toast.className = 'toast show ' + type;
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        // Handle page unload - decrement viewer
+        window.addEventListener('beforeunload', () => {
+            if (!isAdmin && roomId) {
+                // Use sendBeacon for reliable delivery
+                const data = JSON.stringify({ roomId, action: 'leave' });
+                navigator.sendBeacon && navigator.sendBeacon('/api/leave', data);
+                
+                // Also try Firestore update
+                db.collection('rooms').doc(roomId).update({
+                    viewers: firebase.firestore.FieldValue.increment(-1)
+                }).catch(() => {});
+            }
+        });
+
+        // Handle visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden' && !isAdmin) {
+                // Page is hidden, might be closing
+            }
+        });
+
+        // Initialize
+        init();
     </script>
 </body>
 </html>

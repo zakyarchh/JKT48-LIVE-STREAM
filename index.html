@@ -2,112 +2,85 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StreamHub - Live Streaming Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>IKAZZ - 48 | Live Streaming</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #f43f5e;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
+            --primary: #FF1744;
+            --primary-light: #FF5252;
+            --secondary: #6C63FF;
+            --accent: #00BCD4;
+            --dark: #1A1A2E;
+            --gray: #6B7280;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --gradient-1: linear-gradient(135deg, #FF1744 0%, #FF6B6B 100%);
+            --gradient-2: linear-gradient(135deg, #6C63FF 0%, #A855F7 100%);
+            --gradient-3: linear-gradient(135deg, #00BCD4 0%, #4DD0E1 100%);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.16);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--white);
-            color: var(--gray-800);
+            background: var(--light);
             min-height: 100vh;
+            padding-bottom: 100px;
+            overflow-x: hidden;
         }
 
-        /* Background Decoration */
-        .bg-decoration {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        .bg-circle:nth-child(1) {
-            width: 600px;
-            height: 600px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(244, 63, 94, 0.05));
-            top: -200px;
-            right: -200px;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        .bg-circle:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(244, 63, 94, 0.06), rgba(99, 102, 241, 0.04));
-            bottom: -100px;
-            left: -100px;
-            animation-delay: -5s;
-        }
-
-        .bg-circle:nth-child(3) {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(99, 102, 241, 0.04));
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: -10s;
+        @keyframes livePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 23, 68, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 23, 68, 0); }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            33% { transform: translateY(-30px) rotate(5deg); }
-            66% { transform: translateY(20px) rotate(-5deg); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Header */
-        header {
-            position: fixed;
+        .header {
+            background: var(--white);
+            padding: 20px 24px;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--gray-200);
-            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            animation: fadeIn 0.5s ease;
         }
 
-        header.scrolled {
-            padding: 0.7rem 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        nav {
-            max-width: 1400px;
+        .header-content {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -119,210 +92,145 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--gray-800);
         }
 
         .logo-icon {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-1);
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-            animation: pulse 3s ease-in-out infinite;
+            font-weight: 800;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .logo:hover .logo-icon {
+            transform: rotate(-5deg) scale(1.05);
         }
 
         .logo-text {
-            font-size: 1.6rem;
+            font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--gray);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .member-badge {
+            display: none;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            text-decoration: none;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--gray-700);
-            border: 2px solid var(--gray-200);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 10px 18px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 50px;
             color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
+            font-weight: 600;
+            font-size: 13px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            animation: pulse 2s ease infinite;
         }
 
         /* Hero Section */
         .hero {
-            padding: 160px 2rem 100px;
+            background: var(--gradient-1);
+            padding: 60px 24px;
             text-align: center;
-            max-width: 900px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            max-width: 600px;
             margin: 0 auto;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(244, 63, 94, 0.1));
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 50px;
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.6s ease;
-        }
-
-        .hero-badge .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--secondary);
-            border-radius: 50%;
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 32px;
             font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--gray-900);
-            animation: fadeInUp 0.6s ease 0.1s both;
-        }
-
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 12px;
+            animation: fadeInUp 0.6s ease;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: var(--gray-500);
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 0.6s ease 0.2s both;
+            font-size: 16px;
+            opacity: 0.9;
+            animation: fadeInUp 0.6s ease 0.1s backwards;
         }
 
-        .hero-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.6s ease 0.3s both;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Stats */
         .stats {
             display: flex;
             justify-content: center;
-            gap: 4rem;
-            padding: 3rem 2rem;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.6s ease 0.4s both;
+            gap: 40px;
+            margin-top: 30px;
+            animation: fadeInUp 0.6s ease 0.2s backwards;
         }
 
         .stat-item {
             text-align: center;
         }
 
-        .stat-number {
-            font-size: 2.8rem;
+        .stat-value {
+            font-size: 28px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
         }
 
         .stat-label {
-            font-size: 0.95rem;
-            color: var(--gray-500);
-            margin-top: 5px;
-            font-weight: 500;
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
         }
 
-        /* Section */
-        .section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
+        /* Main Content */
+        .main {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 30px 24px;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 24px;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 12px;
         }
 
         .section-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--gray-900);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .section-title i {
@@ -332,57 +240,92 @@
         .live-indicator {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             padding: 8px 16px;
-            background: linear-gradient(135deg, var(--secondary), #e11d48);
-            border-radius: 8px;
+            background: var(--primary);
             color: white;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            animation: livePulse 2s ease infinite;
         }
 
-        .live-indicator .pulse-dot {
+        .live-indicator::before {
+            content: '';
             width: 8px;
             height: 8px;
             background: white;
             border-radius: 50%;
-            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .filter-tab {
+            padding: 10px 20px;
+            background: var(--white);
+            border: 2px solid #E5E7EB;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-tab.active {
+            background: var(--gradient-1);
+            border-color: var(--primary);
+            color: white;
         }
 
         /* Room Grid */
-        .rooms-grid {
+        .room-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
         }
 
         .room-card {
             background: var(--white);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-md);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            animation: cardFadeIn 0.5s ease both;
+            animation: fadeInUp 0.6s ease backwards;
+            position: relative;
+            border: 1px solid #E5E7EB;
         }
+
+        .room-card:nth-child(1) { animation-delay: 0.1s; }
+        .room-card:nth-child(2) { animation-delay: 0.2s; }
+        .room-card:nth-child(3) { animation-delay: 0.3s; }
+        .room-card:nth-child(4) { animation-delay: 0.4s; }
+        .room-card:nth-child(5) { animation-delay: 0.5s; }
+        .room-card:nth-child(6) { animation-delay: 0.6s; }
 
         .room-card:hover {
-            transform: translateY(-10px);
-            border-color: transparent;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-
-        @keyframes cardFadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
 
         .room-thumbnail {
             position: relative;
             height: 200px;
-            background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow: hidden;
         }
 
@@ -390,78 +333,73 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
         }
 
         .room-card:hover .room-thumbnail img {
             transform: scale(1.1);
         }
 
-        .room-thumbnail .overlay {
+        .room-badge {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
-        }
-
-        .room-status {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-        }
-
-        .status-badge {
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            backdrop-filter: blur(10px);
-        }
-
-        .status-live {
-            background: rgba(244, 63, 94, 0.9);
-            color: white;
-        }
-
-        .status-offline {
-            background: rgba(107, 114, 128, 0.9);
-            color: white;
-        }
-
-        .viewer-count {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            padding: 6px 14px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: white;
+            top: 16px;
+            left: 16px;
             display: flex;
             align-items: center;
             gap: 6px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .room-info {
-            padding: 1.5rem;
+        .room-badge.live {
+            background: var(--primary);
+            color: white;
+            animation: livePulse 2s ease infinite;
+        }
+
+        .room-badge.live::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1s ease infinite;
+        }
+
+        .room-badge.offline {
+            background: rgba(0,0,0,0.7);
+            color: white;
+        }
+
+        .room-viewers {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            color: white;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .room-content {
+            padding: 20px;
         }
 
         .room-title {
-            font-size: 1.15rem;
+            font-size: 18px;
             font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-
-        .room-desc {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-            margin-bottom: 1.25rem;
-            line-height: 1.5;
+            color: var(--dark);
+            margin-bottom: 8px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -470,398 +408,574 @@
 
         .room-meta {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--gray-100);
+            gap: 16px;
+            color: var(--gray);
+            font-size: 13px;
+            margin-bottom: 16px;
         }
 
-        .room-host {
+        .room-meta span {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 6px;
         }
 
-        .host-avatar {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .room-cta {
+            padding: 14px 24px;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
             border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            color: white;
+            gap: 8px;
         }
 
-        .host-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--gray-800);
+        .room-cta:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
         }
 
-        .host-role {
-            font-size: 0.8rem;
-            color: var(--gray-400);
+        .room-cta.offline {
+            background: var(--gray);
         }
 
-        .join-btn {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .join-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        .room-cta.offline:hover {
+            box-shadow: none;
+            transform: none;
+            cursor: not-allowed;
         }
 
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 5rem 2rem;
-            grid-column: 1 / -1;
+            padding: 80px 24px;
+            animation: fadeInUp 0.6s ease;
         }
 
-        .empty-state i {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            color: var(--gray-300);
+        .empty-state-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 48px;
+            color: var(--gray);
+            animation: float 3s ease-in-out infinite;
         }
 
         .empty-state h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--gray-600);
+            font-size: 20px;
+            color: var(--dark);
+            margin-bottom: 8px;
         }
 
         .empty-state p {
-            color: var(--gray-400);
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        /* Loading State */
+        .loading-state {
+            text-align: center;
+            padding: 60px 24px;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
         }
 
         /* Modal */
         .modal-overlay {
             position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
             backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 24px;
         }
 
         .modal-overlay.active {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
         }
 
         .modal {
             background: var(--white);
             border-radius: 24px;
-            padding: 2.5rem;
-            max-width: 450px;
+            padding: 40px;
+            max-width: 420px;
             width: 100%;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            animation: modalSlide 0.4s ease;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
         }
 
-        @keyframes modalSlide {
-            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
         }
 
         .modal-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 32px;
         }
 
         .modal-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient-1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            margin: 0 auto 20px;
+            font-size: 32px;
             color: white;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 30px rgba(255, 23, 68, 0.3);
         }
 
-        .modal-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
+        .modal h2 {
+            font-size: 24px;
+            color: var(--dark);
+            margin-bottom: 8px;
         }
 
-        .modal-subtitle {
-            color: var(--gray-500);
-            font-size: 1rem;
+        .modal p {
+            color: var(--gray);
+            font-size: 14px;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.6rem;
+            font-size: 14px;
             font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--gray-700);
+            color: var(--dark);
+            margin-bottom: 8px;
         }
 
         .form-group input {
             width: 100%;
             padding: 16px 20px;
-            background: var(--gray-50);
-            border: 2px solid var(--gray-200);
+            border: 2px solid #E5E7EB;
             border-radius: 14px;
-            color: var(--gray-800);
+            font-size: 16px;
             font-family: inherit;
-            font-size: 1rem;
             transition: all 0.3s ease;
+            background: var(--light);
         }
 
         .form-group input:focus {
             outline: none;
             border-color: var(--primary);
             background: var(--white);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 4px rgba(255, 23, 68, 0.1);
         }
 
-        .form-group input::placeholder {
-            color: var(--gray-400);
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: inherit;
         }
 
-        .error-message {
-            color: var(--danger);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--light);
+            color: var(--dark);
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .btn-secondary:hover {
+            background: #E5E7EB;
+        }
+
+        .error-msg {
+            background: #FEF2F2;
+            border: 1px solid #FCA5A5;
+            color: #DC2626;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-bottom: 20px;
             display: none;
+            align-items: center;
+            gap: 8px;
+            animation: fadeIn 0.3s ease;
         }
 
-        .error-message.show {
-            display: block;
-            animation: shake 0.5s ease;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-
-        .modal-actions {
+        .error-msg.show {
             display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
         }
 
-        .modal-actions .btn {
-            flex: 1;
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 12px 24px 28px;
+            box-shadow: 0 -4px 30px rgba(0,0,0,0.1);
+            z-index: 100;
+            border-radius: 24px 24px 0 0;
         }
 
-        /* Footer */
-        footer {
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--gray-200);
-            background: var(--gray-50);
-            margin-top: 4rem;
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
-        footer p {
-            font-size: 0.95rem;
-            color: var(--gray-500);
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--gray);
+            padding: 8px 16px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover i {
+            transform: scale(1.1);
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 600;
         }
 
         /* Toast */
         .toast {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            padding: 1rem 1.5rem;
-            background: var(--white);
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: white;
+            padding: 16px 28px;
             border-radius: 14px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            gap: 12px;
-            z-index: 3000;
-            transform: translateX(150%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            border: 1px solid var(--gray-200);
+            gap: 10px;
         }
 
-        .toast.show { transform: translateX(0); }
-        .toast.success { border-left: 4px solid var(--success); }
-        .toast.error { border-left: 4px solid var(--danger); }
-        .toast.success i { color: var(--success); }
-        .toast.error i { color: var(--danger); }
-
-        /* Loading */
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--gray-200);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 3rem auto;
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .toast.success { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
+        .toast.error { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-logo {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 30px rgba(255, 23, 68, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            color: var(--gray);
+            font-size: 14px;
+            font-weight: 500;
+        }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1rem; }
-            .stats { gap: 2rem; }
-            .stat-number { font-size: 2rem; }
-            .rooms-grid { grid-template-columns: 1fr; }
-            .hero-actions { flex-direction: column; }
-            .hero-actions .btn { width: 100%; }
+        @media (max-width: 640px) {
+            .header {
+                padding: 16px 20px;
+            }
+
+            .logo-icon {
+                width: 42px;
+                height: 42px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .stats {
+                gap: 24px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .main {
+                padding: 24px 16px;
+            }
+
+            .room-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                padding: 28px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg-decoration">
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-logo">48</div>
+        <div class="loader"></div>
+        <p class="loading-text">Memuat IKAZZ - 48...</p>
     </div>
 
-    <header id="header">
-        <nav>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
             <a href="index.html" class="logo">
-                <div class="logo-icon"><i class="fas fa-play"></i></div>
-                <span class="logo-text">ikazz</span>
+                <div class="logo-icon">48</div>
+                <div>
+                    <div class="logo-text">IKAZZ - 48</div>
+                    <div class="logo-subtitle">Live Streaming</div>
+                </div>
             </a>
-            <div class="nav-actions">
-                <button class="btn btn-outline" onclick="openTokenModal()">
-                    <i class="fas fa-ticket-alt"></i>
-                    <span>Masuk</span>
-                </button>
+            <div class="member-badge" id="memberBadge">
+                <i class="fas fa-crown"></i>
+                <span>Member</span>
             </div>
-        </nav>
+        </div>
     </header>
 
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-badge">
-            <span class="dot"></span>
-            Platform Live Streaming JKT48
+        <div class="hero-content">
+            <h1>Selamat Datang di IKAZZ - 48</h1>
+            <p>Platform live streaming eksklusif untuk penggemar JKT48</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalRooms">0</div>
+                    <div class="stat-label">Total Room</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="liveRooms">0</div>
+                    <div class="stat-label">Sedang Live</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalMembers">0</div>
+                    <div class="stat-label">Member</div>
+                </div>
+            </div>
         </div>
-        <h1>Tonton Streaming <span class="gradient-text">Kapan Saja</span></h1>
-        <p>Nikmati pengalaman menonton live streaming berkualitas tinggi. Akses mudah menggunakan token khusus dari admin.</p>
     </section>
 
-    <div class="stats">
-        <div class="stat-item">
-            <span class="stat-number" id="totalRooms">0</span>
-            <span class="stat-label">Total Room</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number" id="liveNow">0</span>
-            <span class="stat-label">Sedang Live</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number" id="totalViewers">0</span>
-            <span class="stat-label">Total Penonton</span>
-        </div>
-    </div>
-
-    <section class="section" id="rooms-section">
+    <!-- Main Content -->
+    <main class="main">
         <div class="section-header">
             <h2 class="section-title">
                 <i class="fas fa-broadcast-tower"></i>
-                Room Live Streaming
+                Daftar Room
             </h2>
-            <div class="live-indicator">
-                <span class="pulse-dot"></span>
-                LIVE NOW
-            </div>
+            <div class="live-indicator" id="liveCount">0 Live</div>
         </div>
-        <div class="rooms-grid" id="roomsGrid">
-            <div class="loading-spinner"></div>
-        </div>
-    </section>
 
-    <footer>
-        <p>&copy; 2026 ikaz. All rights reserved.</p>
-    </footer>
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Semua Room</button>
+            <button class="filter-tab" data-filter="live">Sedang Live</button>
+            <button class="filter-tab" data-filter="offline">Offline</button>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="loadingState" style="display: none;">
+            <div class="loader"></div>
+            <p>Memuat room...</p>
+        </div>
+
+        <!-- Room Grid -->
+        <div class="room-grid" id="roomGrid"></div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-state-icon">
+                <i class="fas fa-video-slash"></i>
+            </div>
+            <h3>Tidak Ada Room</h3>
+            <p>Belum ada room yang tersedia saat ini</p>
+        </div>
+    </main>
 
     <!-- Token Modal -->
     <div class="modal-overlay" id="tokenModal">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-icon"><i class="fas fa-ticket-alt"></i></div>
-                <h3 class="modal-title">Masukkan Token</h3>
-                <p class="modal-subtitle">Masukkan token akses dari admin</p>
+                <div class="modal-icon">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <h2>Masukkan Token</h2>
+                <p>Token diperlukan untuk menonton live streaming ini</p>
             </div>
-            <form id="tokenForm">
-                <div class="form-group">
-                    <label>Token Akses</label>
-                    <input type="text" id="tokenInput" placeholder="Contoh: ABC12345" required>
-                    <p class="error-message" id="tokenError">Token tidak valid</p>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn btn-outline" onclick="closeTokenModal()">Batal</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-sign-in-alt"></i> Masuk
-                    </button>
-                </div>
-            </form>
+            <div class="error-msg" id="tokenError">
+                <i class="fas fa-exclamation-circle"></i>
+                <span></span>
+            </div>
+            <div class="form-group">
+                <label>Token Akses</label>
+                <input type="text" id="tokenInput" placeholder="Masukkan token Anda" autocomplete="off">
+            </div>
+            <button class="btn btn-primary" id="submitToken">
+                <i class="fas fa-play"></i>
+                Tonton Sekarang
+            </button>
+            <button class="btn btn-secondary" id="closeTokenModal">
+                Batal
+            </button>
+            <input type="hidden" id="selectedRoomId">
         </div>
     </div>
 
-    <!-- Join Room Modal -->
-    <div class="modal-overlay" id="joinRoomModal">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-icon"><i class="fas fa-door-open"></i></div>
-                <h3 class="modal-title">Gabung Room</h3>
-                <p class="modal-subtitle" id="joinRoomTitle">Masukkan token untuk menonton</p>
-            </div>
-            <form id="joinRoomForm">
-                <input type="hidden" id="selectedRoomId">
-                <div class="form-group">
-                    <label>Token Akses</label>
-                    <input type="text" id="joinTokenInput" placeholder="Masukkan token..." required>
-                    <p class="error-message" id="joinTokenError">Token tidak valid</p>
-                </div>
-                <div class="modal-actions">
-                    <button type="button" class="btn btn-outline" onclick="closeJoinRoomModal()">Batal</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-play"></i> Tonton
-                    </button>
-                </div>
-            </form>
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <a href="index.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </a>
+            <a href="prof.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profil</span>
+            </a>
         </div>
-    </div>
+    </nav>
 
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Berhasil!</span>
-    </div>
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
 
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
     <script>
-        // ========== GANTI DENGAN FIREBASE CONFIG ANDA ==========
+        // ==========================================
+        // FIREBASE CONFIGURATION
+        // Ganti dengan config Firebase Anda
+        // ==========================================
         const firebaseConfig = {
             apiKey: "AIzaSyAl6WmsHrmYkyotYYu_VIEqX5buTrMa-ec",
             authDomain: "live-abd72.firebaseapp.com",
@@ -870,198 +984,384 @@
             messagingSenderId: "705044265931",
             appId: "1:705044265931:web:402b9615df1d38863f944e"
         };
-        // ========================================================
 
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Header scroll
-        window.addEventListener('scroll', () => {
-            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-        });
+        // ==========================================
+        // STATE
+        // ==========================================
+        let allRooms = [];
+        let currentFilter = 'all';
+        let isMember = false;
 
-        // Toast
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMessage').textContent = message;
-            toast.querySelector('i').className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
-            toast.className = `toast ${type} show`;
-            setTimeout(() => toast.classList.remove('show'), 3000);
+        // ==========================================
+        // DEVICE ID
+        // ==========================================
+        function getDeviceId() {
+            let deviceId = localStorage.getItem('ikazz_device_id');
+            if (!deviceId) {
+                deviceId = 'dev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('ikazz_device_id', deviceId);
+            }
+            return deviceId;
         }
 
-        // Modals
-        function openTokenModal() {
-            document.getElementById('tokenModal').classList.add('active');
-        }
+        // ==========================================
+        // CHECK MEMBERSHIP
+        // ==========================================
+        async function checkMembership() {
+            const memberToken = localStorage.getItem('ikazz_member_token');
+            const deviceId = getDeviceId();
 
-        function closeTokenModal() {
-            document.getElementById('tokenModal').classList.remove('active');
-            document.getElementById('tokenForm').reset();
-            document.getElementById('tokenError').classList.remove('show');
-        }
+            if (!memberToken) {
+                isMember = false;
+                return false;
+            }
 
-        function openJoinRoomModal(roomId, title) {
-            document.getElementById('selectedRoomId').value = roomId;
-            document.getElementById('joinRoomTitle').textContent = `Token untuk: ${title}`;
-            document.getElementById('joinRoomModal').classList.add('active');
-        }
-
-        function closeJoinRoomModal() {
-            document.getElementById('joinRoomModal').classList.remove('active');
-            document.getElementById('joinRoomForm').reset();
-            document.getElementById('joinTokenError').classList.remove('show');
-        }
-
-        function scrollToRooms() {
-            document.getElementById('rooms-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Validate token
-        async function validateToken(token) {
             try {
-                const snapshot = await db.collection('tokens')
-                    .where('token', '==', token.toUpperCase().trim())
-                    .where('isActive', '==', true)
-                    .get();
-                return snapshot.empty ? null : snapshot.docs[0];
+                const tokenDoc = await db.collection('membershipTokens').doc(memberToken).get();
+                if (tokenDoc.exists) {
+                    const data = tokenDoc.data();
+                    const expiresAt = data.expiresAt?.toDate();
+
+                    if (data.deviceId === deviceId && expiresAt && expiresAt > new Date()) {
+                        isMember = true;
+                        document.getElementById('memberBadge').style.display = 'flex';
+                        return true;
+                    } else if (data.deviceId !== deviceId) {
+                        localStorage.removeItem('ikazz_member_token');
+                    }
+                }
             } catch (e) {
-                console.error(e);
-                return null;
+                console.error('Error checking membership:', e);
             }
+
+            isMember = false;
+            return false;
         }
 
-        // Token form
-        document.getElementById('tokenForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const token = document.getElementById('tokenInput').value;
-            const tokenDoc = await validateToken(token);
-            
-            if (tokenDoc) {
-                localStorage.setItem('userToken', token.toUpperCase().trim());
-                localStorage.setItem('tokenData', JSON.stringify(tokenDoc.data()));
-                closeTokenModal();
-                showToast('Login berhasil!');
-                setTimeout(() => window.location.href = 'prof.html', 1000);
-            } else {
-                document.getElementById('tokenError').classList.add('show');
-            }
-        });
+        // ==========================================
+        // LOAD ROOMS - FIXED VERSION
+        // ==========================================
+        async function loadRooms() {
+            const roomGrid = document.getElementById('roomGrid');
+            const emptyState = document.getElementById('emptyState');
+            const loadingState = document.getElementById('loadingState');
+            const liveCount = document.getElementById('liveCount');
 
-        // Join room form
-        document.getElementById('joinRoomForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const token = document.getElementById('joinTokenInput').value;
-            const roomId = document.getElementById('selectedRoomId').value;
-            const tokenDoc = await validateToken(token);
-            
-            if (tokenDoc) {
-                localStorage.setItem('userToken', token.toUpperCase().trim());
-                localStorage.setItem('tokenData', JSON.stringify(tokenDoc.data()));
-                closeJoinRoomModal();
-                showToast('Bergabung...');
-                setTimeout(() => window.location.href = `room.html?id=${roomId}`, 500);
-            } else {
-                document.getElementById('joinTokenError').classList.add('show');
-            }
-        });
+            loadingState.style.display = 'block';
+            roomGrid.style.display = 'none';
+            emptyState.style.display = 'none';
 
-        // Load rooms
-        function loadRooms() {
-            db.collection('rooms').orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
-                const grid = document.getElementById('roomsGrid');
-                grid.innerHTML = '';
-                
-                let liveCount = 0, viewers = 0;
+            try {
+                // Query SEMUA rooms, tidak hanya yang isLive
+                const snapshot = await db.collection('rooms')
+                    .orderBy('createdAt', 'desc')
+                    .get();
+
+                loadingState.style.display = 'none';
 
                 if (snapshot.empty) {
-                    grid.innerHTML = `
-                        <div class="empty-state">
-                            <i class="fas fa-video-slash"></i>
-                            <h3>Belum Ada Room</h3>
-                            <p>Room live streaming akan muncul di sini</p>
-                        </div>`;
+                    emptyState.style.display = 'block';
+                    liveCount.textContent = '0 Live';
                     document.getElementById('totalRooms').textContent = '0';
-                    document.getElementById('liveNow').textContent = '0';
-                    document.getElementById('totalViewers').textContent = '0';
+                    document.getElementById('liveRooms').textContent = '0';
                     return;
                 }
 
-                snapshot.forEach((doc, i) => {
-                    const room = doc.data();
-                    if (room.isLive) liveCount++;
-                    viewers += room.viewers || 0;
+                // Store all rooms
+                allRooms = [];
+                let liveRoomCount = 0;
+                let totalViewers = 0;
 
-                    const card = document.createElement('div');
-                    card.className = 'room-card';
-                    card.style.animationDelay = `${i * 0.1}s`;
-                    card.innerHTML = `
-                        <div class="room-thumbnail">
-                            <img src="${room.thumbnail || 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500'}" alt="${room.title}">
-                            <div class="overlay"></div>
-                            <div class="room-status">
-                                <span class="status-badge ${room.isLive ? 'status-live' : 'status-offline'}">
-                                    ${room.isLive ? '● LIVE' : '○ OFFLINE'}
-                                </span>
-                            </div>
-                            <div class="viewer-count">
-                                <i class="fas fa-eye"></i> ${room.viewers || 0}
-                            </div>
-                        </div>
-                        <div class="room-info">
-                            <h3 class="room-title">${room.title}</h3>
-                            <p class="room-desc">${room.description || 'Tidak ada deskripsi'}</p>
-                            <div class="room-meta">
-                                <div class="room-host">
-                                    <div class="host-avatar">${(room.hostName || 'A').charAt(0).toUpperCase()}</div>
-                                    <div>
-                                        <span class="host-name">${room.hostName || 'Admin'}</span>
-                                        <span class="host-role">Host</span>
-                                    </div>
-                                </div>
-                                <button class="join-btn" onclick="event.stopPropagation(); openJoinRoomModal('${doc.id}', '${room.title.replace(/'/g, "\\'")}')">
-                                    ${room.isLive ? 'Tonton' : 'Detail'}
-                                </button>
-                            </div>
-                        </div>`;
-                    grid.appendChild(card);
+                snapshot.forEach(doc => {
+                    const room = { id: doc.id, ...doc.data() };
+                    allRooms.push(room);
+                    if (room.isLive) {
+                        liveRoomCount++;
+                        totalViewers += room.viewers || 0;
+                    }
                 });
 
-                document.getElementById('totalRooms').textContent = snapshot.size;
-                document.getElementById('liveNow').textContent = liveCount;
-                document.getElementById('totalViewers').textContent = viewers;
-            });
-        }
+                // Update stats
+                liveCount.textContent = liveRoomCount + ' Live';
+                document.getElementById('totalRooms').textContent = allRooms.length;
+                document.getElementById('liveRooms').textContent = liveRoomCount;
 
-        // Check saved token
-        async function checkSavedToken() {
-            const token = localStorage.getItem('userToken');
-            if (token) {
-                const tokenDoc = await validateToken(token);
-                if (tokenDoc) {
-                    document.querySelector('.nav-actions').innerHTML = `
-                        <a href="prof.html" class="btn btn-outline">
-                            <i class="fas fa-user-circle"></i>
-                            <span>Profil</span>
-                        </a>`;
-                } else {
-                    localStorage.removeItem('userToken');
-                    localStorage.removeItem('tokenData');
-                }
+                // Render rooms
+                renderRooms();
+
+            } catch (e) {
+                console.error('Error loading rooms:', e);
+                loadingState.style.display = 'none';
+                emptyState.innerHTML = `
+                    <div class="empty-state-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Gagal Memuat Room</h3>
+                    <p>${e.message}</p>
+                `;
+                emptyState.style.display = 'block';
+                showToast('Gagal memuat room: ' + e.message, 'error');
             }
         }
 
-        // Close modals on overlay click
-        document.getElementById('tokenModal').addEventListener('click', (e) => {
-            if (e.target.id === 'tokenModal') closeTokenModal();
-        });
-        document.getElementById('joinRoomModal').addEventListener('click', (e) => {
-            if (e.target.id === 'joinRoomModal') closeJoinRoomModal();
+        // ==========================================
+        // RENDER ROOMS
+        // ==========================================
+        function renderRooms() {
+            const roomGrid = document.getElementById('roomGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            // Filter rooms
+            let filteredRooms = allRooms;
+            if (currentFilter === 'live') {
+                filteredRooms = allRooms.filter(r => r.isLive === true);
+            } else if (currentFilter === 'offline') {
+                filteredRooms = allRooms.filter(r => r.isLive !== true);
+            }
+
+            if (filteredRooms.length === 0) {
+                roomGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+                emptyState.innerHTML = `
+                    <div class="empty-state-icon">
+                        <i class="fas fa-video-slash"></i>
+                    </div>
+                    <h3>Tidak Ada Room</h3>
+                    <p>${currentFilter === 'live' ? 'Tidak ada room yang sedang live' : currentFilter === 'offline' ? 'Tidak ada room offline' : 'Belum ada room yang tersedia'}</p>
+                `;
+                return;
+            }
+
+            roomGrid.style.display = 'grid';
+            emptyState.style.display = 'none';
+
+            roomGrid.innerHTML = filteredRooms.map((room, index) => {
+                const thumbnail = room.thumbnail || 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop';
+                const isLive = room.isLive === true;
+                const timeAgo = getTimeAgo(room.createdAt?.toDate ? room.createdAt.toDate() : null);
+
+                return `
+                    <div class="room-card" style="animation-delay: ${index * 0.1}s">
+                        <div class="room-thumbnail">
+                            <img src="${thumbnail}" alt="${room.title}" onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop'">
+                            <span class="room-badge ${isLive ? 'live' : 'offline'}">
+                                ${isLive ? 'LIVE' : 'OFFLINE'}
+                            </span>
+                            <span class="room-viewers">
+                                <i class="fas fa-eye"></i>
+                                ${room.viewers || 0}
+                            </span>
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">${room.title || 'Untitled Room'}</h3>
+                            <div class="room-meta">
+                                <span><i class="fas fa-user"></i> ${room.host || 'Admin'}</span>
+                                <span><i class="fas fa-clock"></i> ${timeAgo}</span>
+                            </div>
+                            <button class="room-cta ${isLive ? '' : 'offline'}" onclick="${isLive ? `handleRoomClick('${room.id}')` : 'showToast(\'Room belum live\', \'error\')'}">
+                                <i class="fas fa-${isLive ? 'play-circle' : 'clock'}"></i>
+                                ${isLive ? 'Tonton Sekarang' : 'Menunggu Live'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==========================================
+        // HANDLE ROOM CLICK
+        // ==========================================
+        async function handleRoomClick(roomId) {
+            // Check if member
+            if (isMember) {
+                // Member - direct access
+                window.location.href = `room.html?id=${roomId}&member=true`;
+                return;
+            }
+
+            // Show token modal for non-members
+            document.getElementById('selectedRoomId').value = roomId;
+            document.getElementById('tokenModal').classList.add('active');
+            document.getElementById('tokenInput').value = '';
+            document.getElementById('tokenInput').focus();
+            document.getElementById('tokenError').classList.remove('show');
+        }
+
+        // ==========================================
+        // SUBMIT TOKEN
+        // ==========================================
+        document.getElementById('submitToken').addEventListener('click', async () => {
+            const token = document.getElementById('tokenInput').value.trim().toUpperCase();
+            const roomId = document.getElementById('selectedRoomId').value;
+            const errorEl = document.getElementById('tokenError');
+            const btn = document.getElementById('submitToken');
+            const deviceId = getDeviceId();
+
+            if (!token) {
+                errorEl.querySelector('span').textContent = 'Masukkan token terlebih dahulu';
+                errorEl.classList.add('show');
+                return;
+            }
+
+            btn.innerHTML = '<div class="loader" style="width:20px;height:20px;border-width:2px;margin:0;"></div> Memverifikasi...';
+            btn.disabled = true;
+            errorEl.classList.remove('show');
+
+            try {
+                // Check watch token
+                const tokenDoc = await db.collection('watchTokens').doc(token).get();
+
+                if (!tokenDoc.exists) {
+                    throw new Error('Token tidak valid');
+                }
+
+                const tokenData = tokenDoc.data();
+
+                if (tokenData.used && tokenData.deviceId !== deviceId) {
+                    throw new Error('Token sudah digunakan di perangkat lain');
+                }
+
+                if (tokenData.roomId !== roomId) {
+                    throw new Error('Token tidak valid untuk room ini');
+                }
+
+                // Mark token as used
+                await db.collection('watchTokens').doc(token).update({
+                    used: true,
+                    deviceId: deviceId,
+                    usedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                showToast('Token valid! Mengarahkan...', 'success');
+
+                // Redirect to room
+                setTimeout(() => {
+                    window.location.href = `room.html?id=${roomId}&token=${token}`;
+                }, 1000);
+
+            } catch (e) {
+                console.error('Token validation error:', e);
+                errorEl.querySelector('span').textContent = e.message;
+                errorEl.classList.add('show');
+                btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
+                btn.disabled = false;
+            }
         });
 
-        // Init
-        document.addEventListener('DOMContentLoaded', () => {
-            loadRooms();
-            checkSavedToken();
+        // ==========================================
+        // CLOSE TOKEN MODAL
+        // ==========================================
+        document.getElementById('closeTokenModal').addEventListener('click', () => {
+            document.getElementById('tokenModal').classList.remove('active');
+        });
+
+        document.getElementById('tokenModal').addEventListener('click', (e) => {
+            if (e.target.id === 'tokenModal') {
+                document.getElementById('tokenModal').classList.remove('active');
+            }
+        });
+
+        // ==========================================
+        // FILTER TABS
+        // ==========================================
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentFilter = tab.dataset.filter;
+                renderRooms();
+            });
+        });
+
+        // ==========================================
+        // TIME AGO
+        // ==========================================
+        function getTimeAgo(date) {
+            if (!date) return 'Baru saja';
+            const seconds = Math.floor((new Date() - date) / 1000);
+            if (seconds < 60) return 'Baru saja';
+            if (seconds < 3600) return Math.floor(seconds / 60) + ' menit lalu';
+            if (seconds < 86400) return Math.floor(seconds / 3600) + ' jam lalu';
+            return Math.floor(seconds / 86400) + ' hari lalu';
+        }
+
+        // ==========================================
+        // TOAST
+        // ==========================================
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'info-circle';
+            toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
+            toast.className = 'toast show ' + type;
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ==========================================
+        // LOAD STATS
+        // ==========================================
+        async function loadStats() {
+            try {
+                const membersSnapshot = await db.collection('membershipTokens')
+                    .where('used', '==', true)
+                    .get();
+                document.getElementById('totalMembers').textContent = membersSnapshot.size;
+            } catch (e) {
+                console.error('Error loading stats:', e);
+            }
+        }
+
+        // ==========================================
+        // HIDE LOADING
+        // ==========================================
+        function hideLoading() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 500);
+        }
+
+        // ==========================================
+        // INITIALIZE
+        // ==========================================
+        window.addEventListener('load', async () => {
+            try {
+                await checkMembership();
+                await loadRooms();
+                await loadStats();
+                hideLoading();
+
+                // Real-time updates
+                db.collection('rooms').onSnapshot((snapshot) => {
+                    allRooms = [];
+                    let liveCount = 0;
+                    snapshot.forEach(doc => {
+                        const room = { id: doc.id, ...doc.data() };
+                        allRooms.push(room);
+                        if (room.isLive) liveCount++;
+                    });
+                    document.getElementById('totalRooms').textContent = allRooms.length;
+                    document.getElementById('liveRooms').textContent = liveCount;
+                    document.getElementById('liveCount').textContent = liveCount + ' Live';
+                    renderRooms();
+                }, (error) => {
+                    console.error('Realtime error:', error);
+                });
+
+            } catch (e) {
+                console.error('Init error:', e);
+                hideLoading();
+                showToast('Error: ' + e.message, 'error');
+            }
+        });
+
+        // Enter key for token
+        document.getElementById('tokenInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('submitToken').click();
+            }
         });
     </script>
 </body>
