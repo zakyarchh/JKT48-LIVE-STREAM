@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>IKAZZ - 48 | Live Streaming</title>
+    <title>ikazz - 48 | Live Streaming</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,69 +14,151 @@
         }
 
         :root {
-            --primary: #FF1744;
-            --primary-light: #FF5252;
-            --secondary: #6C63FF;
-            --accent: #00BCD4;
-            --dark: #1A1A2E;
-            --gray: #6B7280;
-            --light: #F8FAFC;
+            --primary: #E85D75;
+            --primary-light: #FF8A9B;
+            --primary-dark: #C94D63;
+            --secondary: #7C6AEF;
+            --accent: #2DCDA7;
+            --dark: #1E1E2E;
+            --gray-900: #2D2D3A;
+            --gray-700: #4A4A5A;
+            --gray-500: #6E6E7E;
+            --gray-300: #A0A0B0;
+            --gray-100: #F0F0F5;
             --white: #FFFFFF;
-            --success: #10B981;
-            --gradient-1: linear-gradient(135deg, #FF1744 0%, #FF6B6B 100%);
-            --gradient-2: linear-gradient(135deg, #6C63FF 0%, #A855F7 100%);
-            --gradient-3: linear-gradient(135deg, #00BCD4 0%, #4DD0E1 100%);
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
-            --shadow-lg: 0 8px 40px rgba(0,0,0,0.16);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+            --shadow-xl: 0 16px 48px rgba(0,0,0,0.16);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--light);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FC 100%);
             min-height: 100vh;
-            padding-bottom: 100px;
-            overflow-x: hidden;
+            color: var(--dark);
+            padding-bottom: 90px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(24px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
         @keyframes livePulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 23, 68, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(255, 23, 68, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+            70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
+        .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
+        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out; }
+        .animate-fadeInDown { animation: fadeInDown 0.6s ease-out; }
+        .animate-scaleIn { animation: scaleIn 0.4s ease-out; }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gray-100);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
         /* Header */
         .header {
             background: var(--white);
-            padding: 20px 24px;
+            padding: 16px 20px;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: var(--shadow-sm);
-            animation: fadeIn 0.5s ease;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            animation: fadeInDown 0.5s ease-out;
         }
 
         .header-content {
@@ -95,17 +177,16 @@
         }
 
         .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient-1);
-            border-radius: 14px;
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 800;
-            font-size: 18px;
-            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+            font-size: 14px;
             transition: transform 0.3s ease;
         }
 
@@ -114,218 +195,225 @@
         }
 
         .logo-text {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 800;
-            background: var(--gradient-1);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .logo-subtitle {
-            font-size: 11px;
-            color: var(--gray);
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
         }
 
-        .member-badge {
-            display: none;
+        .btn-membership {
+            display: flex;
             align-items: center;
             gap: 8px;
             padding: 10px 18px;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
+            border: none;
+            border-radius: var(--radius-md);
             font-weight: 600;
-            font-size: 13px;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-            animation: pulse 2s ease infinite;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(232, 93, 117, 0.3);
+        }
+
+        .btn-membership:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 93, 117, 0.4);
+        }
+
+        .btn-membership.active {
+            background: linear-gradient(135deg, var(--accent) 0%, #25B897 100%);
+            box-shadow: 0 4px 12px rgba(45, 205, 167, 0.3);
+        }
+
+        .btn-membership i {
+            font-size: 14px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px;
         }
 
         /* Hero Section */
-        .hero {
-            background: var(--gradient-1);
-            padding: 60px 24px;
-            text-align: center;
-            color: white;
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius-xl);
+            padding: 40px 32px;
+            margin-bottom: 32px;
             position: relative;
             overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
         }
 
-        .hero::before {
+        .hero-section::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: float 6s ease-in-out infinite;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 600px;
-            margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
-        .hero h1 {
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .hero-badge i {
+            font-size: 12px;
+        }
+
+        .hero-title {
+            color: white;
             font-size: 32px;
             font-weight: 800;
+            line-height: 1.3;
             margin-bottom: 12px;
-            animation: fadeInUp 0.6s ease;
         }
 
-        .hero p {
-            font-size: 16px;
-            opacity: 0.9;
-            animation: fadeInUp 0.6s ease 0.1s backwards;
+        .hero-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 480px;
         }
 
-        .stats {
+        .hero-stats {
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-            animation: fadeInUp 0.6s ease 0.2s backwards;
+            gap: 24px;
+            margin-top: 24px;
         }
 
-        .stat-item {
+        .hero-stat {
             text-align: center;
         }
 
-        .stat-value {
+        .hero-stat-value {
             font-size: 28px;
             font-weight: 800;
+            color: white;
         }
 
-        .stat-label {
+        .hero-stat-label {
             font-size: 12px;
-            opacity: 0.8;
+            color: rgba(255,255,255,0.8);
             margin-top: 4px;
         }
 
-        /* Main Content */
-        .main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 24px;
+        /* Section */
+        .section {
+            margin-bottom: 32px;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            gap: 12px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
         }
 
         .section-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--dark);
             display: flex;
             align-items: center;
             gap: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
         }
 
         .section-title i {
-            color: var(--primary);
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
         }
 
-        .live-indicator {
-            display: inline-flex;
+        .live-badge {
+            display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            background: var(--primary);
+            gap: 8px;
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
             color: white;
+            padding: 8px 16px;
             border-radius: 50px;
             font-size: 13px;
             font-weight: 600;
-            animation: livePulse 2s ease infinite;
         }
 
-        .live-indicator::before {
-            content: '';
+        .live-badge .dot {
             width: 8px;
             height: 8px;
             background: white;
             border-radius: 50%;
-        }
-
-        /* Filter Tabs */
-        .filter-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 24px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-        }
-
-        .filter-tab {
-            padding: 10px 20px;
-            background: var(--white);
-            border: 2px solid #E5E7EB;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .filter-tab:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .filter-tab.active {
-            background: var(--gradient-1);
-            border-color: var(--primary);
-            color: white;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
         /* Room Grid */
-        .room-grid {
+        .rooms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .room-card {
             background: var(--white);
-            border-radius: 20px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.04);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            animation: fadeInUp 0.6s ease backwards;
-            position: relative;
-            border: 1px solid #E5E7EB;
+            animation: fadeInUp 0.6s ease-out both;
         }
 
         .room-card:nth-child(1) { animation-delay: 0.1s; }
-        .room-card:nth-child(2) { animation-delay: 0.2s; }
-        .room-card:nth-child(3) { animation-delay: 0.3s; }
-        .room-card:nth-child(4) { animation-delay: 0.4s; }
-        .room-card:nth-child(5) { animation-delay: 0.5s; }
-        .room-card:nth-child(6) { animation-delay: 0.6s; }
+        .room-card:nth-child(2) { animation-delay: 0.15s; }
+        .room-card:nth-child(3) { animation-delay: 0.2s; }
+        .room-card:nth-child(4) { animation-delay: 0.25s; }
+        .room-card:nth-child(5) { animation-delay: 0.3s; }
+        .room-card:nth-child(6) { animation-delay: 0.35s; }
 
         .room-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             box-shadow: var(--shadow-lg);
+            border-color: rgba(232, 93, 117, 0.2);
         }
 
         .room-thumbnail {
             position: relative;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, var(--gray-100) 0%, #E8E8F0 100%);
             overflow: hidden;
         }
 
@@ -337,187 +425,185 @@
         }
 
         .room-card:hover .room-thumbnail img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
-        .room-badge {
+        .room-thumbnail-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .room-thumbnail-placeholder i {
+            font-size: 48px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .room-live-badge {
             position: absolute;
-            top: 16px;
-            left: 16px;
+            top: 12px;
+            left: 12px;
             display: flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-size: 12px;
+            background: #EF4444;
+            color: white;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            animation: livePulse 2s ease-in-out infinite;
         }
 
-        .room-badge.live {
-            background: var(--primary);
-            color: white;
-            animation: livePulse 2s ease infinite;
-        }
-
-        .room-badge.live::before {
+        .room-live-badge::before {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: white;
             border-radius: 50%;
-            animation: pulse 1s ease infinite;
-        }
-
-        .room-badge.offline {
-            background: rgba(0,0,0,0.7);
-            color: white;
         }
 
         .room-viewers {
             position: absolute;
-            bottom: 16px;
-            right: 16px;
+            top: 12px;
+            right: 12px;
             display: flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 14px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
             color: white;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
         }
 
-        .room-content {
-            padding: 20px;
+        .room-viewers i {
+            font-size: 11px;
+        }
+
+        .room-info {
+            padding: 16px;
+        }
+
+        .room-member-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
         }
 
         .room-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-bottom: 16px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            line-height: 1.5;
         }
 
-        .room-meta {
+        .room-footer {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 16px;
-            color: var(--gray);
-            font-size: 13px;
-            margin-bottom: 16px;
         }
 
-        .room-meta span {
+        .room-time {
             display: flex;
             align-items: center;
             gap: 6px;
+            font-size: 13px;
+            color: var(--gray-500);
         }
 
-        .room-cta {
-            padding: 14px 24px;
-            background: var(--gradient-1);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .room-time i {
+            font-size: 12px;
+        }
+
+        .btn-watch {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            gap: 6px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .room-cta:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+        .btn-watch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(232, 93, 117, 0.4);
         }
 
-        .room-cta.offline {
-            background: var(--gray);
-        }
-
-        .room-cta.offline:hover {
-            box-shadow: none;
-            transform: none;
-            cursor: not-allowed;
+        .btn-watch i {
+            font-size: 12px;
         }
 
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 80px 24px;
-            animation: fadeInUp 0.6s ease;
+            padding: 60px 20px;
+            animation: fadeInUp 0.6s ease-out;
         }
 
         .empty-state-icon {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--gray-100) 0%, #E8E8F0 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
-            font-size: 48px;
-            color: var(--gray);
-            animation: float 3s ease-in-out infinite;
+        }
+
+        .empty-state-icon i {
+            font-size: 40px;
+            color: var(--gray-300);
         }
 
         .empty-state h3 {
             font-size: 20px;
+            font-weight: 700;
             color: var(--dark);
             margin-bottom: 8px;
         }
 
         .empty-state p {
-            color: var(--gray);
             font-size: 15px;
-        }
-
-        /* Loading State */
-        .loading-state {
-            text-align: center;
-            padding: 60px 24px;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f0f0f0;
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            color: var(--gray-500);
+            max-width: 320px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         /* Modal */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(8px);
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            padding: 20px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            padding: 24px;
         }
 
         .modal-overlay.active {
@@ -527,13 +613,12 @@
 
         .modal {
             background: var(--white);
-            border-radius: 24px;
-            padding: 40px;
-            max-width: 420px;
+            border-radius: var(--radius-xl);
             width: 100%;
+            max-width: 400px;
+            padding: 32px;
             transform: scale(0.9) translateY(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-lg);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .modal-overlay.active .modal {
@@ -542,39 +627,40 @@
 
         .modal-header {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
 
         .modal-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-1);
-            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-size: 32px;
             color: white;
-            box-shadow: 0 8px 30px rgba(255, 23, 68, 0.3);
+            font-size: 28px;
         }
 
-        .modal h2 {
-            font-size: 24px;
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
             color: var(--dark);
             margin-bottom: 8px;
         }
 
-        .modal p {
-            color: var(--gray);
+        .modal-subtitle {
             font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.5;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        .form-group label {
+        .form-label {
             display: block;
             font-size: 14px;
             font-weight: 600;
@@ -582,78 +668,73 @@
             margin-bottom: 8px;
         }
 
-        .form-group input {
+        .form-input {
             width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #E5E7EB;
-            border-radius: 14px;
-            font-size: 16px;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-md);
+            font-size: 15px;
             font-family: inherit;
+            color: var(--dark);
             transition: all 0.3s ease;
-            background: var(--light);
+            background: var(--white);
         }
 
-        .form-group input:focus {
+        .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            background: var(--white);
-            box-shadow: 0 0 0 4px rgba(255, 23, 68, 0.1);
+            box-shadow: 0 0 0 4px rgba(232, 93, 117, 0.1);
         }
 
-        .btn {
-            padding: 16px 32px;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-family: inherit;
+        .form-input::placeholder {
+            color: var(--gray-300);
         }
 
         .btn-primary {
-            background: var(--gradient-1);
-            color: white;
             width: 100%;
-            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(232, 93, 117, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
+            box-shadow: 0 6px 20px rgba(232, 93, 117, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .btn-secondary {
-            background: var(--light);
-            color: var(--dark);
             width: 100%;
+            padding: 14px 24px;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             margin-top: 12px;
         }
 
         .btn-secondary:hover {
-            background: #E5E7EB;
-        }
-
-        .error-msg {
-            background: #FEF2F2;
-            border: 1px solid #FCA5A5;
-            color: #DC2626;
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            gap: 8px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .error-msg.show {
-            display: flex;
+            background: #E8E8F0;
         }
 
         /* Bottom Navigation */
@@ -663,55 +744,44 @@
             left: 0;
             right: 0;
             background: var(--white);
-            padding: 12px 24px 28px;
-            box-shadow: 0 -4px 30px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
+            border-top: 1px solid rgba(0,0,0,0.04);
             z-index: 100;
-            border-radius: 24px 24px 0 0;
+            animation: fadeIn 0.5s ease-out 0.3s both;
         }
 
-        .nav-items {
-            display: flex;
-            justify-content: space-around;
+        .nav-content {
             max-width: 400px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
         }
 
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
+            padding: 8px 20px;
+            border-radius: var(--radius-md);
             text-decoration: none;
-            color: var(--gray);
-            padding: 8px 16px;
-            border-radius: 16px;
+            color: var(--gray-500);
             transition: all 0.3s ease;
-            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
         }
 
         .nav-item.active {
             color: var(--primary);
-        }
-
-        .nav-item.active::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 0 0 4px 4px;
+            background: rgba(232, 93, 117, 0.08);
         }
 
         .nav-item i {
-            font-size: 22px;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-item:hover i {
-            transform: scale(1.1);
+            font-size: 20px;
         }
 
         .nav-item span {
@@ -720,238 +790,291 @@
         }
 
         /* Toast */
-        .toast {
+        .toast-container {
             position: fixed;
-            bottom: 120px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--dark);
-            color: white;
-            padding: 16px 28px;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        .toast.success { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
-        .toast.error { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); }
-
-        /* Loading Overlay */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--white);
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
             display: flex;
             flex-direction: column;
+            gap: 12px;
+        }
+
+        .toast {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
             align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            transition: opacity 0.5s ease;
+            gap: 14px;
+            min-width: 300px;
+            max-width: 400px;
+            animation: slideInRight 0.4s ease-out;
+            border-left: 4px solid var(--accent);
         }
 
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .toast.error {
+            border-left-color: #EF4444;
         }
 
-        .loading-logo {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-1);
-            border-radius: 20px;
+        .toast-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 30px rgba(255, 23, 68, 0.3);
-            animation: pulse 2s ease-in-out infinite;
+            font-size: 16px;
+            flex-shrink: 0;
         }
 
-        .loading-text {
-            margin-top: 20px;
-            color: var(--gray);
+        .toast.success .toast-icon {
+            background: rgba(45, 205, 167, 0.1);
+            color: var(--accent);
+        }
+
+        .toast.error .toast-icon {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+        }
+
+        .toast-content h4 {
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .toast-content p {
+            font-size: 13px;
+            color: var(--gray-500);
         }
 
         /* Responsive */
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .header {
-                padding: 16px 20px;
-            }
-
-            .logo-icon {
-                width: 42px;
-                height: 42px;
+                padding: 14px 16px;
             }
 
             .logo-text {
-                font-size: 20px;
+                font-size: 18px;
             }
 
-            .hero {
-                padding: 40px 20px;
+            .btn-membership span {
+                display: none;
             }
 
-            .hero h1 {
-                font-size: 26px;
+            .btn-membership {
+                padding: 10px 12px;
             }
 
-            .stats {
-                gap: 24px;
+            .main-content {
+                padding: 16px;
             }
 
-            .stat-value {
+            .hero-section {
+                padding: 28px 20px;
+            }
+
+            .hero-title {
                 font-size: 24px;
             }
 
-            .main {
-                padding: 24px 16px;
+            .hero-subtitle {
+                font-size: 14px;
             }
 
-            .room-grid {
+            .hero-stats {
+                gap: 16px;
+            }
+
+            .hero-stat-value {
+                font-size: 22px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .rooms-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
 
-            .modal {
-                padding: 28px;
+            .toast-container {
+                left: 16px;
+                right: 16px;
             }
+
+            .toast {
+                min-width: auto;
+            }
+        }
+
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, var(--gray-100) 25%, #E8E8F0 50%, var(--gray-100) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: var(--radius-sm);
+        }
+
+        .skeleton-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .skeleton-thumbnail {
+            aspect-ratio: 16/9;
+        }
+
+        .skeleton-text {
+            height: 16px;
+            margin: 16px;
+        }
+
+        .skeleton-text-sm {
+            height: 12px;
+            width: 60%;
+            margin: 8px 16px 16px;
         }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-logo">48</div>
-        <div class="loader"></div>
-        <p class="loading-text">Memuat IKAZZ - 48...</p>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Memuat...</p>
     </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
-                <div class="logo-icon">48</div>
-                <div>
-                    <div class="logo-text">IKAZZ - 48</div>
-                    <div class="logo-subtitle">Live Streaming</div>
-                </div>
+                <span class="logo-text">ikazz - 48</span>
             </a>
-            <div class="member-badge" id="memberBadge">
-                <i class="fas fa-crown"></i>
-                <span>Member</span>
+            <div class="header-actions">
+                <button class="btn-membership" id="membershipBtn" onclick="handleMembershipClick()">
+                    <i class="fas fa-crown"></i>
+                    <span>Membership</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Selamat Datang di IKAZZ - 48</h1>
-            <p>Platform live streaming eksklusif untuk penggemar JKT48</p>
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-value" id="totalRooms">0</div>
-                    <div class="stat-label">Total Room</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="liveRooms">0</div>
-                    <div class="stat-label">Sedang Live</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="totalMembers">0</div>
-                    <div class="stat-label">Member</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Main Content -->
-    <main class="main">
-        <div class="section-header">
-            <h2 class="section-title">
-                <i class="fas fa-broadcast-tower"></i>
-                Daftar Room
-            </h2>
-            <div class="live-indicator" id="liveCount">0 Live</div>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="filter-tabs">
-            <button class="filter-tab active" data-filter="all">Semua Room</button>
-            <button class="filter-tab" data-filter="live">Sedang Live</button>
-            <button class="filter-tab" data-filter="offline">Offline</button>
-        </div>
-
-        <!-- Loading State -->
-        <div class="loading-state" id="loadingState" style="display: none;">
-            <div class="loader"></div>
-            <p>Memuat room...</p>
-        </div>
-
-        <!-- Room Grid -->
-        <div class="room-grid" id="roomGrid"></div>
-
-        <!-- Empty State -->
-        <div class="empty-state" id="emptyState" style="display: none;">
-            <div class="empty-state-icon">
-                <i class="fas fa-video-slash"></i>
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-broadcast-tower"></i>
+                    Live Streaming Platform
+                </div>
+                <h1 class="hero-title">Saksikan Live Streaming JKT48</h1>
+                <p class="hero-subtitle">Tonton live streaming eksklusif dari member favoritmu kapan saja dan di mana saja dengan kualitas terbaik.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" id="statLive">0</div>
+                        <div class="hero-stat-label">Live Now</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" id="statViewers">0</div>
+                        <div class="hero-stat-label">Viewers</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" id="statMembers">0</div>
+                        <div class="hero-stat-label">Members</div>
+                    </div>
+                </div>
             </div>
-            <h3>Tidak Ada Room</h3>
-            <p>Belum ada room yang tersedia saat ini</p>
-        </div>
+        </section>
+
+        <!-- Live Rooms Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-play-circle"></i>
+                    Sedang Live
+                </h2>
+                <div class="live-badge" id="liveBadge" style="display: none;">
+                    <span class="dot"></span>
+                    <span id="liveCount">0 Live</span>
+                </div>
+            </div>
+
+            <div class="rooms-grid" id="roomsGrid">
+                <!-- Rooms will be loaded here -->
+            </div>
+
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-state-icon">
+                    <i class="fas fa-video-slash"></i>
+                </div>
+                <h3>Belum Ada Live</h3>
+                <p>Saat ini belum ada member yang sedang live. Cek kembali nanti ya!</p>
+            </div>
+        </section>
     </main>
 
-    <!-- Token Modal -->
-    <div class="modal-overlay" id="tokenModal">
+    <!-- Watch Token Modal -->
+    <div class="modal-overlay" id="watchTokenModal">
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-icon">
                     <i class="fas fa-ticket-alt"></i>
                 </div>
-                <h2>Masukkan Token</h2>
-                <p>Token diperlukan untuk menonton live streaming ini</p>
+                <h3 class="modal-title">Masukkan Token</h3>
+                <p class="modal-subtitle">Masukkan token untuk menonton live streaming ini</p>
             </div>
-            <div class="error-msg" id="tokenError">
-                <i class="fas fa-exclamation-circle"></i>
-                <span></span>
+            <form id="watchTokenForm">
+                <input type="hidden" id="selectedRoomId">
+                <div class="form-group">
+                    <label class="form-label">Token Nonton</label>
+                    <input type="text" class="form-input" id="watchTokenInput" placeholder="Contoh: WTC-XXXXXXXXXXXX" required autocomplete="off">
+                </div>
+                <button type="submit" class="btn-primary" id="btnWatchSubmit">
+                    <i class="fas fa-play"></i>
+                    Tonton Sekarang
+                </button>
+            </form>
+            <button class="btn-secondary" onclick="closeModal('watchTokenModal')">Batal</button>
+        </div>
+    </div>
+
+    <!-- Membership Login Modal -->
+    <div class="modal-overlay" id="membershipModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3 class="modal-title">Login Membership</h3>
+                <p class="modal-subtitle">Masukkan token membership Anda untuk akses tanpa batas</p>
             </div>
-            <div class="form-group">
-                <label>Token Akses</label>
-                <input type="text" id="tokenInput" placeholder="Masukkan token Anda" autocomplete="off">
-            </div>
-            <button class="btn btn-primary" id="submitToken">
-                <i class="fas fa-play"></i>
-                Tonton Sekarang
-            </button>
-            <button class="btn btn-secondary" id="closeTokenModal">
-                Batal
-            </button>
-            <input type="hidden" id="selectedRoomId">
+            <form id="membershipForm">
+                <div class="form-group">
+                    <label class="form-label">Token Membership</label>
+                    <input type="text" class="form-input" id="membershipTokenInput" placeholder="Contoh: MBR-XXXXXXXXXXXX" required autocomplete="off">
+                </div>
+                <button type="submit" class="btn-primary" id="btnMembershipSubmit">
+                    <i class="fas fa-unlock"></i>
+                    Aktivasi Membership
+                </button>
+            </form>
+            <button class="btn-secondary" onclick="closeModal('membershipModal')">Batal</button>
         </div>
     </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <div class="nav-items">
+        <div class="nav-content">
             <a href="index.html" class="nav-item active">
                 <i class="fas fa-home"></i>
                 <span>Beranda</span>
@@ -963,19 +1086,13 @@
         </div>
     </nav>
 
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
-
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
     <script>
-        // ==========================================
-        // FIREBASE CONFIGURATION
-        // Ganti dengan config Firebase Anda
-        // ==========================================
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAl6WmsHrmYkyotYYu_VIEqX5buTrMa-ec",
             authDomain: "live-abd72.firebaseapp.com",
@@ -988,380 +1105,370 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        const auth = firebase.auth();
 
-        // ==========================================
-        // STATE
-        // ==========================================
-        let allRooms = [];
-        let currentFilter = 'all';
-        let isMember = false;
-
-        // ==========================================
-        // DEVICE ID
-        // ==========================================
+        // Device ID
         function getDeviceId() {
             let deviceId = localStorage.getItem('ikazz_device_id');
             if (!deviceId) {
-                deviceId = 'dev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                deviceId = 'DEV_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
                 localStorage.setItem('ikazz_device_id', deviceId);
             }
             return deviceId;
         }
 
-        // ==========================================
-        // CHECK MEMBERSHIP
-        // ==========================================
-        async function checkMembership() {
-            const memberToken = localStorage.getItem('ikazz_member_token');
+        // Toast notification
+        function showToast(title, message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <i class="fas ${type === 'success' ? 'fa-check' : 'fa-exclamation'}"></i>
+                </div>
+                <div class="toast-content">
+                    <h4>${title}</h4>
+                    <p>${message}</p>
+                </div>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Check membership status
+        async function checkMembershipStatus() {
+            const memberToken = localStorage.getItem('ikazz_membership_token');
             const deviceId = getDeviceId();
 
-            if (!memberToken) {
-                isMember = false;
-                return false;
-            }
+            if (!memberToken) return { valid: false };
 
             try {
                 const tokenDoc = await db.collection('membershipTokens').doc(memberToken).get();
-                if (tokenDoc.exists) {
-                    const data = tokenDoc.data();
-                    const expiresAt = data.expiresAt?.toDate();
-
-                    if (data.deviceId === deviceId && expiresAt && expiresAt > new Date()) {
-                        isMember = true;
-                        document.getElementById('memberBadge').style.display = 'flex';
-                        return true;
-                    } else if (data.deviceId !== deviceId) {
-                        localStorage.removeItem('ikazz_member_token');
-                    }
+                if (!tokenDoc.exists) {
+                    localStorage.removeItem('ikazz_membership_token');
+                    return { valid: false };
                 }
-            } catch (e) {
-                console.error('Error checking membership:', e);
-            }
 
-            isMember = false;
-            return false;
+                const tokenData = tokenDoc.data();
+                const expiryDate = tokenData.expiryDate?.toDate();
+
+                if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
+                    localStorage.removeItem('ikazz_membership_token');
+                    return { valid: false, reason: 'different_device' };
+                }
+
+                if (expiryDate && expiryDate < new Date()) {
+                    return { valid: false, reason: 'expired' };
+                }
+
+                return { valid: true, data: tokenData, token: memberToken };
+            } catch (error) {
+                console.error('Check membership error:', error);
+                return { valid: false };
+            }
         }
 
-        // ==========================================
-        // LOAD ROOMS - FIXED VERSION
-        // ==========================================
+        // Update membership button
+        async function updateMembershipButton() {
+            const status = await checkMembershipStatus();
+            const btn = document.getElementById('membershipBtn');
+
+            if (status.valid) {
+                btn.classList.add('active');
+                btn.innerHTML = `<i class="fas fa-check-circle"></i><span>Member</span>`;
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = `<i class="fas fa-crown"></i><span>Membership</span>`;
+            }
+        }
+
+        // Handle membership button click
+        async function handleMembershipClick() {
+            const status = await checkMembershipStatus();
+            if (status.valid) {
+                window.location.href = 'prof.html';
+            } else {
+                openModal('membershipModal');
+            }
+        }
+
+        // Load rooms
         async function loadRooms() {
-            const roomGrid = document.getElementById('roomGrid');
-            const emptyState = document.getElementById('emptyState');
-            const loadingState = document.getElementById('loadingState');
-            const liveCount = document.getElementById('liveCount');
-
-            loadingState.style.display = 'block';
-            roomGrid.style.display = 'none';
-            emptyState.style.display = 'none';
-
             try {
-                // Query SEMUA rooms, tidak hanya yang isLive
-                const snapshot = await db.collection('rooms')
-                    .orderBy('createdAt', 'desc')
-                    .get();
+                const roomsRef = db.collection('rooms').where('isLive', '==', true);
+                
+                roomsRef.onSnapshot((snapshot) => {
+                    const roomsGrid = document.getElementById('roomsGrid');
+                    const emptyState = document.getElementById('emptyState');
+                    const liveBadge = document.getElementById('liveBadge');
+                    const liveCount = document.getElementById('liveCount');
 
-                loadingState.style.display = 'none';
+                    if (snapshot.empty) {
+                        roomsGrid.innerHTML = '';
+                        emptyState.style.display = 'block';
+                        liveBadge.style.display = 'none';
+                        document.getElementById('statLive').textContent = '0';
+                        document.getElementById('statViewers').textContent = '0';
+                    } else {
+                        emptyState.style.display = 'none';
+                        liveBadge.style.display = 'flex';
+                        
+                        let totalViewers = 0;
+                        let html = '';
 
-                if (snapshot.empty) {
-                    emptyState.style.display = 'block';
-                    liveCount.textContent = '0 Live';
-                    document.getElementById('totalRooms').textContent = '0';
-                    document.getElementById('liveRooms').textContent = '0';
-                    return;
-                }
+                        snapshot.forEach((doc, index) => {
+                            const room = doc.data();
+                            totalViewers += room.viewerCount || 0;
+                            html += createRoomCard(doc.id, room, index);
+                        });
 
-                // Store all rooms
-                allRooms = [];
-                let liveRoomCount = 0;
-                let totalViewers = 0;
-
-                snapshot.forEach(doc => {
-                    const room = { id: doc.id, ...doc.data() };
-                    allRooms.push(room);
-                    if (room.isLive) {
-                        liveRoomCount++;
-                        totalViewers += room.viewers || 0;
+                        roomsGrid.innerHTML = html;
+                        liveCount.textContent = `${snapshot.size} Live`;
+                        document.getElementById('statLive').textContent = snapshot.size;
+                        document.getElementById('statViewers').textContent = totalViewers;
                     }
+
+                    hideLoading();
                 });
 
-                // Update stats
-                liveCount.textContent = liveRoomCount + ' Live';
-                document.getElementById('totalRooms').textContent = allRooms.length;
-                document.getElementById('liveRooms').textContent = liveRoomCount;
+                // Load members count
+                const membersSnapshot = await db.collection('membershipTokens')
+                    .where('deviceId', '!=', null)
+                    .get();
+                document.getElementById('statMembers').textContent = membersSnapshot.size;
 
-                // Render rooms
-                renderRooms();
-
-            } catch (e) {
-                console.error('Error loading rooms:', e);
-                loadingState.style.display = 'none';
-                emptyState.innerHTML = `
-                    <div class="empty-state-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <h3>Gagal Memuat Room</h3>
-                    <p>${e.message}</p>
-                `;
-                emptyState.style.display = 'block';
-                showToast('Gagal memuat room: ' + e.message, 'error');
+            } catch (error) {
+                console.error('Load rooms error:', error);
+                hideLoading();
+                showToast('Error', 'Gagal memuat data', 'error');
             }
         }
 
-        // ==========================================
-        // RENDER ROOMS
-        // ==========================================
-        function renderRooms() {
-            const roomGrid = document.getElementById('roomGrid');
-            const emptyState = document.getElementById('emptyState');
-
-            // Filter rooms
-            let filteredRooms = allRooms;
-            if (currentFilter === 'live') {
-                filteredRooms = allRooms.filter(r => r.isLive === true);
-            } else if (currentFilter === 'offline') {
-                filteredRooms = allRooms.filter(r => r.isLive !== true);
-            }
-
-            if (filteredRooms.length === 0) {
-                roomGrid.style.display = 'none';
-                emptyState.style.display = 'block';
-                emptyState.innerHTML = `
-                    <div class="empty-state-icon">
-                        <i class="fas fa-video-slash"></i>
-                    </div>
-                    <h3>Tidak Ada Room</h3>
-                    <p>${currentFilter === 'live' ? 'Tidak ada room yang sedang live' : currentFilter === 'offline' ? 'Tidak ada room offline' : 'Belum ada room yang tersedia'}</p>
-                `;
-                return;
-            }
-
-            roomGrid.style.display = 'grid';
-            emptyState.style.display = 'none';
-
-            roomGrid.innerHTML = filteredRooms.map((room, index) => {
-                const thumbnail = room.thumbnail || 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop';
-                const isLive = room.isLive === true;
-                const timeAgo = getTimeAgo(room.createdAt?.toDate ? room.createdAt.toDate() : null);
-
-                return `
-                    <div class="room-card" style="animation-delay: ${index * 0.1}s">
-                        <div class="room-thumbnail">
-                            <img src="${thumbnail}" alt="${room.title}" onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop'">
-                            <span class="room-badge ${isLive ? 'live' : 'offline'}">
-                                ${isLive ? 'LIVE' : 'OFFLINE'}
-                            </span>
-                            <span class="room-viewers">
-                                <i class="fas fa-eye"></i>
-                                ${room.viewers || 0}
-                            </span>
+        // Create room card HTML
+        function createRoomCard(roomId, room, index) {
+            const startTime = room.startTime ? formatTime(room.startTime.toDate()) : 'Baru mulai';
+            
+            return `
+                <div class="room-card" onclick="watchRoom('${roomId}')" style="animation-delay: ${0.1 + index * 0.05}s">
+                    <div class="room-thumbnail">
+                        ${room.thumbnail 
+                            ? `<img src="${room.thumbnail}" alt="${room.memberName}" onerror="this.parentElement.innerHTML='<div class=\\'room-thumbnail-placeholder\\'><i class=\\'fas fa-user\\'></i></div>'">`
+                            : `<div class="room-thumbnail-placeholder"><i class="fas fa-user"></i></div>`
+                        }
+                        <div class="room-live-badge">Live</div>
+                        <div class="room-viewers">
+                            <i class="fas fa-eye"></i>
+                            ${room.viewerCount || 0}
                         </div>
-                        <div class="room-content">
-                            <h3 class="room-title">${room.title || 'Untitled Room'}</h3>
-                            <div class="room-meta">
-                                <span><i class="fas fa-user"></i> ${room.host || 'Admin'}</span>
-                                <span><i class="fas fa-clock"></i> ${timeAgo}</span>
-                            </div>
-                            <button class="room-cta ${isLive ? '' : 'offline'}" onclick="${isLive ? `handleRoomClick('${room.id}')` : 'showToast(\'Room belum live\', \'error\')'}">
-                                <i class="fas fa-${isLive ? 'play-circle' : 'clock'}"></i>
-                                ${isLive ? 'Tonton Sekarang' : 'Menunggu Live'}
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-member-name">${room.memberName || 'Member'}</h3>
+                        <p class="room-title">${room.title || 'Live Streaming'}</p>
+                        <div class="room-footer">
+                            <span class="room-time">
+                                <i class="fas fa-clock"></i>
+                                ${startTime}
+                            </span>
+                            <button class="btn-watch" onclick="event.stopPropagation(); watchRoom('${roomId}')">
+                                <i class="fas fa-play"></i>
+                                Tonton
                             </button>
                         </div>
                     </div>
-                `;
-            }).join('');
+                </div>
+            `;
         }
 
-        // ==========================================
-        // HANDLE ROOM CLICK
-        // ==========================================
-        async function handleRoomClick(roomId) {
-            // Check if member
-            if (isMember) {
-                // Member - direct access
-                window.location.href = `room.html?id=${roomId}&member=true`;
-                return;
+        // Format time
+        function formatTime(date) {
+            const now = new Date();
+            const diff = Math.floor((now - date) / 1000 / 60);
+            
+            if (diff < 1) return 'Baru mulai';
+            if (diff < 60) return `${diff} menit`;
+            if (diff < 1440) return `${Math.floor(diff / 60)} jam`;
+            return date.toLocaleDateString('id-ID');
+        }
+
+        // Watch room
+        async function watchRoom(roomId) {
+            const status = await checkMembershipStatus();
+
+            if (status.valid) {
+                // Member can watch directly
+                window.location.href = `room.html?id=${roomId}&type=member`;
+            } else {
+                // Show token modal
+                document.getElementById('selectedRoomId').value = roomId;
+                openModal('watchTokenModal');
             }
-
-            // Show token modal for non-members
-            document.getElementById('selectedRoomId').value = roomId;
-            document.getElementById('tokenModal').classList.add('active');
-            document.getElementById('tokenInput').value = '';
-            document.getElementById('tokenInput').focus();
-            document.getElementById('tokenError').classList.remove('show');
         }
 
-        // ==========================================
-        // SUBMIT TOKEN
-        // ==========================================
-        document.getElementById('submitToken').addEventListener('click', async () => {
-            const token = document.getElementById('tokenInput').value.trim().toUpperCase();
+        // Watch token form submit
+        document.getElementById('watchTokenForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const token = document.getElementById('watchTokenInput').value.trim().toUpperCase();
             const roomId = document.getElementById('selectedRoomId').value;
-            const errorEl = document.getElementById('tokenError');
-            const btn = document.getElementById('submitToken');
             const deviceId = getDeviceId();
+            const btn = document.getElementById('btnWatchSubmit');
 
             if (!token) {
-                errorEl.querySelector('span').textContent = 'Masukkan token terlebih dahulu';
-                errorEl.classList.add('show');
+                showToast('Error', 'Masukkan token', 'error');
                 return;
             }
 
-            btn.innerHTML = '<div class="loader" style="width:20px;height:20px;border-width:2px;margin:0;"></div> Memverifikasi...';
             btn.disabled = true;
-            errorEl.classList.remove('show');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
 
             try {
-                // Check watch token
-                const tokenDoc = await db.collection('watchTokens').doc(token).get();
+                const tokenRef = db.collection('watchTokens').doc(token);
+                const tokenDoc = await tokenRef.get();
 
                 if (!tokenDoc.exists) {
-                    throw new Error('Token tidak valid');
+                    showToast('Error', 'Token tidak valid', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
+                    return;
                 }
 
                 const tokenData = tokenDoc.data();
 
-                if (tokenData.used && tokenData.deviceId !== deviceId) {
-                    throw new Error('Token sudah digunakan di perangkat lain');
-                }
-
                 if (tokenData.roomId !== roomId) {
-                    throw new Error('Token tidak valid untuk room ini');
+                    showToast('Error', 'Token tidak valid untuk room ini', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
+                    return;
                 }
 
-                // Mark token as used
-                await db.collection('watchTokens').doc(token).update({
-                    used: true,
-                    deviceId: deviceId,
-                    usedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
+                if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
+                    showToast('Error', 'Token sudah digunakan di perangkat lain', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
+                    return;
+                }
 
-                showToast('Token valid! Mengarahkan...', 'success');
+                // Bind token to device
+                if (!tokenData.deviceId) {
+                    await tokenRef.update({
+                        deviceId: deviceId,
+                        usedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
 
-                // Redirect to room
-                setTimeout(() => {
-                    window.location.href = `room.html?id=${roomId}&token=${token}`;
-                }, 1000);
+                closeModal('watchTokenModal');
+                window.location.href = `room.html?id=${roomId}&token=${token}`;
 
-            } catch (e) {
-                console.error('Token validation error:', e);
-                errorEl.querySelector('span').textContent = e.message;
-                errorEl.classList.add('show');
-                btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
+            } catch (error) {
+                console.error('Watch token error:', error);
+                showToast('Error', 'Terjadi kesalahan', 'error');
                 btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
             }
         });
 
-        // ==========================================
-        // CLOSE TOKEN MODAL
-        // ==========================================
-        document.getElementById('closeTokenModal').addEventListener('click', () => {
-            document.getElementById('tokenModal').classList.remove('active');
-        });
+        // Membership form submit
+        document.getElementById('membershipForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        document.getElementById('tokenModal').addEventListener('click', (e) => {
-            if (e.target.id === 'tokenModal') {
-                document.getElementById('tokenModal').classList.remove('active');
+            const token = document.getElementById('membershipTokenInput').value.trim().toUpperCase();
+            const deviceId = getDeviceId();
+            const btn = document.getElementById('btnMembershipSubmit');
+
+            if (!token) {
+                showToast('Error', 'Masukkan token', 'error');
+                return;
             }
-        });
 
-        // ==========================================
-        // FILTER TABS
-        // ==========================================
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                currentFilter = tab.dataset.filter;
-                renderRooms();
-            });
-        });
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
 
-        // ==========================================
-        // TIME AGO
-        // ==========================================
-        function getTimeAgo(date) {
-            if (!date) return 'Baru saja';
-            const seconds = Math.floor((new Date() - date) / 1000);
-            if (seconds < 60) return 'Baru saja';
-            if (seconds < 3600) return Math.floor(seconds / 60) + ' menit lalu';
-            if (seconds < 86400) return Math.floor(seconds / 3600) + ' jam lalu';
-            return Math.floor(seconds / 86400) + ' hari lalu';
-        }
-
-        // ==========================================
-        // TOAST
-        // ==========================================
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'info-circle';
-            toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
-            toast.className = 'toast show ' + type;
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
-        // ==========================================
-        // LOAD STATS
-        // ==========================================
-        async function loadStats() {
             try {
-                const membersSnapshot = await db.collection('membershipTokens')
-                    .where('used', '==', true)
-                    .get();
-                document.getElementById('totalMembers').textContent = membersSnapshot.size;
-            } catch (e) {
-                console.error('Error loading stats:', e);
-            }
-        }
+                const tokenRef = db.collection('membershipTokens').doc(token);
+                const tokenDoc = await tokenRef.get();
 
-        // ==========================================
-        // HIDE LOADING
-        // ==========================================
+                if (!tokenDoc.exists) {
+                    showToast('Error', 'Token tidak valid', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-unlock"></i> Aktivasi Membership';
+                    return;
+                }
+
+                const tokenData = tokenDoc.data();
+                const expiryDate = tokenData.expiryDate?.toDate();
+
+                if (expiryDate && expiryDate < new Date()) {
+                    showToast('Error', 'Token sudah kadaluarsa', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-unlock"></i> Aktivasi Membership';
+                    return;
+                }
+
+                if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
+                    showToast('Error', 'Token sudah digunakan di perangkat lain', 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-unlock"></i> Aktivasi Membership';
+                    return;
+                }
+
+                // Bind token to device
+                if (!tokenData.deviceId) {
+                    await tokenRef.update({
+                        deviceId: deviceId,
+                        activatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+
+                localStorage.setItem('ikazz_membership_token', token);
+                closeModal('membershipModal');
+                showToast('Sukses', 'Membership berhasil diaktifkan!', 'success');
+                updateMembershipButton();
+
+                setTimeout(() => {
+                    window.location.href = 'prof.html';
+                }, 1500);
+
+            } catch (error) {
+                console.error('Membership error:', error);
+                showToast('Error', 'Terjadi kesalahan', 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-unlock"></i> Aktivasi Membership';
+            }
+        });
+
+        // Hide loading
         function hideLoading() {
             setTimeout(() => {
-                document.getElementById('loadingOverlay').classList.add('hidden');
+                document.getElementById('loadingScreen').classList.add('hidden');
             }, 500);
         }
 
-        // ==========================================
-        // INITIALIZE
-        // ==========================================
-        window.addEventListener('load', async () => {
-            try {
-                await checkMembership();
-                await loadRooms();
-                await loadStats();
-                hideLoading();
-
-                // Real-time updates
-                db.collection('rooms').onSnapshot((snapshot) => {
-                    allRooms = [];
-                    let liveCount = 0;
-                    snapshot.forEach(doc => {
-                        const room = { id: doc.id, ...doc.data() };
-                        allRooms.push(room);
-                        if (room.isLive) liveCount++;
-                    });
-                    document.getElementById('totalRooms').textContent = allRooms.length;
-                    document.getElementById('liveRooms').textContent = liveCount;
-                    document.getElementById('liveCount').textContent = liveCount + ' Live';
-                    renderRooms();
-                }, (error) => {
-                    console.error('Realtime error:', error);
-                });
-
-            } catch (e) {
-                console.error('Init error:', e);
-                hideLoading();
-                showToast('Error: ' + e.message, 'error');
-            }
+        // Close modal on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
         });
 
-        // Enter key for token
-        document.getElementById('tokenInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                document.getElementById('submitToken').click();
-            }
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRooms();
+            updateMembershipButton();
         });
     </script>
 </body>

@@ -3,871 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Profil | IKAZZ - 48</title>
+    <title>Profil | ikazz - 48</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
-            --primary: #FF1744;
-            --primary-light: #FF5252;
-            --secondary: #6C63FF;
-            --accent: #00BCD4;
-            --dark: #1A1A2E;
-            --gray: #6B7280;
-            --light: #F8FAFC;
+            --primary: #E85D75;
+            --primary-light: #FF8A9B;
+            --secondary: #7C6AEF;
+            --accent: #2DCDA7;
+            --dark: #1E1E2E;
+            --gray-700: #4A4A5A;
+            --gray-500: #6E6E7E;
+            --gray-300: #A0A0B0;
+            --gray-100: #F0F0F5;
             --white: #FFFFFF;
-            --success: #10B981;
-            --warning: #F59E0B;
-            --gradient-1: linear-gradient(135deg, #FF1744 0%, #FF6B6B 100%);
-            --gradient-2: linear-gradient(135deg, #6C63FF 0%, #A855F7 100%);
-            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
-            --shadow-lg: 0 8px 40px rgba(0,0,0,0.16);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--light);
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FC 100%);
             min-height: 100vh;
-            padding-bottom: 100px;
+            color: var(--dark);
+            padding-bottom: 90px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .loading-screen.hidden { opacity: 0; visibility: hidden; }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--gray-100);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
 
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        .loading-text { margin-top: 16px; font-size: 14px; color: var(--gray-500); font-weight: 500; }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
-            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Header */
         .header {
-            background: var(--gradient-1);
-            padding: 24px 24px 100px;
+            background: var(--white);
+            padding: 16px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .header-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 24px 20px;
+        }
+
+        .profile-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .profile-header { text-align: center; margin-bottom: 28px; }
+
+        .profile-avatar {
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .profile-name { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+        .profile-name.empty { color: var(--gray-500); }
+
+        .membership-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .membership-badge.active {
+            background: linear-gradient(135deg, var(--accent) 0%, #25B897 100%);
+            color: white;
+        }
+
+        .membership-badge.inactive { background: var(--gray-100); color: var(--gray-500); }
+        .membership-badge.expired { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+
+        .membership-info {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            color: white;
+            margin-bottom: 28px;
             position: relative;
             overflow: hidden;
         }
 
-        .header::before {
+        .membership-info::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: float 8s ease-in-out infinite;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            pointer-events: none;
         }
 
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50px;
-            background: var(--light);
-            border-radius: 50px 50px 0 0;
-        }
+        .membership-info-content { position: relative; z-index: 1; }
 
-        .header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .header-title {
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logout-btn {
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            border: none;
-            border-radius: 12px;
-            color: white;
+        .membership-info h3 {
             font-size: 13px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            opacity: 0.9;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .logout-btn:hover {
-            background: #DC2626;
-        }
+        .membership-info .expiry { font-size: 22px; font-weight: 800; }
+        .membership-info .days-left { font-size: 14px; opacity: 0.9; margin-top: 8px; }
 
-        .profile-section {
-            text-align: center;
-        }
+        .form-section { animation: fadeInUp 0.5s ease 0.1s both; }
+        .form-section-title { font-size: 17px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .form-section-title i { color: var(--primary); }
 
-        .avatar {
-            width: 100px;
-            height: 100px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 40px;
-            color: var(--primary);
-            box-shadow: 0 8px 40px rgba(0,0,0,0.25);
-            animation: scaleIn 0.5s ease;
-            position: relative;
-            border: 4px solid rgba(255,255,255,0.3);
-        }
+        .form-group { margin-bottom: 18px; }
+        .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
 
-        .avatar.member::after {
-            content: '👑';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 28px;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        .user-name {
-            color: white;
-            font-size: 26px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .user-phone {
-            color: rgba(255,255,255,0.8);
-            font-size: 14px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .membership-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .membership-badge.active {
-            background: var(--gradient-gold);
-            color: #1A1A2E;
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        /* Main Content */
-        .main {
-            max-width: 600px;
-            margin: -30px auto 0;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 28px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-md);
-            animation: fadeInUp 0.6s ease backwards;
-            border: 1px solid #E5E7EB;
-        }
-
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: white;
-        }
-
-        .card-icon.red { background: var(--gradient-1); }
-        .card-icon.purple { background: var(--gradient-2); }
-        .card-icon.gold { background: var(--gradient-gold); }
-        .card-icon.cyan { background: linear-gradient(135deg, #00BCD4 0%, #4DD0E1 100%); }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .card-subtitle {
-            font-size: 13px;
-            color: var(--gray);
-            margin-top: 2px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 10px;
-        }
-
-        .form-group input, .form-group select {
+        .form-input, .form-select {
             width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #E5E7EB;
-            border-radius: 14px;
-            font-size: 16px;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-100);
+            border-radius: var(--radius-md);
+            font-size: 15px;
             font-family: inherit;
             transition: all 0.3s ease;
-            background: var(--light);
+            background: var(--white);
         }
 
-        .form-group input:focus, .form-group select:focus {
+        .form-input:focus, .form-select:focus {
             outline: none;
             border-color: var(--primary);
-            background: var(--white);
-            box-shadow: 0 0 0 4px rgba(255, 23, 68, 0.1);
+            box-shadow: 0 0 0 4px rgba(232, 93, 117, 0.1);
         }
 
-        .input-icon {
-            position: relative;
-        }
-
-        .input-icon i {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gray);
-            font-size: 16px;
-        }
-
-        .input-icon input {
-            padding-left: 50px;
-        }
-
-        .btn {
-            padding: 16px 32px;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-family: inherit;
-            width: 100%;
-        }
+        .form-input:disabled { background: var(--gray-100); cursor: not-allowed; }
 
         .btn-primary {
-            background: var(--gradient-1);
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
-        }
-
-        .btn-gold {
-            background: var(--gradient-gold);
-            color: #1A1A2E;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        /* Member Card */
-        .member-card {
-            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-            border: 2px solid #F59E0B;
-        }
-
-        .member-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 20px;
-            background: rgba(255,255,255,0.6);
-            border-radius: 16px;
-            margin-bottom: 20px;
-        }
-
-        .member-info-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-gold);
-            border-radius: 50%;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .member-info-text h4 {
-            font-size: 18px;
-            color: #92400E;
-            margin-bottom: 4px;
-        }
-
-        .member-info-text p {
-            font-size: 13px;
-            color: #B45309;
-        }
-
-        .member-expiry {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            background: rgba(255,255,255,0.6);
-            border-radius: 12px;
-        }
-
-        .member-expiry-label {
-            font-size: 13px;
-            color: #92400E;
-        }
-
-        .member-expiry-value {
-            font-size: 15px;
-            font-weight: 700;
-            color: #B45309;
-        }
-
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            background: var(--light);
-            border-radius: 16px;
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Messages */
-        .error-msg {
-            background: #FEF2F2;
-            border: 1px solid #FCA5A5;
-            color: #DC2626;
-            padding: 14px 18px;
-            border-radius: 12px;
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
             gap: 10px;
         }
 
-        .error-msg.show {
-            display: flex;
-        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232, 93, 117, 0.4); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-        .success-msg {
-            background: #D1FAE5;
-            border: 1px solid #6EE7B7;
-            color: #059669;
-            padding: 14px 18px;
-            border-radius: 12px;
+        .btn-secondary {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
             font-size: 14px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
         }
 
-        .success-msg.show {
-            display: flex;
-        }
+        .btn-secondary:hover { background: #E8E8F0; }
+        .btn-danger { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+        .btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
 
-        /* Login Icon */
-        .login-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+        .not-logged-in { text-align: center; padding: 48px 20px; }
+
+        .not-logged-in-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--gray-100) 0%, #E8E8F0 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
-            font-size: 36px;
-            color: var(--gray);
+            font-size: 40px;
+            color: var(--gray-300);
         }
 
-        .login-card {
-            text-align: center;
-        }
+        .not-logged-in h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .not-logged-in p { font-size: 14px; color: var(--gray-500); margin-bottom: 24px; max-width: 280px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
-        .login-card h3 {
-            font-size: 22px;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
+        .divider { height: 1px; background: var(--gray-100); margin: 24px 0; }
 
-        .login-card > p {
-            color: var(--gray);
-            font-size: 14px;
-            margin-bottom: 28px;
-        }
-
-        /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             background: var(--white);
-            padding: 12px 24px 28px;
-            box-shadow: 0 -4px 30px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
+            border-top: 1px solid rgba(0,0,0,0.04);
             z-index: 100;
-            border-radius: 24px 24px 0 0;
         }
 
-        .nav-items {
-            display: flex;
-            justify-content: space-around;
-            max-width: 400px;
-            margin: 0 auto;
-        }
+        .nav-content { max-width: 400px; margin: 0 auto; display: flex; justify-content: space-around; }
 
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
-            text-decoration: none;
-            color: var(--gray);
+            gap: 4px;
             padding: 8px 20px;
-            border-radius: 16px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--gray-500);
             transition: all 0.3s ease;
-            position: relative;
         }
 
-        .nav-item.active {
-            color: var(--primary);
-        }
+        .nav-item:hover { color: var(--primary); }
+        .nav-item.active { color: var(--primary); background: rgba(232, 93, 117, 0.08); }
+        .nav-item i { font-size: 20px; }
+        .nav-item span { font-size: 11px; font-weight: 600; }
 
-        .nav-item.active::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 0 0 4px 4px;
-        }
+        .toast-container { position: fixed; top: 20px; left: 20px; right: 20px; z-index: 2000; }
 
-        .nav-item i {
-            font-size: 22px;
-        }
-
-        .nav-item span {
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        /* Toast */
         .toast {
-            position: fixed;
-            bottom: 120px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--dark);
-            color: white;
-            padding: 16px 28px;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 500;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
             box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            animation: fadeInUp 0.4s ease;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent);
         }
 
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
+        .toast.error { border-left-color: #EF4444; }
 
-        .toast.success { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
-        .toast.error { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); }
-
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--white);
+        .toast-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 2000;
+            font-size: 16px;
         }
 
-        .loading-overlay.hidden {
-            display: none;
-        }
+        .toast.success .toast-icon { background: rgba(45, 205, 167, 0.1); color: var(--accent); }
+        .toast.error .toast-icon { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
 
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f0f0f0;
-            border-top-color: var(--primary);
+        .toast-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+        .toast-content p { font-size: 13px; color: var(--gray-500); }
+
+        .loading-spinner-sm {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                padding: 20px 20px 90px;
-            }
-
-            .avatar {
-                width: 80px;
-                height: 80px;
-                font-size: 32px;
-            }
-
-            .user-name {
-                font-size: 22px;
-            }
-
-            .card {
-                padding: 24px;
-            }
+            animation: spin 0.8s linear infinite;
         }
     </style>
 </head>
 <body>
-    <!-- Loading -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loader"></div>
-        <p style="margin-top: 20px; color: var(--gray);">Memuat profil...</p>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Memuat...</p>
     </div>
 
-    <!-- Header -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <header class="header">
         <div class="header-content">
-            <div class="header-top">
-                <div class="header-title">
-                    <i class="fas fa-user-circle"></i>
-                    Profil Saya
-                </div>
-                <button class="logout-btn" id="logoutBtn" style="display: none;" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Keluar
-                </button>
-            </div>
-
-            <div class="profile-section">
-                <div class="avatar" id="avatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                <h1 class="user-name" id="userName">Guest</h1>
-                <p class="user-phone" id="userPhone" style="display: none;">
-                    <i class="fab fa-whatsapp"></i>
-                    <span></span>
-                </p>
-                <div class="membership-badge" id="membershipBadge">
-                    <i class="fas fa-user"></i>
-                    <span>Non-Member</span>
-                </div>
-            </div>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">48</div>
+                <span class="logo-text">ikazz - 48</span>
+            </a>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="main">
-        <!-- Guest View - Login/Register -->
-        <div id="guestView">
-            <!-- Token Login Card -->
-            <div class="card login-card">
-                <div class="login-icon">
-                    <i class="fas fa-ticket-alt"></i>
+    <main class="main-content">
+        <div class="profile-card" id="notLoggedIn" style="display: none;">
+            <div class="not-logged-in">
+                <div class="not-logged-in-icon">
+                    <i class="fas fa-user-lock"></i>
                 </div>
-                <h3>Masuk dengan Token</h3>
-                <p>Masukkan token membership untuk akses premium</p>
-                
-                <div class="error-msg" id="loginError">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span></span>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-icon">
-                        <i class="fas fa-key"></i>
-                        <input type="text" id="tokenInput" placeholder="Masukkan token membership" autocomplete="off">
-                    </div>
-                </div>
-                <button class="btn btn-gold" id="loginTokenBtn" onclick="loginWithToken()">
-                    <i class="fas fa-crown"></i>
-                    Aktivasi Membership
+                <h2>Belum Login</h2>
+                <p>Anda belum memiliki membership aktif. Aktivasi dengan token membership untuk akses tanpa batas.</p>
+                <button class="btn-primary" onclick="window.location.href='index.html'">
+                    <i class="fas fa-crown"></i> Aktivasi Membership
                 </button>
-            </div>
-
-            <!-- Profile Form Card -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon purple">
-                        <i class="fas fa-user-edit"></i>
-                    </div>
-                    <div>
-                        <div class="card-title">Data Profil</div>
-                        <div class="card-subtitle">Isi data untuk menyimpan profil</div>
-                    </div>
-                </div>
-
-                <div class="success-msg" id="profileSuccess">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Profil berhasil disimpan!</span>
-                </div>
-
-                <form id="profileForm">
-                    <div class="form-group">
-                        <label>Nama Lengkap</label>
-                        <input type="text" id="nameInput" placeholder="Masukkan nama lengkap" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <select id="genderInput" required>
-                            <option value="">Pilih jenis kelamin</option>
-                            <option value="male">Laki-laki</option>
-                            <option value="female">Perempuan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Nomor WhatsApp</label>
-                        <div class="input-icon">
-                            <i class="fab fa-whatsapp"></i>
-                            <input type="tel" id="whatsappInput" placeholder="08xxxxxxxxxx" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        Simpan Profil
-                    </button>
-                </form>
             </div>
         </div>
 
-        <!-- Member View -->
-        <div id="memberView" style="display: none;">
-            <!-- Membership Card -->
-            <div class="card member-card" id="memberCard">
-                <div class="member-info">
-                    <div class="member-info-icon">
+        <div id="profileContent" style="display: none;">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 class="profile-name" id="profileName">Nama Pengguna</h2>
+                    <div class="membership-badge active" id="membershipBadge">
                         <i class="fas fa-crown"></i>
-                    </div>
-                    <div class="member-info-text">
-                        <h4>Member Aktif</h4>
-                        <p>Akses ke semua live streaming</p>
-                    </div>
-                </div>
-                <div class="member-expiry">
-                    <span class="member-expiry-label">Berakhir pada</span>
-                    <span class="member-expiry-value" id="expiryDate">-</span>
-                </div>
-            </div>
-
-            <!-- Stats Card -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon cyan">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div>
-                        <div class="card-title">Statistik</div>
-                        <div class="card-subtitle">Ringkasan aktivitas</div>
-                    </div>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-value" id="watchCount">0</div>
-                        <div class="stat-label">Live Ditonton</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="daysLeft">0</div>
-                        <div class="stat-label">Hari Tersisa</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Edit Profile Card -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon red">
-                        <i class="fas fa-user-edit"></i>
-                    </div>
-                    <div>
-                        <div class="card-title">Edit Profil</div>
-                        <div class="card-subtitle">Perbarui informasi</div>
+                        <span>Member Aktif</span>
                     </div>
                 </div>
 
-                <div class="success-msg" id="editSuccess">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Profil berhasil diperbarui!</span>
+                <div class="membership-info" id="membershipInfo">
+                    <div class="membership-info-content">
+                        <h3><i class="fas fa-calendar-alt"></i> Berlaku Hingga</h3>
+                        <div class="expiry" id="expiryDate">-</div>
+                        <div class="days-left" id="daysLeft">-</div>
+                    </div>
                 </div>
 
-                <form id="editProfileForm">
-                    <div class="form-group">
-                        <label>Nama Lengkap</label>
-                        <input type="text" id="editNameInput" placeholder="Masukkan nama lengkap" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <select id="editGenderInput" required>
-                            <option value="">Pilih jenis kelamin</option>
-                            <option value="male">Laki-laki</option>
-                            <option value="female">Perempuan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Nomor WhatsApp</label>
-                        <div class="input-icon">
-                            <i class="fab fa-whatsapp"></i>
-                            <input type="tel" id="editWhatsappInput" placeholder="08xxxxxxxxxx" required>
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-edit"></i> Informasi Profil
+                    </h3>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-input" id="inputName" placeholder="Masukkan nama lengkap" required>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        Simpan Perubahan
+                        <div class="form-group">
+                            <label class="form-label">Jenis Kelamin</label>
+                            <select class="form-select" id="inputGender" required>
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nomor WhatsApp</label>
+                            <input type="tel" class="form-input" id="inputWhatsapp" placeholder="08123456789" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Token Membership</label>
+                            <input type="text" class="form-input" id="inputToken" disabled>
+                        </div>
+                        <button type="submit" class="btn-primary" id="btnSave">
+                            <i class="fas fa-save"></i> Simpan Perubahan
+                        </button>
+                    </form>
+
+                    <div class="divider"></div>
+
+                    <button class="btn-secondary btn-danger" onclick="logoutMembership()">
+                        <i class="fas fa-sign-out-alt"></i> Keluar dari Membership
                     </button>
-                </form>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <div class="nav-items">
+        <div class="nav-content">
             <a href="index.html" class="nav-item">
                 <i class="fas fa-home"></i>
                 <span>Beranda</span>
@@ -879,17 +460,10 @@
         </div>
     </nav>
 
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
-
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // ==========================================
-        // FIREBASE CONFIGURATION
-        // ==========================================
         const firebaseConfig = {
             apiKey: "AIzaSyAl6WmsHrmYkyotYYu_VIEqX5buTrMa-ec",
             authDomain: "live-abd72.firebaseapp.com",
@@ -902,407 +476,175 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // ==========================================
-        // DEVICE ID
-        // ==========================================
+        let currentUser = null;
+        let membershipData = null;
+
         function getDeviceId() {
             let deviceId = localStorage.getItem('ikazz_device_id');
             if (!deviceId) {
-                deviceId = 'dev_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                deviceId = 'DEV_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
                 localStorage.setItem('ikazz_device_id', deviceId);
             }
             return deviceId;
         }
 
-        // ==========================================
-        // TOAST
-        // ==========================================
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'info-circle';
-            toast.innerHTML = `<i class="fas fa-${icon}"></i> ${message}`;
-            toast.className = 'toast show ' + type;
-            setTimeout(() => toast.classList.remove('show'), 3000);
+        function showToast(title, message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<div class="toast-icon"><i class="fas ${type === 'success' ? 'fa-check' : 'fa-exclamation'}"></i></div><div class="toast-content"><h4>${title}</h4><p>${message}</p></div>`;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
         }
 
-        // ==========================================
-        // FORMAT DATE
-        // ==========================================
-        function formatDate(date) {
-            return date.toLocaleDateString('id-ID', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-        }
-
-        // ==========================================
-        // HIDE LOADING
-        // ==========================================
-        function hideLoading() {
-            document.getElementById('loadingOverlay').classList.add('hidden');
-        }
-
-        // ==========================================
-        // CHECK MEMBERSHIP - FIXED
-        // ==========================================
-        async function checkMembership() {
-            const memberToken = localStorage.getItem('ikazz_member_token');
+        async function init() {
+            const memberToken = localStorage.getItem('ikazz_membership_token');
             const deviceId = getDeviceId();
 
             if (!memberToken) {
-                showGuestView();
-                return null;
+                showNotLoggedIn();
+                hideLoading();
+                return;
             }
 
             try {
                 const tokenDoc = await db.collection('membershipTokens').doc(memberToken).get();
-                
-                if (tokenDoc.exists) {
-                    const data = tokenDoc.data();
-                    const expiresAt = data.expiresAt?.toDate ? data.expiresAt.toDate() : null;
-
-                    // Check device
-                    if (data.deviceId && data.deviceId !== deviceId) {
-                        localStorage.removeItem('ikazz_member_token');
-                        showToast('Token digunakan di perangkat lain', 'error');
-                        showGuestView();
-                        return null;
-                    }
-
-                    // Check expiry
-                    if (expiresAt && expiresAt > new Date()) {
-                        await showMemberView(data, memberToken);
-                        return data;
-                    } else if (expiresAt) {
-                        localStorage.removeItem('ikazz_member_token');
-                        showToast('Membership telah berakhir', 'error');
-                        showGuestView();
-                        return null;
-                    }
-                } else {
-                    localStorage.removeItem('ikazz_member_token');
-                }
-            } catch (e) {
-                console.error('Error checking membership:', e);
-                showToast('Error: ' + e.message, 'error');
-            }
-
-            showGuestView();
-            return null;
-        }
-
-        // ==========================================
-        // SHOW GUEST VIEW
-        // ==========================================
-        async function showGuestView() {
-            document.getElementById('guestView').style.display = 'block';
-            document.getElementById('memberView').style.display = 'none';
-            document.getElementById('logoutBtn').style.display = 'none';
-
-            // Load saved profile from localStorage
-            const savedProfile = localStorage.getItem('ikazz_profile');
-            if (savedProfile) {
-                try {
-                    const profile = JSON.parse(savedProfile);
-                    document.getElementById('nameInput').value = profile.name || '';
-                    document.getElementById('genderInput').value = profile.gender || '';
-                    document.getElementById('whatsappInput').value = profile.whatsapp || '';
-                    document.getElementById('userName').textContent = profile.name || 'Guest';
-                } catch (e) {
-                    console.error('Error parsing profile:', e);
-                }
-            }
-
-            // Also try loading from Firestore
-            const deviceId = getDeviceId();
-            try {
-                const userDoc = await db.collection('users').doc(deviceId).get();
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    document.getElementById('nameInput').value = userData.name || '';
-                    document.getElementById('genderInput').value = userData.gender || '';
-                    document.getElementById('whatsappInput').value = userData.whatsapp || '';
-                    document.getElementById('userName').textContent = userData.name || 'Guest';
-                }
-            } catch (e) {
-                console.log('Could not load user from Firestore:', e.message);
-            }
-
-            hideLoading();
-        }
-
-        // ==========================================
-        // SHOW MEMBER VIEW
-        // ==========================================
-        async function showMemberView(memberData, token) {
-            document.getElementById('guestView').style.display = 'none';
-            document.getElementById('memberView').style.display = 'block';
-            document.getElementById('logoutBtn').style.display = 'flex';
-
-            // Update avatar
-            const avatar = document.getElementById('avatar');
-            avatar.classList.add('member');
-
-            // Update badge
-            const badge = document.getElementById('membershipBadge');
-            badge.classList.add('active');
-            badge.innerHTML = '<i class="fas fa-crown"></i><span>Member Premium</span>';
-
-            // Set expiry date
-            const expiresAt = memberData.expiresAt?.toDate ? memberData.expiresAt.toDate() : null;
-            if (expiresAt) {
-                document.getElementById('expiryDate').textContent = formatDate(expiresAt);
-                const daysLeft = Math.max(0, Math.ceil((expiresAt - new Date()) / (1000 * 60 * 60 * 24)));
-                document.getElementById('daysLeft').textContent = daysLeft;
-            }
-
-            // Load user profile from Firestore
-            const deviceId = getDeviceId();
-            try {
-                const userDoc = await db.collection('users').doc(deviceId).get();
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    document.getElementById('userName').textContent = userData.name || 'Member';
-                    document.getElementById('editNameInput').value = userData.name || '';
-                    document.getElementById('editGenderInput').value = userData.gender || '';
-                    document.getElementById('editWhatsappInput').value = userData.whatsapp || '';
-
-                    if (userData.whatsapp) {
-                        document.getElementById('userPhone').style.display = 'flex';
-                        document.getElementById('userPhone').querySelector('span').textContent = userData.whatsapp;
-                    }
-
-                    document.getElementById('watchCount').textContent = userData.watchCount || 0;
-
-                    // Update avatar icon
-                    avatar.innerHTML = `<i class="fas fa-${userData.gender === 'female' ? 'user-astronaut' : 'user-tie'}"></i>`;
-                }
-            } catch (e) {
-                console.error('Error loading user profile:', e);
-            }
-
-            hideLoading();
-        }
-
-        // ==========================================
-        // LOGIN WITH TOKEN - FIXED
-        // ==========================================
-        async function loginWithToken() {
-            const tokenInput = document.getElementById('tokenInput');
-            const token = tokenInput.value.trim().toUpperCase();
-            const errorEl = document.getElementById('loginError');
-            const btn = document.getElementById('loginTokenBtn');
-            const deviceId = getDeviceId();
-
-            if (!token) {
-                errorEl.querySelector('span').textContent = 'Masukkan token terlebih dahulu';
-                errorEl.classList.add('show');
-                return;
-            }
-
-            btn.innerHTML = '<div class="loading"></div> Memverifikasi...';
-            btn.disabled = true;
-            errorEl.classList.remove('show');
-
-            try {
-                const tokenDoc = await db.collection('membershipTokens').doc(token).get();
 
                 if (!tokenDoc.exists) {
-                    throw new Error('Token tidak valid');
+                    localStorage.removeItem('ikazz_membership_token');
+                    showNotLoggedIn();
+                    hideLoading();
+                    return;
                 }
 
                 const tokenData = tokenDoc.data();
 
-                // Check if already used by another device
-                if (tokenData.used && tokenData.deviceId && tokenData.deviceId !== deviceId) {
-                    throw new Error('Token sudah digunakan di perangkat lain');
+                if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
+                    localStorage.removeItem('ikazz_membership_token');
+                    showToast('Error', 'Token terikat dengan perangkat lain', 'error');
+                    showNotLoggedIn();
+                    hideLoading();
+                    return;
                 }
 
-                // Calculate expiry date
-                let expiresAt;
-                if (tokenData.expiresAt) {
-                    expiresAt = tokenData.expiresAt.toDate ? tokenData.expiresAt.toDate() : new Date(tokenData.expiresAt);
-                } else {
-                    expiresAt = new Date();
-                    expiresAt.setMonth(expiresAt.getMonth() + (tokenData.duration || 1));
+                const expiryDate = tokenData.expiryDate?.toDate();
+                if (expiryDate && expiryDate < new Date()) {
+                    showExpired(expiryDate);
+                    hideLoading();
+                    return;
                 }
 
-                // Check if expired
-                if (expiresAt < new Date()) {
-                    throw new Error('Token sudah kadaluarsa');
-                }
+                membershipData = tokenData;
+                membershipData.token = memberToken;
 
-                // Update token in Firestore
-                await db.collection('membershipTokens').doc(token).update({
-                    used: true,
-                    deviceId: deviceId,
-                    expiresAt: firebase.firestore.Timestamp.fromDate(expiresAt),
-                    activatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
+                const userDoc = await db.collection('users').doc(deviceId).get();
+                if (userDoc.exists) currentUser = userDoc.data();
 
-                // Save token locally
-                localStorage.setItem('ikazz_member_token', token);
-
-                // Create/update user in Firestore
-                const savedProfile = localStorage.getItem('ikazz_profile');
-                const profile = savedProfile ? JSON.parse(savedProfile) : {};
-
-                await db.collection('users').doc(deviceId).set({
-                    name: profile.name || 'Member',
-                    gender: profile.gender || '',
-                    whatsapp: profile.whatsapp || '',
-                    isMember: true,
-                    memberToken: token,
-                    deviceId: deviceId,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                }, { merge: true });
-
-                showToast('Membership berhasil diaktifkan!', 'success');
-
-                // Reload page
-                setTimeout(() => location.reload(), 1500);
-
-            } catch (e) {
-                console.error('Login error:', e);
-                errorEl.querySelector('span').textContent = e.message;
-                errorEl.classList.add('show');
-                btn.innerHTML = '<i class="fas fa-crown"></i> Aktivasi Membership';
-                btn.disabled = false;
+                showProfile();
+                hideLoading();
+            } catch (error) {
+                console.error('Init error:', error);
+                showToast('Error', 'Gagal memuat profil', 'error');
+                hideLoading();
             }
         }
 
-        // ==========================================
-        // SAVE PROFILE (GUEST) - FIXED
-        // ==========================================
+        function showNotLoggedIn() {
+            document.getElementById('notLoggedIn').style.display = 'block';
+            document.getElementById('profileContent').style.display = 'none';
+        }
+
+        function showProfile() {
+            document.getElementById('notLoggedIn').style.display = 'none';
+            document.getElementById('profileContent').style.display = 'block';
+
+            if (currentUser) {
+                document.getElementById('inputName').value = currentUser.name || '';
+                document.getElementById('inputGender').value = currentUser.gender || '';
+                document.getElementById('inputWhatsapp').value = currentUser.whatsapp || '';
+                document.getElementById('profileName').textContent = currentUser.name || 'Atur Profil Anda';
+                document.getElementById('profileName').classList.toggle('empty', !currentUser.name);
+            } else {
+                document.getElementById('profileName').textContent = 'Atur Profil Anda';
+                document.getElementById('profileName').classList.add('empty');
+            }
+
+            document.getElementById('inputToken').value = membershipData.token;
+
+            const expiryDate = membershipData.expiryDate?.toDate();
+            if (expiryDate) {
+                document.getElementById('expiryDate').textContent = expiryDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+                const daysLeft = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
+                document.getElementById('daysLeft').textContent = `${daysLeft} hari tersisa`;
+            }
+        }
+
+        function showExpired(expiryDate) {
+            document.getElementById('notLoggedIn').style.display = 'none';
+            document.getElementById('profileContent').style.display = 'block';
+
+            document.getElementById('membershipBadge').className = 'membership-badge expired';
+            document.getElementById('membershipBadge').innerHTML = '<i class="fas fa-times-circle"></i><span>Expired</span>';
+            document.getElementById('membershipInfo').style.background = 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)';
+            document.getElementById('expiryDate').textContent = 'Membership Berakhir';
+            document.getElementById('daysLeft').textContent = expiryDate.toLocaleDateString('id-ID');
+        }
+
         document.getElementById('profileForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const name = document.getElementById('nameInput').value.trim();
-            const gender = document.getElementById('genderInput').value;
-            const whatsapp = document.getElementById('whatsappInput').value.trim();
-            const deviceId = getDeviceId();
-            const btn = e.target.querySelector('button[type="submit"]');
+            const name = document.getElementById('inputName').value.trim();
+            const gender = document.getElementById('inputGender').value;
+            const whatsapp = document.getElementById('inputWhatsapp').value.trim();
 
             if (!name || !gender || !whatsapp) {
-                showToast('Lengkapi semua data', 'error');
+                showToast('Error', 'Semua field wajib diisi', 'error');
                 return;
             }
 
-            btn.innerHTML = '<div class="loading"></div> Menyimpan...';
+            const btn = document.getElementById('btnSave');
             btn.disabled = true;
+            btn.innerHTML = '<div class="loading-spinner-sm"></div> Menyimpan...';
 
             try {
-                // Save to localStorage first
-                localStorage.setItem('ikazz_profile', JSON.stringify({ name, gender, whatsapp }));
+                const deviceId = getDeviceId();
 
-                // Save to Firestore
                 await db.collection('users').doc(deviceId).set({
-                    name: name,
-                    gender: gender,
-                    whatsapp: whatsapp,
-                    isMember: false,
-                    deviceId: deviceId,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    name,
+                    gender,
+                    whatsapp,
+                    membershipToken: membershipData.token,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    createdAt: currentUser?.createdAt || firebase.firestore.FieldValue.serverTimestamp()
                 }, { merge: true });
 
-                document.getElementById('userName').textContent = name;
-                document.getElementById('profileSuccess').classList.add('show');
-                setTimeout(() => document.getElementById('profileSuccess').classList.remove('show'), 3000);
-                showToast('Profil berhasil disimpan!', 'success');
+                currentUser = { name, gender, whatsapp };
+                document.getElementById('profileName').textContent = name;
+                document.getElementById('profileName').classList.remove('empty');
 
-            } catch (e) {
-                console.error('Save profile error:', e);
-                showToast('Error: ' + e.message, 'error');
+                showToast('Sukses', 'Profil berhasil disimpan', 'success');
+            } catch (error) {
+                console.error('Save error:', error);
+                showToast('Error', 'Gagal menyimpan profil', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-save"></i> Simpan Perubahan';
             }
-
-            btn.innerHTML = '<i class="fas fa-save"></i> Simpan Profil';
-            btn.disabled = false;
         });
 
-        // ==========================================
-        // EDIT PROFILE (MEMBER) - FIXED
-        // ==========================================
-        document.getElementById('editProfileForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const name = document.getElementById('editNameInput').value.trim();
-            const gender = document.getElementById('editGenderInput').value;
-            const whatsapp = document.getElementById('editWhatsappInput').value.trim();
-            const deviceId = getDeviceId();
-            const btn = e.target.querySelector('button[type="submit"]');
-
-            if (!name || !gender || !whatsapp) {
-                showToast('Lengkapi semua data', 'error');
-                return;
-            }
-
-            btn.innerHTML = '<div class="loading"></div> Menyimpan...';
-            btn.disabled = true;
-
-            try {
-                await db.collection('users').doc(deviceId).set({
-                    name: name,
-                    gender: gender,
-                    whatsapp: whatsapp,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                }, { merge: true });
-
-                // Update localStorage
-                localStorage.setItem('ikazz_profile', JSON.stringify({ name, gender, whatsapp }));
-
-                // Update UI
-                document.getElementById('userName').textContent = name;
-                document.getElementById('userPhone').style.display = 'flex';
-                document.getElementById('userPhone').querySelector('span').textContent = whatsapp;
-
-                document.getElementById('editSuccess').classList.add('show');
-                setTimeout(() => document.getElementById('editSuccess').classList.remove('show'), 3000);
-                showToast('Profil berhasil diperbarui!', 'success');
-
-            } catch (e) {
-                console.error('Edit profile error:', e);
-                showToast('Error: ' + e.message, 'error');
-            }
-
-            btn.innerHTML = '<i class="fas fa-save"></i> Simpan Perubahan';
-            btn.disabled = false;
-        });
-
-        // ==========================================
-        // LOGOUT
-        // ==========================================
-        async function logout() {
+        function logoutMembership() {
             if (!confirm('Yakin ingin keluar dari membership?')) return;
 
-            localStorage.removeItem('ikazz_member_token');
-            showToast('Berhasil keluar', 'success');
-            setTimeout(() => location.reload(), 1000);
+            localStorage.removeItem('ikazz_membership_token');
+            showToast('Sukses', 'Berhasil keluar', 'success');
+            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
         }
 
-        // ==========================================
-        // ENTER KEY FOR TOKEN
-        // ==========================================
-        document.getElementById('tokenInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                loginWithToken();
-            }
-        });
+        function hideLoading() {
+            setTimeout(() => { document.getElementById('loadingScreen').classList.add('hidden'); }, 300);
+        }
 
-        // ==========================================
-        // INITIALIZE
-        // ==========================================
-        window.addEventListener('load', async () => {
-            try {
-                await checkMembership();
-            } catch (e) {
-                console.error('Init error:', e);
-                hideLoading();
-                showToast('Error: ' + e.message, 'error');
-            }
-        });
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
