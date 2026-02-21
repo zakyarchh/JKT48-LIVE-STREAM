@@ -1,0 +1,3030 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin · ikxzu stream</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background: #f4f6fb;
+            color: #1a1e2b;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== LOGIN SCREEN ===== */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #f4f6fb;
+        }
+
+        .login-card-block {
+            background: white;
+            border-radius: 32px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 440px;
+            border: 1px solid #eef3f8;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-logo-block {
+            width: 80px;
+            height: 80px;
+            background: #1a1e2b;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .login-title-block {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle-block {
+            color: #6b7a90;
+            text-align: center;
+            margin-bottom: 36px;
+            font-size: 15px;
+        }
+
+        .login-tabs-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            background: #f1f5f9;
+            padding: 6px;
+            border-radius: 60px;
+            margin-bottom: 28px;
+        }
+
+        .login-tab-block {
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            color: #5f6c84;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .login-tab-block.active {
+            background: white;
+            color: #1a1e2b;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .login-error-block {
+            background: #fee9e9;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-error-block.show {
+            display: flex;
+        }
+
+        .login-form-block {
+            display: none;
+        }
+
+        .login-form-block.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group-block {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-label-block {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+
+        .input-icon-wrapper {
+            position: relative;
+        }
+
+        .input-icon-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        .input-icon-wrapper .input-block {
+            padding-left: 50px;
+        }
+
+        .input-block {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            font-size: 15px;
+            outline: none;
+            background: #fafcff;
+        }
+
+        .input-block:focus {
+            border-color: #1a1e2b;
+        }
+
+        .btn-block {
+            width: 100%;
+            padding: 16px;
+            border-radius: 18px;
+            border: none;
+            background: #1a1e2b;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.1s ease;
+        }
+
+        .btn-block:hover:not(:disabled) {
+            background: #0f1421;
+        }
+
+        .btn-block:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* ===== DASHBOARD ===== */
+        .dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            z-index: 98;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 280px;
+            background: white;
+            border-right: 1px solid #eef3f8;
+            padding: 24px;
+            z-index: 99;
+            transition: transform 0.2s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar-logo-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-logo-square {
+            width: 48px;
+            height: 48px;
+            background: #1a1e2b;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .sidebar-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f1421;
+        }
+
+        .sidebar-logo-text span {
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            flex: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 6px;
+        }
+
+        .nav-link-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: 16px;
+            color: #5f6c84;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.1s;
+            cursor: pointer;
+        }
+
+        .nav-link-block:hover {
+            background: #f1f5f9;
+            color: #1a1e2b;
+        }
+
+        .nav-link-block.active {
+            background: #eef3f8;
+            color: #1a1e2b;
+            font-weight: 600;
+        }
+
+        .nav-link-block i {
+            width: 20px;
+            font-size: 16px;
+        }
+
+        .sidebar-footer {
+            flex-shrink: 0;
+            padding-top: 20px;
+            border-top: 1px solid #eef3f8;
+            margin-top: 20px;
+        }
+
+        .user-info-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 18px;
+        }
+
+        .user-avatar-block {
+            width: 44px;
+            height: 44px;
+            background: #1a1e2b;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .user-details-block {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .user-name-block {
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-role-block {
+            font-size: 12px;
+            color: #6b7a90;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 24px 32px;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                margin-left: 0;
+                padding: 24px 20px;
+            }
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .content-title-block {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .menu-toggle-block {
+            display: none;
+            width: 44px;
+            height: 44px;
+            background: white;
+            border: 1px solid #eef3f8;
+            border-radius: 14px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            color: #1a1e2b;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-toggle-block {
+                display: flex;
+            }
+        }
+
+        /* Stats Grid */
+        .stats-grid-block {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card-block {
+            background: white;
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid #eef3f8;
+            transition: 0.1s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #1a1e2b;
+            opacity: 0.1;
+        }
+
+        .stat-icon-block {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .stat-icon-block.red { background: #fee9ec; color: #e11d48; }
+        .stat-icon-block.green { background: #e6f7e9; color: #22c55e; }
+        .stat-icon-block.blue { background: #e6f0ff; color: #3b82f6; }
+        .stat-icon-block.purple { background: #f0e9ff; color: #8b5cf6; }
+
+        .stat-value-block {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1;
+        }
+
+        .stat-label-block {
+            font-size: 14px;
+            color: #6b7a90;
+        }
+
+        /* Content Sections */
+        .content-section-block {
+            display: none;
+        }
+
+        .content-section-block.active {
+            display: block;
+            animation: fadeInSection 0.3s ease;
+        }
+
+        @keyframes fadeInSection {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card */
+        .card-block {
+            background: white;
+            border-radius: 28px;
+            border: 1px solid #eef3f8;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 20px -8px rgba(0,0,0,0.04);
+        }
+
+        .card-header-block {
+            padding: 20px 24px;
+            border-bottom: 1px solid #eef3f8;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            background: #fafcff;
+        }
+
+        .card-title-block {
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title-block i {
+            color: #1a1e2b;
+            opacity: 0.6;
+        }
+
+        .card-body-block {
+            padding: 24px;
+        }
+
+        /* Table */
+        .table-responsive {
+            overflow-x: auto;
+            margin: -24px;
+            padding: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        th, td {
+            padding: 16px 16px;
+            text-align: left;
+            border-bottom: 1px solid #eef3f8;
+        }
+
+        th {
+            font-weight: 600;
+            font-size: 12px;
+            color: #6b7a90;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            background: #f9fbfd;
+            white-space: nowrap;
+        }
+
+        td {
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background: #fafcff;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .badge i {
+            font-size: 8px;
+        }
+
+        .badge-success {
+            background: #e6f7e9;
+            color: #22c55e;
+        }
+
+        .badge-danger {
+            background: #fee9ec;
+            color: #e11d48;
+        }
+
+        .badge-warning {
+            background: #fff3e6;
+            color: #f97316;
+        }
+
+        .badge-info {
+            background: #e6f0ff;
+            color: #3b82f6;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .action-btn.edit {
+            background: #e6f0ff;
+            color: #3b82f6;
+        }
+
+        .action-btn.delete {
+            background: #fee9ec;
+            color: #e11d48;
+        }
+
+        .action-btn.copy {
+            background: #f0e9ff;
+            color: #8b5cf6;
+        }
+
+        .action-btn.add {
+            background: #e6f7e9;
+            color: #22c55e;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Token Display */
+        .token-display {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-family: 'SF Mono', monospace;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .token-display code {
+            color: #8b5cf6;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Table Thumbnail */
+        .table-thumbnail {
+            width: 70px;
+            height: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #eef3f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .table-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .table-thumbnail i {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        /* Empty State */
+        .empty-state-block {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7a90;
+        }
+
+        .empty-state-block i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .empty-state-block h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .empty-state-block p {
+            font-size: 14px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Streaming Preview */
+        .stream-container {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 24px;
+        }
+
+        @media (max-width: 1000px) {
+            .stream-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stream-preview-block {
+            background: #0f1421;
+            border-radius: 28px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            position: relative;
+            border: 1px solid #eef3f8;
+        }
+
+        .stream-preview-block video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .stream-overlay-block {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            gap: 12px;
+        }
+
+        .stream-overlay-block i {
+            font-size: 48px;
+            opacity: 0.4;
+        }
+
+        .stream-overlay-block span {
+            font-size: 15px;
+            opacity: 0.7;
+        }
+
+        .stream-overlay-block.hidden {
+            display: none;
+        }
+
+        .stream-controls-block {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .stream-btn-block {
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .stream-btn-block.start {
+            background: #22c55e;
+            color: white;
+        }
+
+        .stream-btn-block.stop {
+            background: #ef4444;
+            color: white;
+        }
+
+        .stream-btn-block:hover:not(:disabled) {
+            transform: scale(1.02);
+        }
+
+        .stream-settings-block {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid #eef3f8;
+        }
+
+        .stream-settings-block h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #eef3f8;
+        }
+
+        .stream-status-block {
+            padding: 16px;
+            border-radius: 18px;
+            background: #f1f5f9;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #94a3b8;
+        }
+
+        .status-dot.live {
+            background: #22c55e;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .viewers-panel-block {
+            margin-top: 20px;
+            padding: 16px;
+            background: #f1f5f9;
+            border-radius: 18px;
+        }
+
+        .viewers-panel-block h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6b7a90;
+        }
+
+        .viewers-panel-block h4 span {
+            background: #1a1e2b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 40px;
+            font-size: 11px;
+        }
+
+        .viewer-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            border: 1px solid #eef3f8;
+        }
+
+        .viewer-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .viewers-empty {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 13px;
+            padding: 20px;
+        }
+
+        /* ===== LINEUP MEMBERS SECTION ===== */
+        .lineup-members-section {
+            margin-top: 20px;
+        }
+
+        .member-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 18px;
+            border: 1px solid #eef3f8;
+            margin-bottom: 16px;
+        }
+
+        .member-select-item {
+            background: white;
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .member-select-item:hover {
+            border-color: #3b82f6;
+        }
+
+        .member-select-item.selected {
+            border-color: #22c55e;
+            background: #e6f7e9;
+        }
+
+        .member-select-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: #eef3f8;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .member-select-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-select-avatar i {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 20px;
+        }
+
+        .member-select-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .member-select-name {
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .member-select-gen {
+            font-size: 11px;
+            color: #e11d48;
+            margin-top: 2px;
+        }
+
+        .selected-members-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 18px;
+            border: 2px dashed #d0dbea;
+            margin-top: 12px;
+        }
+
+        .selected-member-item {
+            background: white;
+            padding: 10px 14px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #eef3f8;
+        }
+
+        .selected-member-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: #eef3f8;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .selected-member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .selected-member-avatar i {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .selected-member-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .selected-member-name {
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .selected-member-gen {
+            font-size: 11px;
+            color: #e11d48;
+        }
+
+        .selected-member-remove {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: none;
+            background: #fee9ec;
+            color: #e11d48;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.1s;
+            flex-shrink: 0;
+        }
+
+        .selected-member-remove:hover {
+            background: #e11d48;
+            color: white;
+        }
+
+        /* Lineup Builder (untuk form tambah member) */
+        .lineup-section-block {
+            margin-top: 24px;
+        }
+
+        .lineup-header-block {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .lineup-form-block {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr auto;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 700px) {
+            .lineup-form-block {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Thumbnail Preview */
+        .thumbnail-preview-block {
+            margin-top: 12px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #f1f5f9;
+            border: 1px solid #eef3f8;
+        }
+
+        .thumbnail-preview-block img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumbnail-preview-empty {
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 13px;
+            gap: 8px;
+        }
+
+        /* Generated Tokens */
+        .generated-tokens-block {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+            padding: 16px;
+            background: #e6f7e9;
+            border-radius: 18px;
+            border: 1px solid #86d99d;
+        }
+
+        .generated-tokens-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #22c55e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .generated-token-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 8px;
+            font-family: 'SF Mono', monospace;
+            font-size: 13px;
+            border: 1px solid #eef3f8;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-block {
+            background: white;
+            border-radius: 32px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.3);
+            border: 1px solid #eef3f8;
+            transform: scale(0.98);
+            transition: 0.2s;
+        }
+
+        .modal-overlay.active .modal-block {
+            transform: scale(1);
+        }
+
+        .modal-header-block {
+            padding: 24px;
+            border-bottom: 1px solid #eef3f8;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fafcff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-title-block {
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-close-block {
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            border: 1px solid #eef3f8;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5f6c84;
+        }
+
+        .modal-close-block:hover {
+            background: #eef3f8;
+        }
+
+        .modal-body-block {
+            padding: 24px;
+        }
+
+        .modal-footer-block {
+            padding: 20px 24px;
+            border-top: 1px solid #eef3f8;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: #fafcff;
+            position: sticky;
+            bottom: 0;
+        }
+
+        /* Search */
+        .search-box {
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #1a1e2b;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: auto;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: #1a1e2b;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.15s;
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast.success { background: #22c55e; }
+        .toast.error { background: #ef4444; }
+        .toast.info { background: #1a1e2b; }
+
+        .toast i { font-size: 16px; }
+
+        /* Loading */
+        .loading-block {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #f4f6fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: 0.3s;
+        }
+
+        .loading-block.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-square {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e2e8f0;
+            border-top-color: #1a1e2b;
+            border-radius: 12px;
+            animation: spin 0.8s infinite linear;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid-block {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid-block {
+                grid-template-columns: 1fr;
+            }
+            .modal-block { margin: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading (optional) -->
+    <div class="loading-block" id="loading" style="display: none;">
+        <div class="loader-square"></div>
+    </div>
+
+    <!-- ==================== LOGIN SCREEN ==================== -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card-block">
+            <h1 class="login-title-block">Admin Panel</h1>
+            <p class="login-subtitle-block">IKAZZ - 48 Live Streaming Platform</p>
+            
+            <!-- Login Tabs -->
+            <div class="login-tabs-block">
+                <button class="login-tab-block active" onclick="switchLoginTab('email')">
+                    <i class="fa-regular fa-envelope"></i> Email
+                </button>
+                <button class="login-tab-block" onclick="switchLoginTab('token')">
+                    <i class="fa-regular fa-key"></i> Token
+                </button>
+            </div>
+
+            <!-- Error Message -->
+            <div class="login-error-block" id="loginError">
+                <i class="fa-regular fa-circle-exclamation"></i>
+                <span id="loginErrorText">Error message</span>
+            </div>
+
+            <!-- Email Login Form -->
+            <form class="login-form-block active" id="emailLoginForm" onsubmit="handleEmailLogin(event)">
+                <div class="form-group-block">
+                    <label class="form-label-block">Email</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" class="input-block" id="loginEmail" placeholder="admin@example.com" required>
+                    </div>
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">Password</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-regular fa-lock"></i>
+                        <input type="password" class="input-block" id="loginPassword" placeholder="-" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-block" id="emailLoginBtn">
+                    <i class="fa-regular fa-arrow-right-to-bracket"></i> Login
+                </button>
+            </form>
+
+            <!-- Token Login Form -->
+            <form class="login-form-block" id="tokenLoginForm" onsubmit="handleTokenLogin(event)">
+                <div class="form-group-block">
+                    <label class="form-label-block">Admin Token</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-regular fa-key"></i>
+                        <input type="text" class="input-block" id="loginToken" placeholder="Masukkan token admin" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-block" id="tokenLoginBtn">
+                    <i class="fa-regular fa-arrow-right-to-bracket"></i> Login dengan Token
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== DASHBOARD ==================== -->
+    <div class="dashboard" id="dashboard">
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo-block">
+                <div class="sidebar-logo-text">IKAZZ <span>- 48</span></div>
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a class="nav-link-block active" data-section="overview" onclick="showSection('overview')">
+                        <i class="fa-regular fa-chart-pie"></i> Overview
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-block" data-section="streaming" onclick="showSection('streaming')">
+                        <i class="fa-regular fa-broadcast-tower"></i> Live Streaming
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-block" data-section="rooms" onclick="showSection('rooms')">
+                        <i class="fa-regular fa-door-open"></i> Kelola Room
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-block" data-section="lineupmembers" onclick="showSection('lineupmembers')">
+                        <i class="fa-regular fa-id-card"></i> Lineup Members
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-block" data-section="members" onclick="showSection('members')">
+                        <i class="fa-regular fa-users"></i> Members
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-block" data-section="tokens" onclick="showSection('tokens')">
+                        <i class="fa-regular fa-ticket"></i> Watch Tokens
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-info-block">
+                    <div class="user-avatar-block" id="userAvatar">A</div>
+                    <div class="user-details-block">
+                        <div class="user-name-block" id="adminName">Admin</div>
+                        <div class="user-role-block">Administrator</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <div class="header-left">
+                    <button class="menu-toggle-block" onclick="toggleSidebar()">
+                        <i class="fa-regular fa-bars"></i>
+                    </button>
+                    <h1 class="content-title-block" id="contentTitle">Overview</h1>
+                </div>
+                <button class="btn-block" style="width: auto; padding: 12px 24px;" onclick="handleLogout()"> Logout
+                </button>
+            </div>
+
+            <!-- ==================== OVERVIEW SECTION ==================== -->
+            <section class="content-section-block active" id="overviewSection">
+                <div class="stats-grid-block">
+                    <div class="stat-card-block">
+                        <div class="stat-icon-block red">
+                            <i class="fa-regular fa-broadcast-tower"></i>
+                        </div>
+                        <div class="stat-value-block" id="statLive">0</div>
+                        <div class="stat-label-block">Live Aktif</div>
+                    </div>
+                    <div class="stat-card-block">
+                        <div class="stat-icon-block green">
+                            <i class="fa-regular fa-eye"></i>
+                        </div>
+                        <div class="stat-value-block" id="statViewers">0</div>
+                        <div class="stat-label-block">Total Penonton</div>
+                    </div>
+                    <div class="stat-card-block">
+                        <div class="stat-icon-block blue">
+                            <i class="fa-regular fa-users"></i>
+                        </div>
+                        <div class="stat-value-block" id="statMembers">0</div>
+                        <div class="stat-label-block">Total Members</div>
+                    </div>
+                    <div class="stat-card-block">
+                        <div class="stat-icon-block purple">
+                            <i class="fa-regular fa-ticket"></i>
+                        </div>
+                        <div class="stat-value-block" id="statTokens">0</div>
+                        <div class="stat-label-block">Token Tersedia</div>
+                    </div>
+                </div>
+
+                <div class="card-block">
+                    <div class="card-header-block">
+                        <h3 class="card-title-block">
+                            <i class="fa-regular fa-clock-rotate-left"></i> Room Terbaru
+                        </h3>
+                        <button class="btn-block" style="width: auto; padding: 10px 20px;" onclick="showSection('rooms')">Lihat Semua</button>
+                    </div>
+                    <div class="card-body-block">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Room</th>
+                                        <th>Status</th>
+                                        <th>Penonton</th>
+                                        <th>Dibuat</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentRoomsTable">
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="empty-state-block">
+                                                <i class="fa-regular fa-inbox"></i>
+                                                <p>Belum ada room</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== STREAMING SECTION ==================== -->
+            <section class="content-section-block" id="streamingSection">
+                <div class="stream-container">
+                    <div>
+                        <div class="stream-preview-block">
+                            <video id="localStreamVideo" autoplay muted playsinline></video>
+                            <div class="stream-overlay-block" id="streamOverlay">
+                                <i class="fa-regular fa-video-slash"></i>
+                                <span>Preview tidak aktif</span>
+                            </div>
+                            <div class="stream-controls-block">
+                                <button class="stream-btn-block start" id="startStreamBtn" onclick="startStream()">
+                                    <i class="fa-regular fa-play"></i> Mulai Live
+                                </button>
+                                <button class="stream-btn-block stop" id="stopStreamBtn" onclick="stopStream()" style="display: none;">
+                                    <i class="fa-regular fa-stop"></i> Stop Live
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stream-settings-block">
+                        <h3><i class="fa-regular fa-sliders"></i> Pengaturan Stream</h3>
+                        <div class="form-group-block">
+                            <label class="form-label-block">Pilih Room *</label>
+                            <select class="input-block" id="streamRoomSelect">
+                                <option value="">-- Pilih Room --</option>
+                            </select>
+                        </div>
+                        <div class="form-group-block">
+                            <label class="form-label-block">Sumber Video</label>
+                            <select class="input-block" id="videoSource">
+                                <option value="screen">🖥️ Screen Share</option>
+                                <option value="camera">📷 Kamera</option>
+                            </select>
+                        </div>
+                        <div class="form-group-block">
+                            <label class="form-label-block">Sumber Audio</label>
+                            <select class="input-block" id="audioSource">
+                                <option value="system">🔊 System Audio</option>
+                                <option value="mic">🎤 Microphone</option>
+                                <option value="both">🎧 System + Mic</option>
+                                <option value="none">🔇 Tanpa Audio</option>
+                            </select>
+                        </div>
+                        
+                        <div class="stream-status-block">
+                            <div class="status-dot" id="statusDot"></div>
+                            <span id="streamStatusText">Offline - Siap streaming</span>
+                        </div>
+
+                        <div class="viewers-panel-block" id="viewersPanel" style="display: none;">
+                            <h4>
+                                <i class="fa-regular fa-users"></i> 
+                                Penonton Aktif 
+                                <span id="viewerCount">0</span>
+                            </h4>
+                            <div id="viewersListContent">
+                                <div class="viewers-empty">
+                                    <i class="fa-regular fa-user-slash"></i> Belum ada penonton
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== ROOMS SECTION ==================== -->
+            <section class="content-section-block" id="roomsSection">
+                <div class="card-block">
+                    <div class="card-header-block">
+                        <h3 class="card-title-block">
+                            <i class="fa-regular fa-door-open"></i> Daftar Room
+                        </h3>
+                        <button class="btn-block" style="width: auto; padding: 10px 20px;" onclick="openRoomModal()">
+                            <i class="fa-regular fa-plus"></i> Buat Room
+                        </button>
+                    </div>
+                    <div class="card-body-block">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Thumbnail</th>
+                                        <th>Judul</th>
+                                        <th>Status</th>
+                                        <th>Penonton</th>
+                                        <th>Lineup</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="roomsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== LINEUP MEMBERS SECTION ==================== -->
+            <section class="content-section-block" id="lineupmembersSection">
+                <div class="card-block">
+                    <div class="card-header-block">
+                        <h3 class="card-title-block">
+                            <i class="fa-regular fa-id-card"></i> Lineup Members
+                        </h3>
+                        <button class="btn-block" style="width: auto; padding: 10px 20px;" onclick="openLineupMemberModal()">
+                            <i class="fa-regular fa-plus"></i> Tambah Member
+                        </button>
+                    </div>
+                    <div class="card-body-block">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Foto</th>
+                                        <th>Nama</th>
+                                        <th>Generasi</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lineupMembersTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== MEMBERS SECTION ==================== -->
+            <section class="content-section-block" id="membersSection">
+                <div class="card-block">
+                    <div class="card-header-block">
+                        <h3 class="card-title-block">
+                            <i class="fa-regular fa-users"></i> Daftar Members (Membership)
+                        </h3>
+                        <button class="btn-block" style="width: auto; padding: 10px 20px;" onclick="openMemberModal()">
+                            <i class="fa-regular fa-plus"></i> Tambah Member
+                        </button>
+                    </div>
+                    <div class="card-body-block">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>WhatsApp</th>
+                                        <th>Token Login</th>
+                                        <th>Berlaku Hingga</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="membersTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== TOKENS SECTION ==================== -->
+            <section class="content-section-block" id="tokensSection">
+                <div class="card-block">
+                    <div class="card-header-block">
+                        <h3 class="card-title-block">
+                            <i class="fa-regular fa-ticket"></i> Watch Tokens
+                        </h3>
+                        <button class="btn-block" style="width: auto; padding: 10px 20px;" onclick="openTokenModal()">
+                            <i class="fa-regular fa-plus"></i> Generate Token
+                        </button>
+                    </div>
+                    <div class="card-body-block">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Token</th>
+                                        <th>Room</th>
+                                        <th>Status</th>
+                                        <th>Dibuat</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tokensTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==================== ROOM MODAL ==================== -->
+    <div class="modal-overlay" id="roomModal">
+        <div class="modal-block">
+            <div class="modal-header-block">
+                <h3 class="modal-title-block" id="roomModalTitle">
+                    <i class="fa-regular fa-door-open"></i> Buat Room Baru
+                </h3>
+                <button class="modal-close-block" onclick="closeRoomModal()">
+                    <i class="fa-regular fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body-block">
+                <input type="hidden" id="editingRoomId">
+                <div class="form-group-block">
+                    <label class="form-label-block">Judul Room *</label>
+                    <input type="text" class="input-block" id="roomTitleInput" placeholder="Contoh: Special Live Show">
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">Subtitle</label>
+                    <input type="text" class="input-block" id="roomSubtitleInput" placeholder="Contoh: Ramadan Stream">
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">Thumbnail URL</label>
+                    <input type="url" class="input-block" id="roomThumbnailInput" placeholder="https://example.com/image.jpg" oninput="previewThumbnail()">
+                    <div class="thumbnail-preview-block" id="thumbnailPreview">
+                        <div class="thumbnail-preview-empty">
+                            <i class="fa-regular fa-image"></i>
+                            <span>Preview thumbnail</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lineup-section-block">
+                    <div class="lineup-header-block">
+                        <label class="form-label-block" style="margin: 0;">Pilih Lineup Member</label>
+                        <span style="font-size: 12px; color: #6b7a90;" id="selectedLineupCount">0 member dipilih</span>
+                    </div>
+                    
+                    <!-- Search Box -->
+                    <div class="search-box">
+                        <input type="text" class="search-input" id="lineupSearchInput" placeholder="Cari member..." onkeyup="filterLineupMembers()">
+                    </div>
+                    
+                    <!-- Member Selector Grid -->
+                    <div class="member-selector-grid" id="lineupMemberSelector">
+                        <div class="empty-state-block" style="grid-column: 1/-1; padding: 40px;">
+                            <i class="fa-regular fa-users"></i>
+                            <p>Loading member...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Selected Members List -->
+                    <div class="selected-members-list" id="selectedMembersList">
+                        <div class="empty-state-block" style="padding: 20px;">
+                            <i class="fa-regular fa-user-plus"></i>
+                            <p>Belum ada member dipilih</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer-block">
+                <button class="btn-block" style="width: auto; background: #f1f5f9; color: #1a1e2b;" onclick="closeRoomModal()">Batal</button>
+                <button class="btn-block" style="width: auto;" onclick="saveRoom()">
+                    <i class="fa-regular fa-floppy-disk"></i> Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== LINEUP MEMBER MODAL ==================== -->
+    <div class="modal-overlay" id="lineupMemberModal">
+        <div class="modal-block">
+            <div class="modal-header-block">
+                <h3 class="modal-title-block">
+                    <i class="fa-regular fa-user-plus"></i> Tambah Lineup Member
+                </h3>
+                <button class="modal-close-block" onclick="closeLineupMemberModal()">
+                    <i class="fa-regular fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body-block">
+                <div class="form-group-block">
+                    <label class="form-label-block">Nama Member *</label>
+                    <input type="text" class="input-block" id="lineupMemberNameInput" placeholder="Nama lengkap">
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">Generasi *</label>
+                    <select class="input-block" id="lineupMemberGenerationInput">
+                        <option value="">Pilih Generasi</option>
+                        <option value="1">Generasi 1</option>
+                        <option value="2">Generasi 2</option>
+                        <option value="3">Generasi 3</option>
+                        <option value="4">Generasi 4</option>
+                        <option value="5">Generasi 5</option>
+                        <option value="6">Generasi 6</option>
+                        <option value="7">Generasi 7</option>
+                        <option value="8">Generasi 8</option>
+                        <option value="9">Generasi 9</option>
+                        <option value="10">Generasi 10</option>
+                        <option value="11">Generasi 11</option>
+                        <option value="12">Generasi 12</option>
+                    </select>
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">URL Foto (opsional)</label>
+                    <input type="url" class="input-block" id="lineupMemberPhotoInput" placeholder="https://example.com/photo.jpg">
+                </div>
+            </div>
+            <div class="modal-footer-block">
+                <button class="btn-block" style="width: auto; background: #f1f5f9; color: #1a1e2b;" onclick="closeLineupMemberModal()">Batal</button>
+                <button class="btn-block" style="width: auto;" onclick="saveLineupMember()">
+                    <i class="fa-regular fa-floppy-disk"></i> Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MEMBER MODAL ==================== -->
+    <div class="modal-overlay" id="memberModal">
+        <div class="modal-block">
+            <div class="modal-header-block">
+                <h3 class="modal-title-block">
+                    <i class="fa-regular fa-user-plus"></i> Tambah Member (Membership)
+                </h3>
+                <button class="modal-close-block" onclick="closeMemberModal()">
+                    <i class="fa-regular fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body-block">
+                <div class="form-group-block">
+                    <label class="form-label-block">Nama Lengkap *</label>
+                    <input type="text" class="input-block" id="memberNameInput" placeholder="Nama lengkap">
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">Jenis Kelamin</label>
+                    <select class="input-block" id="memberGenderInput">
+                        <option value="female">👩 Perempuan</option>
+                        <option value="male">👨 Laki-laki</option>
+                    </select>
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">Nomor WhatsApp *</label>
+                    <input type="tel" class="input-block" id="memberPhoneInput" placeholder="08xxxxxxxxxx">
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">Durasi Membership (bulan)</label>
+                    <input type="number" class="input-block" id="memberDurationInput" value="1" min="1" max="24">
+                </div>
+            </div>
+            <div class="modal-footer-block">
+                <button class="btn-block" style="width: auto; background: #f1f5f9; color: #1a1e2b;" onclick="closeMemberModal()">Batal</button>
+                <button class="btn-block" style="width: auto;" onclick="saveMember()">
+                    <i class="fa-regular fa-floppy-disk"></i> Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TOKEN MODAL ==================== -->
+    <div class="modal-overlay" id="tokenModal">
+        <div class="modal-block">
+            <div class="modal-header-block">
+                <h3 class="modal-title-block">
+                    <i class="fa-regular fa-wand-magic"></i> Generate Watch Token
+                </h3>
+                <button class="modal-close-block" onclick="closeTokenModal()">
+                    <i class="fa-regular fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body-block">
+                <div class="form-group-block">
+                    <label class="form-label-block">Pilih Room *</label>
+                    <select class="input-block" id="tokenRoomSelect">
+                        <option value="">-- Pilih Room --</option>
+                    </select>
+                </div>
+                <div class="form-group-block">
+                    <label class="form-label-block">Jumlah Token</label>
+                    <input type="number" class="input-block" id="tokenCountInput" value="1" min="1" max="100">
+                </div>
+                <div class="generated-tokens-block" id="generatedTokens" style="display: none;">
+                    <div class="generated-tokens-title">
+                        <i class="fa-regular fa-circle-check"></i> Token Berhasil Dibuat
+                    </div>
+                    <div id="generatedTokensList"></div>
+                </div>
+            </div>
+            <div class="modal-footer-block">
+                <button class="btn-block" style="width: auto; background: #f1f5f9; color: #1a1e2b;" onclick="closeTokenModal()">Tutup</button>
+                <button class="btn-block" style="width: auto;" id="generateTokenBtn" onclick="generateTokens()">
+                    <i class="fa-regular fa-wand-magic"></i> Generate
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // ==================== FIREBASE CONFIG ====================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDfUUE_VB24rB0kxmdKfQpt1LDP1aiWs-g",
+            authDomain: "liveeekuuu.firebaseapp.com",
+            projectId: "liveeekuuu",
+            storageBucket: "liveeekuuu.firebasestorage.app",
+            messagingSenderId: "489359473906",
+            appId: "1:489359473906:web:219f16ef1da568353fe46b"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ==================== ADMIN CREDENTIALS ====================
+        const ADMIN_EMAIL = 'ikazz@kazz.id';
+        const ADMIN_PASSWORD = 'kazz123';
+        const ADMIN_TOKEN = 'ikazu';
+
+        // ==================== STATE ====================
+        let isLoggedIn = false;
+        let localStream = null;
+        let peerConnections = {};
+        let currentStreamingRoomId = null;
+        let isStreaming = false;
+        let viewersUnsubscribe = null;
+        
+        // Untuk Room Modal
+        let allLineupMembers = []; // Semua member dari koleksi 'lineupMembers'
+        let selectedMemberIds = []; // ID member yang dipilih untuk room saat ini
+
+        // ICE Servers
+        const iceServers = {
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' },
+                { urls: 'stun:stun2.l.google.com:19302' },
+                { urls: 'stun:stun3.l.google.com:19302' },
+                { urls: 'stun:stun4.l.google.com:19302' }
+            ]
+        };
+
+        // ==================== INITIALIZE ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAdminSession();
+        });
+
+        // ==================== LOGIN FUNCTIONS ====================
+        function switchLoginTab(tab) {
+            document.querySelectorAll('.login-tab-block').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.login-form-block').forEach(f => f.classList.remove('active'));
+            
+            if (tab === 'email') {
+                document.querySelectorAll('.login-tab-block')[0].classList.add('active');
+                document.getElementById('emailLoginForm').classList.add('active');
+            } else {
+                document.querySelectorAll('.login-tab-block')[1].classList.add('active');
+                document.getElementById('tokenLoginForm').classList.add('active');
+            }
+            
+            hideLoginError();
+        }
+
+        function showLoginError(message) {
+            const errorDiv = document.getElementById('loginError');
+            document.getElementById('loginErrorText').textContent = message;
+            errorDiv.classList.add('show');
+        }
+
+        function hideLoginError() {
+            document.getElementById('loginError').classList.remove('show');
+        }
+
+        function checkAdminSession() {
+            const session = localStorage.getItem('admin_session');
+            if (session) {
+                try {
+                    const data = JSON.parse(session);
+                    if ((data.email === ADMIN_EMAIL || data.token === ADMIN_TOKEN) && data.loggedIn) {
+                        showDashboard(data.email || 'Admin');
+                        return;
+                    }
+                } catch (e) {
+                    localStorage.removeItem('admin_session');
+                }
+            }
+            showLoginScreen();
+        }
+
+        function showLoginScreen() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboard').classList.remove('active');
+        }
+
+        function showDashboard(identifier) {
+            isLoggedIn = true;
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('dashboard').classList.add('active');
+            
+            const displayName = identifier.includes('@') ? identifier.split('@')[0] : identifier;
+            document.getElementById('adminName').textContent = displayName;
+            document.getElementById('userAvatar').textContent = displayName.charAt(0).toUpperCase();
+            
+            loadDashboardData();
+        }
+
+        function handleEmailLogin(e) {
+            e.preventDefault();
+            hideLoginError();
+            
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('emailLoginBtn');
+
+            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-regular fa-spinner fa-spin"></i> Memverifikasi...';
+
+                setTimeout(() => {
+                    localStorage.setItem('admin_session', JSON.stringify({
+                        email: email,
+                        loggedIn: true,
+                        timestamp: Date.now()
+                    }));
+
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-regular fa-arrow-right-to-bracket"></i> Login';
+                    showToast('success', 'Login Berhasil');
+                    showDashboard(email);
+                }, 800);
+            } else {
+                showLoginError('Email atau password salah. Coba gunakan token.');
+            }
+        }
+
+        function handleTokenLogin(e) {
+            e.preventDefault();
+            hideLoginError();
+            
+            const token = document.getElementById('loginToken').value.trim();
+            const btn = document.getElementById('tokenLoginBtn');
+
+            if (token === ADMIN_TOKEN) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-regular fa-spinner fa-spin"></i> Memverifikasi...';
+
+                setTimeout(() => {
+                    localStorage.setItem('admin_session', JSON.stringify({
+                        token: token,
+                        loggedIn: true,
+                        timestamp: Date.now()
+                    }));
+
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-regular fa-arrow-right-to-bracket"></i> Login dengan Token';
+                    showToast('success', 'Login Berhasil');
+                    showDashboard('Admin');
+                }, 800);
+            } else {
+                showLoginError('Token tidak valid');
+            }
+        }
+
+        async function handleLogout() {
+            if (isStreaming) {
+                if (!confirm('Anda sedang streaming. Yakin ingin logout?')) return;
+                await stopStream();
+            }
+            
+            localStorage.removeItem('admin_session');
+            isLoggedIn = false;
+            showToast('info', 'Logout berhasil');
+            showLoginScreen();
+        }
+
+        // ==================== SIDEBAR & NAVIGATION ====================
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.nav-link-block').forEach(link => {
+                link.classList.toggle('active', link.dataset.section === sectionName);
+            });
+
+            document.querySelectorAll('.content-section-block').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionName + 'Section').classList.add('active');
+
+            const titles = {
+                overview: 'Overview',
+                streaming: 'Live Streaming',
+                rooms: 'Kelola Room',
+                lineupmembers: 'Lineup Members',
+                members: 'Members',
+                tokens: 'Watch Tokens'
+            };
+            document.getElementById('contentTitle').textContent = titles[sectionName];
+
+            if (window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.remove('active');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+            }
+
+            if (sectionName === 'rooms') loadRooms();
+            if (sectionName === 'lineupmembers') loadLineupMembersTable();
+            if (sectionName === 'members') loadMembers();
+            if (sectionName === 'tokens') loadTokens();
+            if (sectionName === 'streaming') loadRoomsForSelect();
+        }
+
+        // ==================== DASHBOARD DATA ====================
+        function loadDashboardData() {
+            loadStats();
+            loadRecentRooms();
+        }
+
+        function loadStats() {
+            // Live rooms
+            db.collection('rooms').where('isLive', '==', true).onSnapshot(snap => {
+                document.getElementById('statLive').textContent = snap.size;
+                let totalViewers = 0;
+                snap.forEach(doc => totalViewers += doc.data().viewers || 0);
+                document.getElementById('statViewers').textContent = totalViewers;
+            });
+
+            // Members
+            db.collection('members').onSnapshot(snap => {
+                document.getElementById('statMembers').textContent = snap.size;
+            });
+
+            // Active tokens
+            db.collection('watchTokens').where('used', '==', false).onSnapshot(snap => {
+                document.getElementById('statTokens').textContent = snap.size;
+            });
+        }
+
+        function loadRecentRooms() {
+            db.collection('rooms').orderBy('createdAt', 'desc').limit(5).onSnapshot(snap => {
+                const tbody = document.getElementById('recentRoomsTable');
+                
+                if (snap.empty) {
+                    tbody.innerHTML = `<tr><td colspan="4"><div class="empty-state-block"><i class="fa-regular fa-inbox"></i><p>Belum ada room</p></div></td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = snap.docs.map(doc => {
+                    const room = doc.data();
+                    const date = room.createdAt ? new Date(room.createdAt.toDate()).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) : '-';
+                    return `
+                        <tr>
+                            <td><strong>${escapeHtml(room.title)}</strong></td>
+                            <td><span class="badge ${room.isLive ? 'badge-success' : 'badge-danger'}"><i class="fa-regular fa-circle"></i>${room.isLive ? 'Live' : 'Offline'}</span></td>
+                            <td>${room.viewers || 0}</td>
+                            <td>${date}</td>
+                        </tr>`;
+                }).join('');
+            });
+        }
+
+        // ==================== LINEUP MEMBERS MANAGEMENT ====================
+        function loadLineupMembersTable() {
+            db.collection('lineupMembers').orderBy('name', 'asc').onSnapshot(snap => {
+                const tbody = document.getElementById('lineupMembersTable');
+                
+                if (snap.empty) {
+                    tbody.innerHTML = `<tr><td colspan="4"><div class="empty-state-block"><i class="fa-regular fa-id-card"></i><h4>Belum Ada Lineup Member</h4><p>Klik "Tambah Member" untuk menambahkan</p></div></td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = snap.docs.map(doc => {
+                    const member = doc.data();
+                    return `
+                        <tr>
+                            <td>
+                                <div class="table-thumbnail">
+                                    ${member.photo ? `<img src="${escapeHtml(member.photo)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><i style="display:none;" class="fa-regular fa-user"></i>` : `<i class="fa-regular fa-user"></i>`}
+                                </div>
+                            </td>
+                            <td><strong>${escapeHtml(member.name)}</strong></td>
+                            <td><span class="badge badge-info">Generasi ${member.generation}</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn delete" onclick="deleteLineupMember('${doc.id}')" title="Hapus"><i class="fa-regular fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>`;
+                }).join('');
+            });
+        }
+
+        function openLineupMemberModal() {
+            document.getElementById('lineupMemberModal').classList.add('active');
+            document.getElementById('lineupMemberNameInput').value = '';
+            document.getElementById('lineupMemberGenerationInput').value = '';
+            document.getElementById('lineupMemberPhotoInput').value = '';
+        }
+
+        function closeLineupMemberModal() {
+            document.getElementById('lineupMemberModal').classList.remove('active');
+        }
+
+        async function saveLineupMember() {
+            const name = document.getElementById('lineupMemberNameInput').value.trim();
+            const generation = document.getElementById('lineupMemberGenerationInput').value;
+            const photo = document.getElementById('lineupMemberPhotoInput').value.trim();
+
+            if (!name || !generation) {
+                showToast('error', 'Nama dan generasi harus diisi');
+                return;
+            }
+
+            try {
+                await db.collection('lineupMembers').add({
+                    name,
+                    generation,
+                    photo: photo || null,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                showToast('success', `Member ${name} (Gen ${generation}) ditambahkan`);
+                closeLineupMemberModal();
+            } catch (error) {
+                showToast('error', error.message);
+            }
+        }
+
+        async function deleteLineupMember(memberId) {
+            if (!confirm('Yakin ingin menghapus member ini?')) return;
+
+            try {
+                await db.collection('lineupMembers').doc(memberId).delete();
+                showToast('success', 'Member berhasil dihapus');
+            } catch (error) {
+                showToast('error', error.message);
+            }
+        }
+
+        // ==================== ROOMS MANAGEMENT ====================
+        function loadRooms() {
+            db.collection('rooms').orderBy('createdAt', 'desc').onSnapshot(snap => {
+                const tbody = document.getElementById('roomsTable');
+                
+                if (snap.empty) {
+                    tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state-block"><i class="fa-regular fa-door-open"></i><h4>Belum Ada Room</h4><p>Klik "Buat Room" untuk membuat room baru</p></div></td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = snap.docs.map(doc => {
+                    const room = doc.data();
+                    const lineup = room.lineup || [];
+                    const thumbnail = room.thumbnail || '';
+                    return `
+                        <tr>
+                            <td>
+                                <div class="table-thumbnail">
+                                    ${thumbnail ? `<img src="${escapeHtml(thumbnail)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><i style="display:none;" class="fa-regular fa-image"></i>` : `<i class="fa-regular fa-image"></i>`}
+                                </div>
+                            </td>
+                            <td>
+                                <strong>${escapeHtml(room.title)}</strong>
+                                ${room.subtitle ? `<br><small style="color: #6b7a90;">${escapeHtml(room.subtitle)}</small>` : ''}
+                            </td>
+                            <td><span class="badge ${room.isLive ? 'badge-success' : 'badge-danger'}"><i class="fa-regular fa-circle"></i>${room.isLive ? 'Live' : 'Offline'}</span></td>
+                            <td>${room.viewers || 0}</td>
+                            <td>${lineup.length} member</td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn edit" onclick="editRoom('${doc.id}')" title="Edit"><i class="fa-regular fa-edit"></i></button>
+                                    <button class="action-btn delete" onclick="deleteRoom('${doc.id}')" title="Hapus"><i class="fa-regular fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>`;
+                }).join('');
+            });
+        }
+
+        function loadRoomsForSelect() {
+            db.collection('rooms').orderBy('createdAt', 'desc').get().then(snap => {
+                const options = ['<option value="">-- Pilih Room --</option>'];
+                snap.forEach(doc => {
+                    const room = doc.data();
+                    options.push(`<option value="${doc.id}">${escapeHtml(room.title)}</option>`);
+                });
+                document.getElementById('streamRoomSelect').innerHTML = options.join('');
+                document.getElementById('tokenRoomSelect').innerHTML = options.join('');
+            });
+        }
+
+        function previewThumbnail() {
+            const url = document.getElementById('roomThumbnailInput').value.trim();
+            const preview = document.getElementById('thumbnailPreview');
+            
+            if (url) {
+                preview.innerHTML = `<img src="${escapeHtml(url)}" onerror="this.parentElement.innerHTML='<div class=\\'thumbnail-preview-empty\\'><i class=\\'fa-regular fa-exclamation-triangle\\'></i><span>Gambar tidak dapat dimuat</span></div>'">`;
+            } else {
+                preview.innerHTML = `<div class="thumbnail-preview-empty"><i class="fa-regular fa-image"></i><span>Preview thumbnail</span></div>`;
+            }
+        }
+
+        // Load lineup members for selector
+        function loadLineupMembersForSelector() {
+            db.collection('lineupMembers').orderBy('name', 'asc').get().then(snap => {
+                allLineupMembers = [];
+                snap.forEach(doc => {
+                    allLineupMembers.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+                renderLineupMemberSelector();
+            });
+        }
+
+        // Render member selector grid
+        function renderLineupMemberSelector() {
+            const selector = document.getElementById('lineupMemberSelector');
+            
+            if (allLineupMembers.length === 0) {
+                selector.innerHTML = `<div class="empty-state-block" style="grid-column: 1/-1; padding: 40px;">
+                    <i class="fa-regular fa-users"></i>
+                    <p>Belum ada member. Tambah member di menu "Lineup Members"</p>
+                </div>`;
+                return;
+            }
+
+            const searchText = document.getElementById('lineupSearchInput')?.value.toLowerCase() || '';
+            
+            const filteredMembers = allLineupMembers.filter(member => 
+                member.name.toLowerCase().includes(searchText) || 
+                member.generation.toString().includes(searchText)
+            );
+
+            selector.innerHTML = filteredMembers.map(member => {
+                const isSelected = selectedMemberIds.includes(member.id);
+                return `
+                    <div class="member-select-item ${isSelected ? 'selected' : ''}" onclick="toggleSelectMember('${member.id}')">
+                        <div class="member-select-avatar">
+                            ${member.photo ? `<img src="${escapeHtml(member.photo)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><i style="display:none;" class="fa-regular fa-user"></i>` : `<i class="fa-regular fa-user"></i>`}
+                        </div>
+                        <div class="member-select-info">
+                            <div class="member-select-name">${escapeHtml(member.name)}</div>
+                            <div class="member-select-gen">Generasi ${member.generation}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            if (filteredMembers.length === 0) {
+                selector.innerHTML = `<div class="empty-state-block" style="grid-column: 1/-1; padding: 40px;">
+                    <i class="fa-regular fa-search"></i>
+                    <p>Member tidak ditemukan</p>
+                </div>`;
+            }
+        }
+
+        // Filter member selector
+        function filterLineupMembers() {
+            renderLineupMemberSelector();
+        }
+
+        // Toggle member selection
+        function toggleSelectMember(memberId) {
+            const index = selectedMemberIds.indexOf(memberId);
+            if (index === -1) {
+                selectedMemberIds.push(memberId);
+            } else {
+                selectedMemberIds.splice(index, 1);
+            }
+            renderLineupMemberSelector();
+            renderSelectedMembers();
+        }
+
+        // Render selected members list
+        function renderSelectedMembers() {
+            const container = document.getElementById('selectedMembersList');
+            const countSpan = document.getElementById('selectedLineupCount');
+            
+            countSpan.textContent = `${selectedMemberIds.length} member dipilih`;
+
+            if (selectedMemberIds.length === 0) {
+                container.innerHTML = `<div class="empty-state-block" style="padding: 20px;">
+                    <i class="fa-regular fa-user-plus"></i>
+                    <p>Belum ada member dipilih</p>
+                </div>`;
+                return;
+            }
+
+            const selectedMembers = allLineupMembers.filter(m => selectedMemberIds.includes(m.id));
+
+            container.innerHTML = selectedMembers.map(member => `
+                <div class="selected-member-item">
+                    <div class="selected-member-avatar">
+                        ${member.photo ? `<img src="${escapeHtml(member.photo)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><i style="display:none;" class="fa-regular fa-user"></i>` : `<i class="fa-regular fa-user"></i>`}
+                    </div>
+                    <div class="selected-member-info">
+                        <div class="selected-member-name">${escapeHtml(member.name)}</div>
+                        <div class="selected-member-gen">Generasi ${member.generation}</div>
+                    </div>
+                    <button class="selected-member-remove" onclick="toggleSelectMember('${member.id}')" title="Hapus">
+                        <i class="fa-regular fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function openRoomModal(roomId = null) {
+            document.getElementById('roomModal').classList.add('active');
+            document.getElementById('roomModalTitle').innerHTML = roomId ? '<i class="fa-regular fa-edit"></i> Edit Room' : '<i class="fa-regular fa-door-open"></i> Buat Room Baru';
+            document.getElementById('editingRoomId').value = roomId || '';
+            document.getElementById('thumbnailPreview').innerHTML = `<div class="thumbnail-preview-empty"><i class="fa-regular fa-image"></i><span>Preview thumbnail</span></div>`;
+            document.getElementById('lineupSearchInput').value = '';
+
+            // Reset selected members
+            selectedMemberIds = [];
+            
+            // Load all lineup members
+            loadLineupMembersForSelector();
+
+            if (roomId) {
+                db.collection('rooms').doc(roomId).get().then(doc => {
+                    const room = doc.data();
+                    document.getElementById('roomTitleInput').value = room.title || '';
+                    document.getElementById('roomSubtitleInput').value = room.subtitle || '';
+                    document.getElementById('roomThumbnailInput').value = room.thumbnail || '';
+                    
+                    // Load selected members
+                    if (room.lineup && room.lineup.length > 0) {
+                        // room.lineup berisi array of member objects dengan id
+                        selectedMemberIds = room.lineup.map(m => m.id).filter(id => id);
+                        
+                        // Pastikan allLineupMembers sudah terload, lalu render ulang
+                        setTimeout(() => {
+                            renderLineupMemberSelector();
+                            renderSelectedMembers();
+                        }, 500);
+                    }
+                    
+                    previewThumbnail();
+                });
+            } else {
+                document.getElementById('roomTitleInput').value = '';
+                document.getElementById('roomSubtitleInput').value = '';
+                document.getElementById('roomThumbnailInput').value = '';
+            }
+        }
+
+        function closeRoomModal() {
+            document.getElementById('roomModal').classList.remove('active');
+            selectedMemberIds = [];
+        }
+
+        async function saveRoom() {
+            const roomId = document.getElementById('editingRoomId').value;
+            const title = document.getElementById('roomTitleInput').value.trim();
+            const subtitle = document.getElementById('roomSubtitleInput').value.trim();
+            const thumbnail = document.getElementById('roomThumbnailInput').value.trim();
+
+            if (!title) {
+                showToast('error', 'Judul room harus diisi');
+                return;
+            }
+
+            // Ambil data lengkap member yang dipilih
+            const selectedMembers = allLineupMembers
+                .filter(m => selectedMemberIds.includes(m.id))
+                .map(m => ({
+                    id: m.id,
+                    name: m.name,
+                    generation: m.generation,
+                    photo: m.photo
+                }));
+
+            try {
+                const roomData = {
+                    title,
+                    subtitle,
+                    thumbnail,
+                    lineup: selectedMembers,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+
+                if (roomId) {
+                    await db.collection('rooms').doc(roomId).update(roomData);
+                    showToast('success', 'Room berhasil diperbarui');
+                } else {
+                    roomData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+                    roomData.isLive = false;
+                    roomData.viewers = 0;
+                    roomData.totalViewers = 0;
+                    await db.collection('rooms').add(roomData);
+                    showToast('success', 'Room berhasil dibuat');
+                }
+
+                closeRoomModal();
+                loadRoomsForSelect();
+            } catch (error) {
+                showToast('error', error.message);
+            }
+        }
+
+        function editRoom(roomId) {
+            openRoomModal(roomId);
+        }
+
+        async function deleteRoom(roomId) {
+            if (!confirm('Yakin ingin menghapus room ini? Semua data termasuk chat akan dihapus.')) return;
+
+            try {
+                await db.collection('rooms').doc(roomId).delete();
+                showToast('success', 'Room berhasil dihapus');
+                loadRoomsForSelect();
+            } catch (error) {
+                showToast('error', error.message);
+            }
+        }
+
+        // ==================== MEMBERS MANAGEMENT (Membership) ====================
+        function loadMembers() {
+            db.collection('members').orderBy('createdAt', 'desc').onSnapshot(snap => {
+                const tbody = document.getElementById('membersTable');
+                
+                if (snap.empty) {
+                    tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state-block"><i class="fa-regular fa-users"></i><h4>Belum Ada Member</h4><p>Klik "Tambah Member" untuk menambahkan</p></div></td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = snap.docs.map(doc => {
+                    const member = doc.data();
+                    const expiry = member.expiryDate ? new Date(member.expiryDate.toDate()) : null;
+                    const isExpired = expiry && expiry < new Date();
+                    const expiryStr = expiry ? expiry.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) : '-';
+                    
+                    return `
+                        <tr>
+                            <td><strong>${escapeHtml(member.name)}</strong></td>
+                            <td>${escapeHtml(member.phone || '-')}</td>
+                            <td>
+                                <div class="token-display">
+                                    <code>${member.token}</code>
+                                    <button class="action-btn copy" onclick="copyToClipboard('${member.token}')" title="Copy"><i class="fa-regular fa-copy"></i></button>
+                                </div>
+                            </td>
+                            <td>${expiryStr}</td>
+                            <td><span class="badge ${isExpired ? 'badge-danger' : 'badge-success'}"><i class="fa-regular fa-${isExpired ? 'times' : 'check'}-circle"></i>${isExpired ? 'Expired' : 'Aktif'}</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn delete" onclick="deleteMember('${doc.id}')" title="Hapus"><i class="fa-regular fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>`;
+                }).join('');
+            });
+        }
+
+        function openMemberModal() {
+            document.getElementById('memberModal').classList.add('active');
+            document.getElementById('memberNameInput').value = '';
+            document.getElementById('memberPhoneInput').value = '';
+            document.getElementById('memberDurationInput').value = '1';
+        }
+
+        function closeMemberModal() {
+            document.getElementById('memberModal').classList.remove('active');
+        }
+
+        async function saveMember() {
+            const name = document.getElementById('memberNameInput').value.trim();
+            const gender = document.getElementById('memberGenderInput').value;
+            const phone = document.getElementById('memberPhoneInput').value.trim();
+            const duration = parseInt(document.getElementById('memberDurationInput').value) || 1;
+
+            if (!name || !phone) {
+                showToast('error', 'Nama dan nomor WhatsApp harus diisi');
+                return;
+            }
+
+            try {
+                const token = generateToken(8);
+                const expiryDate = new Date();
+                expiryDate.setMonth(expiryDate.getMonth() + duration);
+
+                await db.collection('members').add({
+                    name,
+                    gender,
+                    phone,
+                    token,
+                    type: 'membership',
+                    expiryDate: firebase.firestore.Timestamp.fromDate(expiryDate),
+                    deviceId: null,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                showToast('success', `Member ditambahkan dengan token: ${token}`);
+                closeMemberModal();
+            } catch (error) {
+                showToast('error', error.message);
+            }
+        }
+
+        async function deleteMember(memberId) {
+            if (!confirm('Yakin ingin menghapus member ini?')) return;
+
+            try {
+                await db.collection('members').doc(memberId).delete();
+                showToast('success', 'Member berhasil dihapus');
+            } catch (error) {
+                showToast('error', error.message);
+            }
+        }
+
+        // ==================== WATCH TOKENS MANAGEMENT ====================
+        function loadTokens() {
+            loadRoomsForSelect();
+            
+            db.collection('watchTokens').orderBy('createdAt', 'desc').onSnapshot(snap => {
+                const tbody = document.getElementById('tokensTable');
+                
+                if (snap.empty) {
+                    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state-block"><i class="fa-regular fa-ticket"></i><h4>Belum Ada Token</h4><p>Klik "Generate Token" untuk membuat</p></div></td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = snap.docs.map(doc => {
+                    const token = doc.data();
+                    const date = token.createdAt ? new Date(token.createdAt.toDate()).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) : '-';
+                    
+                    return `
+                        <tr>
+                            <td>
+                                <div class="token-display">
+                                    <code>${token.token}</code>
+                                    <button class="action-btn copy" onclick="copyToClipboard('${token.token}')" title="Copy"><i class="fa-regular fa-copy"></i></button>
+                                </div>
+                            </td>
+                            <td>${escapeHtml(token.roomTitle || '-')}</td>
+                            <td><span class="badge ${token.used ? 'badge-danger' : 'badge-success'}"><i class="fa-regular fa-${token.used ? 'times' : 'check'}-circle"></i>${token.used ? 'Digunakan' : 'Tersedia'}</span></td>
+                            <td>${date}</td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn delete" onclick="deleteToken('${doc.id}')" title="Hapus"><i class="fa-regular fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>`;
+                }).join('');
+            });
+        }
+
+        function openTokenModal() {
+            document.getElementById('tokenModal').classList.add('active');
+            document.getElementById('tokenCountInput').value = '1';
+            document.getElementById('generatedTokens').style.display = 'none';
+            document.getElementById('generateTokenBtn').style.display = 'inline-flex';
+            loadRoomsForSelect();
+        }
+
+        function closeTokenModal() {
+            document.getElementById('tokenModal').classList.remove('active');
+        }
+
+        async function generateTokens() {
+            const roomId = document.getElementById('tokenRoomSelect').value;
+            const count = parseInt(document.getElementById('tokenCountInput').value) || 1;
+
+            if (!roomId) {
+                showToast('error', 'Pilih room terlebih dahulu');
+                return;
+            }
+
+            const btn = document.getElementById('generateTokenBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-regular fa-spinner fa-spin"></i> Generating...';
+
+            try {
+                const roomDoc = await db.collection('rooms').doc(roomId).get();
+                const roomTitle = roomDoc.data().title;
+                const tokens = [];
+
+                const batch = db.batch();
+                for (let i = 0; i < count; i++) {
+                    const token = generateToken(10);
+                    tokens.push(token);
+                    
+                    const tokenRef = db.collection('watchTokens').doc();
+                    batch.set(tokenRef, {
+                        token,
+                        roomId,
+                        roomTitle,
+                        used: false,
+                        deviceId: null,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+
+                await batch.commit();
+
+                document.getElementById('generatedTokens').style.display = 'block';
+                document.getElementById('generatedTokensList').innerHTML = tokens.map(t => `
+                    <div class="generated-token-item">
+                        <code>${t}</code>
+                        <button class="action-btn copy" onclick="copyToClipboard('${t}')"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                `).join('');
+                btn.style.display = 'none';
+
+                showToast('success', `${count} token berhasil dibuat`);
+            } catch (error) {
+                showToast('error', error.message);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-regular fa-wand-magic"></i> Generate';
+            }
+        }
+
+        async function deleteToken(tokenId) {
+            if (!confirm('Yakin ingin menghapus token ini?')) return;
+
+            try {
+                await db.collection('watchTokens').doc(tokenId).delete();
+                showToast('success', 'Token berhasil dihapus');
+            } catch (error) {
+                showToast('error', error.message);
+            }
+        }
+
+        // ==================== STREAMING ====================
+        async function startStream() {
+            const roomId = document.getElementById('streamRoomSelect').value;
+            const videoSource = document.getElementById('videoSource').value;
+            const audioSource = document.getElementById('audioSource').value;
+
+            if (!roomId) {
+                showToast('error', 'Pilih room terlebih dahulu');
+                return;
+            }
+
+            const startBtn = document.getElementById('startStreamBtn');
+            startBtn.disabled = true;
+            startBtn.innerHTML = '<i class="fa-regular fa-spinner fa-spin"></i> Memulai...';
+
+            try {
+                if (videoSource === 'screen') {
+                    localStream = await navigator.mediaDevices.getDisplayMedia({
+                        video: { cursor: "always", width: { ideal: 1920 }, height: { ideal: 1080 }, frameRate: { ideal: 30 } },
+                        audio: audioSource === 'system' || audioSource === 'both'
+                    });
+
+                    if (audioSource === 'mic' || audioSource === 'both') {
+                        try {
+                            const micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                            micStream.getAudioTracks().forEach(track => localStream.addTrack(track));
+                        } catch (e) { console.log('Mic not available'); }
+                    }
+                } else {
+                    localStream = await navigator.mediaDevices.getUserMedia({
+                        video: { width: { ideal: 1920 }, height: { ideal: 1080 } },
+                        audio: audioSource !== 'none'
+                    });
+                }
+
+                document.getElementById('localStreamVideo').srcObject = localStream;
+                document.getElementById('streamOverlay').classList.add('hidden');
+
+                currentStreamingRoomId = roomId;
+                await db.collection('rooms').doc(roomId).update({
+                    isLive: true,
+                    viewers: 0,
+                    startedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                isStreaming = true;
+                document.getElementById('startStreamBtn').style.display = 'none';
+                document.getElementById('stopStreamBtn').style.display = 'flex';
+                document.getElementById('statusDot').classList.add('live');
+                document.getElementById('streamStatusText').textContent = 'Live - Streaming aktif';
+                document.getElementById('viewersPanel').style.display = 'block';
+
+                listenForViewers();
+                localStream.getVideoTracks()[0].onended = () => stopStream();
+
+                showToast('success', 'Streaming berhasil dimulai!');
+            } catch (error) {
+                console.error('Stream error:', error);
+                showToast('error', 'Gagal memulai stream: ' + error.message);
+            } finally {
+                startBtn.disabled = false;
+                startBtn.innerHTML = '<i class="fa-regular fa-play"></i> Mulai Live';
+            }
+        }
+
+        function listenForViewers() {
+            if (viewersUnsubscribe) viewersUnsubscribe();
+
+            viewersUnsubscribe = db.collection('rooms').doc(currentStreamingRoomId)
+                .collection('viewers').onSnapshot(async (snapshot) => {
+                    const viewersContent = document.getElementById('viewersListContent');
+                    document.getElementById('viewerCount').textContent = snapshot.size;
+
+                    if (snapshot.empty) {
+                        viewersContent.innerHTML = `<div class="viewers-empty"><i class="fa-regular fa-user-slash"></i> Belum ada penonton</div>`;
+                    } else {
+                        viewersContent.innerHTML = '';
+                    }
+
+                    for (const change of snapshot.docChanges()) {
+                        const viewerId = change.doc.id;
+                        const viewerData = change.doc.data();
+
+                        if (change.type === 'added') {
+                            const item = document.createElement('div');
+                            item.className = 'viewer-item';
+                            item.id = `viewer-${viewerId}`;
+                            item.innerHTML = `<div class="viewer-dot"></div><span>Viewer ${viewerId.substring(0, 8)}...</span>`;
+                            viewersContent.appendChild(item);
+
+                            if (viewerData.offer) await handleNewViewer(viewerId, viewerData);
+                        }
+
+                        if (change.type === 'removed') {
+                            document.getElementById(`viewer-${viewerId}`)?.remove();
+                            if (peerConnections[viewerId]) {
+                                peerConnections[viewerId].close();
+                                delete peerConnections[viewerId];
+                            }
+                        }
+                    }
+                });
+        }
+
+        async function handleNewViewer(viewerId, viewerData) {
+            try {
+                const pc = new RTCPeerConnection(iceServers);
+                peerConnections[viewerId] = pc;
+
+                localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+
+                pc.onicecandidate = async (event) => {
+                    if (event.candidate) {
+                        await db.collection('rooms').doc(currentStreamingRoomId)
+                            .collection('broadcasterCandidates').doc(viewerId)
+                            .collection('candidates').add(event.candidate.toJSON());
+                    }
+                };
+
+                await pc.setRemoteDescription(new RTCSessionDescription(viewerData.offer));
+                const answer = await pc.createAnswer();
+                await pc.setLocalDescription(answer);
+
+                await db.collection('rooms').doc(currentStreamingRoomId)
+                    .collection('viewers').doc(viewerId)
+                    .update({ answer: { type: answer.type, sdp: answer.sdp } });
+
+                db.collection('rooms').doc(currentStreamingRoomId)
+                    .collection('viewerCandidates').doc(viewerId)
+                    .collection('candidates').onSnapshot(snapshot => {
+                        snapshot.docChanges().forEach(async change => {
+                            if (change.type === 'added') {
+                                try { await pc.addIceCandidate(new RTCIceCandidate(change.doc.data())); } catch (e) {}
+                            }
+                        });
+                    });
+
+                console.log('Viewer connected:', viewerId);
+            } catch (error) {
+                console.error('Error handling viewer:', error);
+            }
+        }
+
+        async function stopStream() {
+            const stopBtn = document.getElementById('stopStreamBtn');
+            stopBtn.disabled = true;
+            stopBtn.innerHTML = '<i class="fa-regular fa-spinner fa-spin"></i> Stopping...';
+
+            try {
+                if (localStream) {
+                    localStream.getTracks().forEach(track => track.stop());
+                    localStream = null;
+                }
+
+                Object.values(peerConnections).forEach(pc => { try { pc.close(); } catch (e) {} });
+                peerConnections = {};
+
+                if (currentStreamingRoomId) {
+                    const viewersSnap = await db.collection('rooms').doc(currentStreamingRoomId).collection('viewers').get();
+                    const batch = db.batch();
+                    viewersSnap.forEach(doc => batch.delete(doc.ref));
+                    await batch.commit();
+
+                    await db.collection('rooms').doc(currentStreamingRoomId).update({ isLive: false, viewers: 0 });
+                }
+
+                if (viewersUnsubscribe) { viewersUnsubscribe(); viewersUnsubscribe = null; }
+
+                isStreaming = false;
+                currentStreamingRoomId = null;
+                document.getElementById('startStreamBtn').style.display = 'flex';
+                document.getElementById('stopStreamBtn').style.display = 'none';
+                document.getElementById('statusDot').classList.remove('live');
+                document.getElementById('streamStatusText').textContent = 'Offline - Siap streaming';
+                document.getElementById('streamOverlay').classList.remove('hidden');
+                document.getElementById('viewersPanel').style.display = 'none';
+                document.getElementById('localStreamVideo').srcObject = null;
+
+                showToast('info', 'Live streaming dihentikan');
+            } catch (error) {
+                console.error('Stop stream error:', error);
+                showToast('error', error.message);
+            } finally {
+                stopBtn.disabled = false;
+                stopBtn.innerHTML = '<i class="fa-regular fa-stop"></i> Stop Live';
+            }
+        }
+
+        // ==================== UTILITIES ====================
+        function generateToken(length) {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let result = '';
+            for (let i = 0; i < length; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+            return result;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('success', 'Disalin ke clipboard');
+            }).catch(() => {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast('success', 'Disalin ke clipboard');
+            });
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showToast(type, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation', info: 'fa-circle-info' };
+            
+            toast.innerHTML = `<i class="fa-regular ${icons[type] || 'fa-circle-info'}"></i> ${message}`;
+            
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // Enter key handlers
+        document.getElementById('lineupNameInput')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); addLineupMember(); } });
+        document.getElementById('lineupPhotoInput')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); addLineupMember(); } });
+
+        // Page unload warning
+        window.addEventListener('beforeunload', (e) => {
+            if (isStreaming) { e.preventDefault(); e.returnValue = 'Anda sedang streaming. Yakin ingin meninggalkan halaman?'; }
+        });
+    </script>
+</body>
+</html>
