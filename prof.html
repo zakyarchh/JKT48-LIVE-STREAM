@@ -2,87 +2,96 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Profil | ikazz - 48</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
-            --primary: #E85D75;
-            --primary-light: #FF8A9B;
-            --secondary: #7C6AEF;
-            --accent: #2DCDA7;
-            --dark: #1E1E2E;
-            --gray-700: #4A4A5A;
-            --gray-500: #6E6E7E;
-            --gray-300: #A0A0B0;
-            --gray-100: #F0F0F5;
-            --white: #FFFFFF;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A2E;
+            --text-secondary: #64748B;
+            --accent-red: #E11D48;
+            --accent-green: #22C55E;
+            --accent-gold: #FACC15;
+            --accent-blue: #3B82F6;
+            --accent-purple: #8B5CF6;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #E11D48 0%, #BE123C 100%);
+            --gradient-3: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-lg: 0 25px 60px rgba(0,0,0,0.15);
+            --border-color: #E2E8F0;
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FC 100%);
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
-            color: var(--dark);
-            padding-bottom: 90px;
+            padding-bottom: 100px;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-
-        .loading-screen {
+        /* Background Pattern */
+        .bg-pattern {
             position: fixed;
-            inset: 0;
-            background: var(--white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .loading-screen.hidden { opacity: 0; visibility: hidden; }
-
-        .loading-spinner {
-            width: 48px;
-            height: 48px;
-            border: 3px solid var(--gray-100);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        .loading-text { margin-top: 16px; font-size: 14px; color: var(--gray-500); font-weight: 500; }
-
-        .header {
-            background: var(--white);
-            padding: 16px 20px;
-            position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-            animation: fadeIn 0.5s ease;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        .header-content {
-            max-width: 600px;
-            margin: 0 auto;
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.06) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+        }
+
+        .bg-pattern::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
         }
 
         .logo {
@@ -93,558 +102,1015 @@
         }
 
         .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: var(--radius-md);
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-2);
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-weight: 800;
-            font-size: 14px;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
         }
 
         .logo-text {
-            font-size: 20px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
+        .logo-text span {
+            color: var(--accent-red);
+        }
+
+        /* Main Content */
         .main-content {
+            padding-top: 90px;
             max-width: 600px;
             margin: 0 auto;
-            padding: 24px 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        .profile-card {
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            padding: 32px 24px;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 20px;
+        /* Login Section */
+        .login-section {
+            display: block;
+        }
+
+        .profile-section {
+            display: none;
+        }
+
+        .login-section.hidden {
+            display: none;
+        }
+
+        .profile-section.active {
+            display: block;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
             animation: fadeInUp 0.5s ease;
         }
 
-        .profile-header { text-align: center; margin-bottom: 28px; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        .profile-avatar {
-            width: 88px;
-            height: 88px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 36px;
+        .card-header {
+            padding: 24px;
+            text-align: center;
+            background: var(--gradient-3);
             color: white;
         }
 
-        .profile-name { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
-        .profile-name.empty { color: var(--gray-500); }
+        .card-body {
+            padding: 24px;
+        }
 
-        .membership-badge {
+        /* Profile Avatar */
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 40px;
+            font-weight: 700;
+            color: white;
+            border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(225, 29, 72, 0.3);
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .profile-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
             border-radius: 50px;
             font-size: 13px;
             font-weight: 600;
         }
 
-        .membership-badge.active {
-            background: linear-gradient(135deg, var(--accent) 0%, #25B897 100%);
-            color: white;
+        /* Info List */
+        .info-list {
+            list-style: none;
         }
 
-        .membership-badge.inactive { background: var(--gray-100); color: var(--gray-500); }
-        .membership-badge.expired { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+        .info-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-        .membership-info {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: var(--radius-lg);
-            padding: 24px;
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            color: var(--accent-red);
+            font-size: 18px;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* Membership Card */
+        .membership-card {
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
             color: white;
-            margin-bottom: 28px;
+            padding: 24px;
+            border-radius: var(--radius-md);
             position: relative;
             overflow: hidden;
         }
 
-        .membership-info::before {
+        .membership-card::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, transparent 50%);
             pointer-events: none;
         }
 
-        .membership-info-content { position: relative; z-index: 1; }
+        .membership-card::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
 
-        .membership-info h3 {
-            font-size: 13px;
-            font-weight: 600;
-            opacity: 0.9;
-            margin-bottom: 8px;
+        .membership-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .membership-logo {
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .membership-logo span {
+            color: var(--accent-red);
+        }
+
+        .membership-type {
+            background: linear-gradient(135deg, #FACC15 0%, #EAB308 100%);
+            color: #1A1A2E;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .membership-status {
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-label {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .status-value {
+            font-size: 20px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .membership-info .expiry { font-size: 22px; font-weight: 800; }
-        .membership-info .days-left { font-size: 14px; opacity: 0.9; margin-top: 8px; }
+        .status-value.active {
+            color: var(--accent-green);
+        }
 
-        .form-section { animation: fadeInUp 0.5s ease 0.1s both; }
-        .form-section-title { font-size: 17px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .form-section-title i { color: var(--primary); }
+        .status-value.expired {
+            color: var(--accent-red);
+        }
 
-        .form-group { margin-bottom: 18px; }
-        .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+        .expiry-date {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
 
-        .form-input, .form-select {
-            width: 100%;
+        .expiry-item {
+            text-align: center;
+        }
+
+        .expiry-label {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .expiry-value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Token Display */
+        .token-card {
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+        }
+
+        .token-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .token-value {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
             padding: 14px 18px;
-            border: 2px solid var(--gray-100);
-            border-radius: var(--radius-md);
-            font-size: 15px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border-color);
         }
 
-        .form-input:focus, .form-select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(232, 93, 117, 0.1);
-        }
-
-        .form-input:disabled { background: var(--gray-100); cursor: not-allowed; }
-
-        .btn-primary {
-            width: 100%;
-            padding: 16px 24px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
+        .token-value code {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
             font-weight: 700;
-            font-size: 15px;
+            color: var(--accent-purple);
+            letter-spacing: 2px;
+        }
+
+        .copy-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--accent-purple);
+            color: white;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
         }
 
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232, 93, 117, 0.4); }
-        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .copy-btn:hover {
+            transform: scale(1.1);
+        }
 
-        .btn-secondary {
+        /* Buttons */
+        .btn {
             width: 100%;
-            padding: 14px 24px;
-            background: var(--gray-100);
-            color: var(--gray-700);
-            border: none;
-            border-radius: var(--radius-md);
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 12px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
         }
 
-        .btn-secondary:hover { background: #E8E8F0; }
-        .btn-danger { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
-        .btn-danger:hover { background: rgba(239, 68, 68, 0.2); }
+        .btn-primary {
+            background: var(--gradient-2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
+        }
 
-        .not-logged-in { text-align: center; padding: 48px 20px; }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(225, 29, 72, 0.4);
+        }
 
-        .not-logged-in-icon {
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+            color: white;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.1);
+        }
+
+        /* Login Card */
+        .login-card {
+            text-align: center;
+        }
+
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(225, 29, 72, 0.2) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            color: var(--accent-red);
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 16px;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            flex: 1;
+            max-width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item.active {
+            color: var(--accent-red);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--accent-red);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .nav-item:hover {
+            color: var(--accent-red);
+            background: rgba(225, 29, 72, 0.05);
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 90px;
+            right: 24px;
+            z-index: 3000;
+        }
+
+        .toast {
+            background: var(--bg-card);
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 280px;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid var(--accent-green);
+            margin-bottom: 12px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.error {
+            border-left-color: var(--accent-red);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-icon {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, var(--gray-100) 0%, #E8E8F0 100%);
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
             font-size: 40px;
-            color: var(--gray-300);
+            color: var(--text-secondary);
         }
 
-        .not-logged-in h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-        .not-logged-in p { font-size: 14px; color: var(--gray-500); margin-bottom: 24px; max-width: 280px; margin-left: auto; margin-right: auto; line-height: 1.6; }
-
-        .divider { height: 1px; background: var(--gray-100); margin: 24px 0; }
-
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--white);
-            padding: 10px 20px;
-            padding-bottom: calc(10px + env(safe-area-inset-bottom));
-            border-top: 1px solid rgba(0,0,0,0.04);
-            z-index: 100;
+        .empty-state h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        .nav-content { max-width: 400px; margin: 0 auto; display: flex; justify-content: space-around; }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            padding: 8px 20px;
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            color: var(--gray-500);
-            transition: all 0.3s ease;
+        .empty-state p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
         }
 
-        .nav-item:hover { color: var(--primary); }
-        .nav-item.active { color: var(--primary); background: rgba(232, 93, 117, 0.08); }
-        .nav-item i { font-size: 20px; }
-        .nav-item span { font-size: 11px; font-weight: 600; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 16px;
+            }
 
-        .toast-container { position: fixed; top: 20px; left: 20px; right: 20px; z-index: 2000; }
+            .logo-text {
+                font-size: 18px;
+            }
 
-        .toast {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            padding: 16px 20px;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            animation: fadeInUp 0.4s ease;
-            margin-bottom: 12px;
-            border-left: 4px solid var(--accent);
-        }
+            .main-content {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
 
-        .toast.error { border-left-color: #EF4444; }
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+            }
 
-        .toast-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
+            .profile-name {
+                font-size: 20px;
+            }
 
-        .toast.success .toast-icon { background: rgba(45, 205, 167, 0.1); color: var(--accent); }
-        .toast.error .toast-icon { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
-
-        .toast-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-        .toast-content p { font-size: 13px; color: var(--gray-500); }
-
-        .loading-spinner-sm {
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            .toast {
+                min-width: auto;
+                max-width: calc(100vw - 48px);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-spinner"></div>
-        <p class="loading-text">Memuat...</p>
-    </div>
+    <!-- Background Pattern -->
+    <div class="bg-pattern"></div>
 
-    <div class="toast-container" id="toastContainer"></div>
-
+    <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">48</div>
-                <span class="logo-text">ikazz - 48</span>
-            </a>
-        </div>
+        <a href="index.html" class="logo">
+            <div class="logo-text">ikxzu <span>stream</span></div>
+        </a>
     </header>
 
+    <!-- Main Content -->
     <main class="main-content">
-        <div class="profile-card" id="notLoggedIn" style="display: none;">
-            <div class="not-logged-in">
-                <div class="not-logged-in-icon">
-                    <i class="fas fa-user-lock"></i>
-                </div>
-                <h2>Belum Login</h2>
-                <p>Anda belum memiliki membership aktif. Aktivasi dengan token membership untuk akses tanpa batas.</p>
-                <button class="btn-primary" onclick="window.location.href='index.html'">
-                    <i class="fas fa-crown"></i> Aktivasi Membership
-                </button>
-            </div>
-        </div>
-
-        <div id="profileContent" style="display: none;">
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <i class="fas fa-user"></i>
+        <!-- Login Section -->
+        <section class="login-section" id="loginSection">
+            <div class="card">
+                <div class="card-body login-card">
+                    <div class="login-icon">
+                        <i class="fas fa-ticket-alt"></i>
                     </div>
-                    <h2 class="profile-name" id="profileName">Nama Pengguna</h2>
-                    <div class="membership-badge active" id="membershipBadge">
-                        <i class="fas fa-crown"></i>
-                        <span>Member Aktif</span>
-                    </div>
-                </div>
-
-                <div class="membership-info" id="membershipInfo">
-                    <div class="membership-info-content">
-                        <h3><i class="fas fa-calendar-alt"></i> Berlaku Hingga</h3>
-                        <div class="expiry" id="expiryDate">-</div>
-                        <div class="days-left" id="daysLeft">-</div>
-                    </div>
-                </div>
-
-                <div class="form-section">
-                    <h3 class="form-section-title">
-                        <i class="fas fa-edit"></i> Informasi Profil
-                    </h3>
-                    <form id="profileForm">
-                        <div class="form-group">
-                            <label class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-input" id="inputName" placeholder="Masukkan nama lengkap" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" id="inputGender" required>
-                                <option value="">Pilih Jenis Kelamin</option>
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Nomor WhatsApp</label>
-                            <input type="tel" class="form-input" id="inputWhatsapp" placeholder="08123456789" required>
-                        </div>
+                    <h2 class="login-title">Login Membership</h2>
+                    <p class="login-subtitle">Masukkan token membership Anda untuk mengakses akun</p>
+                    
+                    <form onsubmit="handleLogin(event)">
                         <div class="form-group">
                             <label class="form-label">Token Membership</label>
-                            <input type="text" class="form-input" id="inputToken" disabled>
+                            <input type="text" class="form-control" id="tokenInput" placeholder="Masukkan token Anda..." required>
                         </div>
-                        <button type="submit" class="btn-primary" id="btnSave">
-                            <i class="fas fa-save"></i> Simpan Perubahan
+                        <button type="submit" class="btn btn-primary" id="loginBtn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login
                         </button>
                     </form>
-
-                    <div class="divider"></div>
-
-                    <button class="btn-secondary btn-danger" onclick="logoutMembership()">
-                        <i class="fas fa-sign-out-alt"></i> Keluar dari Membership
-                    </button>
                 </div>
             </div>
-        </div>
+
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>Belum punya akun?</h3>
+                <p>Hubungi admin untuk mendapatkan token membership</p>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section class="profile-section" id="profileSection">
+            <!-- Profile Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="profile-avatar" id="profileAvatar">?</div>
+                    <h2 class="profile-name" id="profileName">Loading...</h2>
+                    <div class="profile-badge">
+                        <i class="fas fa-crown"></i>
+                        <span>membership</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="info-content">
+                                <div class="info-label">Nama Lengkap</div>
+                                <div class="info-value" id="infoName">-</div>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-venus-mars"></i>
+                            </div>
+                            <div class="info-content">
+                                <div class="info-label">Jenis Kelamin</div>
+                                <div class="info-value" id="infoGender">-</div>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <div class="info-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="info-content">
+                                <div class="info-label">Nomor WhatsApp</div>
+                                <div class="info-value" id="infoPhone">-</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Membership Card -->
+            <div class="card">
+                <div class="card-body" style="padding: 0;">
+                    <div class="membership-card">
+                        <div class="membership-header">
+                            <div class="membership-logo">ikxzu <span>stream</span></div>
+                            <div class="membership-type">Premium</div>
+                        </div>
+                        <div class="membership-status">
+                            <div class="status-label">Status Membership</div>
+                            <div class="status-value" id="membershipStatus">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                Loading...
+                            </div>
+                        </div>
+                        <div class="expiry-date">
+                            <div class="expiry-item">
+                                <div class="expiry-label">Tanggal Bergabung</div>
+                                <div class="expiry-value" id="joinDate">-</div>
+                            </div>
+                            <div class="expiry-item">
+                                <div class="expiry-label">Berlaku Hingga</div>
+                                <div class="expiry-value" id="expiryDate">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Token Card -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="token-card">
+                        <div class="token-label">Token Login Anda</div>
+                        <div class="token-value">
+                            <code id="userToken">********</code>
+                            <button class="copy-btn" onclick="copyToken()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-secondary); text-align: center;">
+                        <i class="fas fa-info-circle"></i>
+                        Token ini hanya bisa digunakan di 1 perangkat
+                    </p>
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <button class="btn btn-danger" onclick="handleLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </section>
     </main>
 
+    <!-- Bottom Navigation -->
     <nav class="bottom-nav">
-        <div class="nav-content">
-            <a href="index.html" class="nav-item">
-                <i class="fas fa-home"></i>
-                <span>Beranda</span>
-            </a>
-            <a href="prof.html" class="nav-item active">
-                <i class="fas fa-user"></i>
-                <span>Profil</span>
-            </a>
-        </div>
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-compass"></i>
+            <span>Jelajahi</span>
+        </a>
+        <a href="prof.html" class="nav-item active">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
     </nav>
 
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <script>
+        // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyAl6WmsHrmYkyotYYu_VIEqX5buTrMa-ec",
-            authDomain: "live-abd72.firebaseapp.com",
-            projectId: "live-abd72",
-            storageBucket: "live-abd72.firebasestorage.app",
-            messagingSenderId: "705044265931",
-            appId: "1:705044265931:web:402b9615df1d38863f944e"
+            apiKey: "AIzaSyDfUUE_VB24rB0kxmdKfQpt1LDP1aiWs-g",
+            authDomain: "liveeekuuu.firebaseapp.com",
+            projectId: "liveeekuuu",
+            storageBucket: "liveeekuuu.firebasestorage.app",
+            messagingSenderId: "489359473906",
+            appId: "1:489359473906:web:219f16ef1da568353fe46b"
         };
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        // State
         let currentUser = null;
-        let membershipData = null;
 
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkSession();
+        });
+
+        // Check Session
+        async function checkSession() {
+            const session = localStorage.getItem('ikazz_session');
+            
+            if (session) {
+                try {
+                    const sessionData = JSON.parse(session);
+                    const memberDoc = await db.collection('members').doc(sessionData.memberId).get();
+                    
+                    if (memberDoc.exists) {
+                        const memberData = memberDoc.data();
+                        
+                        // Check device ID
+                        const deviceId = getDeviceId();
+                        if (memberData.deviceId && memberData.deviceId !== deviceId) {
+                            localStorage.removeItem('ikazz_session');
+                            showToast('error', 'Session expired', 'Token digunakan di perangkat lain');
+                            showLoginSection();
+                            return;
+                        }
+                        
+                        currentUser = {
+                            id: memberDoc.id,
+                            ...memberData
+                        };
+                        
+                        showProfileSection();
+                        loadProfileData();
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Session check error:', error);
+                }
+            }
+            
+            showLoginSection();
+        }
+
+        // Get device ID
         function getDeviceId() {
-            let deviceId = localStorage.getItem('ikazz_device_id');
+            let deviceId = localStorage.getItem('device_id');
             if (!deviceId) {
-                deviceId = 'DEV_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
-                localStorage.setItem('ikazz_device_id', deviceId);
+                deviceId = 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('device_id', deviceId);
             }
             return deviceId;
         }
 
-        function showToast(title, message, type = 'success') {
+        // Show Login Section
+        function showLoginSection() {
+            document.getElementById('loginSection').classList.remove('hidden');
+            document.getElementById('profileSection').classList.remove('active');
+        }
+
+        // Show Profile Section
+        function showProfileSection() {
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('profileSection').classList.add('active');
+        }
+
+        // Handle Login
+        async function handleLogin(e) {
+            e.preventDefault();
+            const token = document.getElementById('tokenInput').value.trim().toUpperCase();
+            const btn = document.getElementById('loginBtn');
+
+            if (!token) {
+                showToast('error', 'Error', 'Masukkan token terlebih dahulu');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+
+            try {
+                // Find member by token
+                const memberQuery = await db.collection('members')
+                    .where('token', '==', token)
+                    .get();
+
+                if (memberQuery.empty) {
+                    showToast('error', 'Token Invalid', 'Token tidak ditemukan');
+                    return;
+                }
+
+                const memberDoc = memberQuery.docs[0];
+                const memberData = memberDoc.data();
+
+                // Check if token is used on another device
+                const deviceId = getDeviceId();
+                if (memberData.deviceId && memberData.deviceId !== deviceId) {
+                    showToast('error', 'Token Digunakan', 'Token ini sudah digunakan di perangkat lain');
+                    return;
+                }
+
+                // Check expiry
+                if (memberData.expiryDate) {
+                    const expiry = memberData.expiryDate.toDate();
+                    if (expiry < new Date()) {
+                        showToast('error', 'Membership Expired', 'Membership Anda telah berakhir');
+                        return;
+                    }
+                }
+
+                // Update device ID
+                await memberDoc.ref.update({
+                    deviceId: deviceId,
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // Save session
+                localStorage.setItem('ikazz_session', JSON.stringify({
+                    memberId: memberDoc.id,
+                    token: token
+                }));
+
+                currentUser = {
+                    id: memberDoc.id,
+                    ...memberData
+                };
+
+                showToast('success', 'Login Berhasil', 'Selamat datang, ' + memberData.name);
+                showProfileSection();
+                loadProfileData();
+
+            } catch (error) {
+                console.error('Login error:', error);
+                showToast('error', 'Error', 'Gagal login: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+            }
+        }
+
+        // Load Profile Data
+        function loadProfileData() {
+            if (!currentUser) return;
+
+            // Avatar
+            const initial = currentUser.name.charAt(0).toUpperCase();
+            document.getElementById('profileAvatar').textContent = initial;
+            document.getElementById('profileName').textContent = currentUser.name;
+
+            // Info
+            document.getElementById('infoName').textContent = currentUser.name;
+            document.getElementById('infoGender').textContent = currentUser.gender === 'male' ? 'Laki-laki' : 'Perempuan';
+            document.getElementById('infoPhone').textContent = currentUser.phone || '-';
+
+            // Token
+            document.getElementById('userToken').textContent = currentUser.token;
+
+            // Membership status
+            const expiry = currentUser.expiryDate ? currentUser.expiryDate.toDate() : null;
+            const isExpired = expiry && expiry < new Date();
+            const statusEl = document.getElementById('membershipStatus');
+            
+            if (isExpired) {
+                statusEl.innerHTML = '<i class="fas fa-times-circle"></i> Expired';
+                statusEl.className = 'status-value expired';
+            } else {
+                statusEl.innerHTML = '<i class="fas fa-check-circle"></i> Aktif';
+                statusEl.className = 'status-value active';
+            }
+
+            // Dates
+            const joinDate = currentUser.createdAt ? currentUser.createdAt.toDate() : new Date();
+            document.getElementById('joinDate').textContent = joinDate.toLocaleDateString('id-ID', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+
+            if (expiry) {
+                document.getElementById('expiryDate').textContent = expiry.toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+            }
+        }
+
+        // Copy Token
+        function copyToken() {
+            if (!currentUser) return;
+            
+            navigator.clipboard.writeText(currentUser.token).then(() => {
+                showToast('success', 'Copied!', 'Token berhasil disalin');
+            }).catch(() => {
+                showToast('error', 'Error', 'Gagal menyalin token');
+            });
+        }
+
+        // Handle Logout
+        function handleLogout() {
+            if (!confirm('Yakin ingin logout?')) return;
+
+            localStorage.removeItem('ikazz_session');
+            currentUser = null;
+            
+            showToast('success', 'Logout', 'Anda telah keluar');
+            showLoginSection();
+            
+            // Clear form
+            document.getElementById('tokenInput').value = '';
+        }
+
+        // Show Toast
+        function showToast(type, title, message) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
-            toast.innerHTML = `<div class="toast-icon"><i class="fas ${type === 'success' ? 'fa-check' : 'fa-exclamation'}"></i></div><div class="toast-content"><h4>${title}</h4><p>${message}</p></div>`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}" style="color: ${type === 'success' ? 'var(--accent-green)' : 'var(--accent-red)'}; font-size: 20px;"></i>
+                <div>
+                    <strong style="display: block; font-size: 14px;">${title}</strong>
+                    <span style="font-size: 13px; color: var(--text-secondary);">${message}</span>
+                </div>
+            `;
+            
             container.appendChild(toast);
-            setTimeout(() => toast.remove(), 4000);
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
         }
-
-        async function init() {
-            const memberToken = localStorage.getItem('ikazz_membership_token');
-            const deviceId = getDeviceId();
-
-            if (!memberToken) {
-                showNotLoggedIn();
-                hideLoading();
-                return;
-            }
-
-            try {
-                const tokenDoc = await db.collection('membershipTokens').doc(memberToken).get();
-
-                if (!tokenDoc.exists) {
-                    localStorage.removeItem('ikazz_membership_token');
-                    showNotLoggedIn();
-                    hideLoading();
-                    return;
-                }
-
-                const tokenData = tokenDoc.data();
-
-                if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
-                    localStorage.removeItem('ikazz_membership_token');
-                    showToast('Error', 'Token terikat dengan perangkat lain', 'error');
-                    showNotLoggedIn();
-                    hideLoading();
-                    return;
-                }
-
-                const expiryDate = tokenData.expiryDate?.toDate();
-                if (expiryDate && expiryDate < new Date()) {
-                    showExpired(expiryDate);
-                    hideLoading();
-                    return;
-                }
-
-                membershipData = tokenData;
-                membershipData.token = memberToken;
-
-                const userDoc = await db.collection('users').doc(deviceId).get();
-                if (userDoc.exists) currentUser = userDoc.data();
-
-                showProfile();
-                hideLoading();
-            } catch (error) {
-                console.error('Init error:', error);
-                showToast('Error', 'Gagal memuat profil', 'error');
-                hideLoading();
-            }
-        }
-
-        function showNotLoggedIn() {
-            document.getElementById('notLoggedIn').style.display = 'block';
-            document.getElementById('profileContent').style.display = 'none';
-        }
-
-        function showProfile() {
-            document.getElementById('notLoggedIn').style.display = 'none';
-            document.getElementById('profileContent').style.display = 'block';
-
-            if (currentUser) {
-                document.getElementById('inputName').value = currentUser.name || '';
-                document.getElementById('inputGender').value = currentUser.gender || '';
-                document.getElementById('inputWhatsapp').value = currentUser.whatsapp || '';
-                document.getElementById('profileName').textContent = currentUser.name || 'Atur Profil Anda';
-                document.getElementById('profileName').classList.toggle('empty', !currentUser.name);
-            } else {
-                document.getElementById('profileName').textContent = 'Atur Profil Anda';
-                document.getElementById('profileName').classList.add('empty');
-            }
-
-            document.getElementById('inputToken').value = membershipData.token;
-
-            const expiryDate = membershipData.expiryDate?.toDate();
-            if (expiryDate) {
-                document.getElementById('expiryDate').textContent = expiryDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-                const daysLeft = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
-                document.getElementById('daysLeft').textContent = `${daysLeft} hari tersisa`;
-            }
-        }
-
-        function showExpired(expiryDate) {
-            document.getElementById('notLoggedIn').style.display = 'none';
-            document.getElementById('profileContent').style.display = 'block';
-
-            document.getElementById('membershipBadge').className = 'membership-badge expired';
-            document.getElementById('membershipBadge').innerHTML = '<i class="fas fa-times-circle"></i><span>Expired</span>';
-            document.getElementById('membershipInfo').style.background = 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)';
-            document.getElementById('expiryDate').textContent = 'Membership Berakhir';
-            document.getElementById('daysLeft').textContent = expiryDate.toLocaleDateString('id-ID');
-        }
-
-        document.getElementById('profileForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const name = document.getElementById('inputName').value.trim();
-            const gender = document.getElementById('inputGender').value;
-            const whatsapp = document.getElementById('inputWhatsapp').value.trim();
-
-            if (!name || !gender || !whatsapp) {
-                showToast('Error', 'Semua field wajib diisi', 'error');
-                return;
-            }
-
-            const btn = document.getElementById('btnSave');
-            btn.disabled = true;
-            btn.innerHTML = '<div class="loading-spinner-sm"></div> Menyimpan...';
-
-            try {
-                const deviceId = getDeviceId();
-
-                await db.collection('users').doc(deviceId).set({
-                    name,
-                    gender,
-                    whatsapp,
-                    membershipToken: membershipData.token,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    createdAt: currentUser?.createdAt || firebase.firestore.FieldValue.serverTimestamp()
-                }, { merge: true });
-
-                currentUser = { name, gender, whatsapp };
-                document.getElementById('profileName').textContent = name;
-                document.getElementById('profileName').classList.remove('empty');
-
-                showToast('Sukses', 'Profil berhasil disimpan', 'success');
-            } catch (error) {
-                console.error('Save error:', error);
-                showToast('Error', 'Gagal menyimpan profil', 'error');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-save"></i> Simpan Perubahan';
-            }
-        });
-
-        function logoutMembership() {
-            if (!confirm('Yakin ingin keluar dari membership?')) return;
-
-            localStorage.removeItem('ikazz_membership_token');
-            showToast('Sukses', 'Berhasil keluar', 'success');
-            setTimeout(() => { window.location.href = 'index.html'; }, 1500);
-        }
-
-        function hideLoading() {
-            setTimeout(() => { document.getElementById('loadingScreen').classList.add('hidden'); }, 300);
-        }
-
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>

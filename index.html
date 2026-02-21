@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ikazz - 48 | Live Streaming</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ikxzu stream</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,159 +14,95 @@
         }
 
         :root {
-            --primary: #E85D75;
-            --primary-light: #FF8A9B;
-            --primary-dark: #C94D63;
-            --secondary: #7C6AEF;
-            --accent: #2DCDA7;
-            --dark: #1E1E2E;
-            --gray-900: #2D2D3A;
-            --gray-700: #4A4A5A;
-            --gray-500: #6E6E7E;
-            --gray-300: #A0A0B0;
-            --gray-100: #F0F0F5;
-            --white: #FFFFFF;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
-            --shadow-xl: 0 16px 48px rgba(0,0,0,0.16);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A1A2E;
+            --text-secondary: #64748B;
+            --accent-red: #E11D48;
+            --accent-green: #22C55E;
+            --accent-gold: #FACC15;
+            --accent-blue: #3B82F6;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #E11D48 0%, #BE123C 100%);
+            --gradient-3: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            --shadow-sm: 0 2px 10px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-lg: 0 25px 60px rgba(0,0,0,0.15);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FC 100%);
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
-            color: var(--dark);
-            padding-bottom: 90px;
-            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
         }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(24px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        @keyframes livePulse {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
-            70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+        .bg-pattern::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: float 25s ease-in-out infinite reverse;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
-        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out; }
-        .animate-fadeInDown { animation: fadeInDown 0.6s ease-out; }
-        .animate-scaleIn { animation: scaleIn 0.4s ease-out; }
-
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            inset: 0;
-            background: var(--white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loading-logo {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 24px;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--gray-100);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        .loading-text {
-            margin-top: 16px;
-            font-size: 14px;
-            color: var(--gray-500);
-            font-weight: 500;
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(5deg); }
+            66% { transform: translate(-20px, 20px) rotate(-5deg); }
         }
 
         /* Header */
         .header {
-            background: var(--white);
-            padding: 16px 20px;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-            animation: fadeInDown 0.5s ease-out;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            transition: all 0.3s ease;
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
         }
 
         .logo {
@@ -177,243 +113,249 @@
         }
 
         .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: var(--radius-md);
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-2);
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-weight: 800;
-            font-size: 14px;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
             transition: transform 0.3s ease;
         }
 
         .logo:hover .logo-icon {
-            transform: rotate(-5deg) scale(1.05);
+            transform: scale(1.05) rotate(-3deg);
         }
 
         .logo-text {
-            font-size: 20px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo-text span {
+            color: var(--accent-red);
         }
 
         .header-actions {
             display: flex;
-            gap: 12px;
             align-items: center;
+            gap: 12px;
         }
 
-        .btn-membership {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
             font-weight: 600;
             font-size: 14px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(232, 93, 117, 0.3);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
         }
 
-        .btn-membership:hover {
+        .btn-primary {
+            background: var(--gradient-2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(232, 93, 117, 0.4);
+            box-shadow: 0 8px 25px rgba(225, 29, 72, 0.4);
         }
 
-        .btn-membership.active {
-            background: linear-gradient(135deg, var(--accent) 0%, #25B897 100%);
-            box-shadow: 0 4px 12px rgba(45, 205, 167, 0.3);
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .btn-membership i {
-            font-size: 14px;
+        .btn-secondary:hover {
+            background: var(--bg-primary);
+            transform: translateY(-2px);
         }
 
         /* Main Content */
         .main-content {
-            max-width: 1200px;
+            padding-top: 90px;
+            padding-bottom: 100px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 24px 20px;
+            padding: 0 24px;
         }
 
         /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: var(--radius-xl);
-            padding: 40px 32px;
-            margin-bottom: 32px;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.6s ease-out;
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            animation: fadeInUp 0.8s ease;
         }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(8px);
-            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(190, 18, 60, 0.1) 100%);
+            padding: 8px 20px;
             border-radius: 50px;
-            color: white;
+            margin-bottom: 24px;
             font-size: 13px;
-            font-weight: 500;
-            margin-bottom: 16px;
+            font-weight: 600;
+            color: var(--accent-red);
+            border: 1px solid rgba(225, 29, 72, 0.2);
         }
 
         .hero-badge i {
-            font-size: 12px;
+            animation: pulse 2s infinite;
         }
 
-        .hero-title {
-            color: white;
-            font-size: 32px;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 56px);
             font-weight: 800;
-            line-height: 1.3;
-            margin-bottom: 12px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero-subtitle {
-            color: rgba(255,255,255,0.9);
-            font-size: 15px;
-            line-height: 1.6;
-            max-width: 480px;
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
         }
 
-        .hero-stats {
+        /* Stats */
+        .stats {
             display: flex;
-            gap: 24px;
-            margin-top: 24px;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 48px;
+            flex-wrap: wrap;
         }
 
-        .hero-stat {
+        .stat-item {
             text-align: center;
         }
 
-        .hero-stat-value {
-            font-size: 28px;
+        .stat-value {
+            font-size: 36px;
             font-weight: 800;
-            color: white;
+            color: var(--text-primary);
         }
 
-        .hero-stat-label {
-            font-size: 12px;
-            color: rgba(255,255,255,0.8);
+        .stat-value span {
+            color: var(--accent-red);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
             margin-top: 4px;
         }
 
-        /* Section */
-        .section {
-            margin-bottom: 32px;
-        }
-
+        /* Live Section */
         .section-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            animation: fadeInUp 0.6s ease-out 0.1s both;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
         .section-title {
+            font-size: 28px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--dark);
         }
 
-        .section-title i {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-        }
-
-        .live-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .live-badge .dot {
-            width: 8px;
-            height: 8px;
-            background: white;
+        .section-title .live-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-red);
             border-radius: 50%;
-            animation: pulse 1.5s ease-in-out infinite;
+            animation: livePulse 1.5s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 10px rgba(225, 29, 72, 0);
+                transform: scale(1.1);
+            }
         }
 
         /* Room Grid */
         .rooms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
         }
 
         .room-card {
-            background: var(--white);
+            background: var(--bg-card);
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(0,0,0,0.04);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            animation: fadeInUp 0.6s ease-out both;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.6s ease backwards;
         }
 
         .room-card:nth-child(1) { animation-delay: 0.1s; }
-        .room-card:nth-child(2) { animation-delay: 0.15s; }
-        .room-card:nth-child(3) { animation-delay: 0.2s; }
-        .room-card:nth-child(4) { animation-delay: 0.25s; }
-        .room-card:nth-child(5) { animation-delay: 0.3s; }
-        .room-card:nth-child(6) { animation-delay: 0.35s; }
+        .room-card:nth-child(2) { animation-delay: 0.2s; }
+        .room-card:nth-child(3) { animation-delay: 0.3s; }
+        .room-card:nth-child(4) { animation-delay: 0.4s; }
 
         .room-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px) scale(1.02);
             box-shadow: var(--shadow-lg);
-            border-color: rgba(232, 93, 117, 0.2);
         }
 
         .room-thumbnail {
             position: relative;
             aspect-ratio: 16/9;
-            background: linear-gradient(135deg, var(--gray-100) 0%, #E8E8F0 100%);
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
             overflow: hidden;
         }
 
@@ -425,316 +367,158 @@
         }
 
         .room-card:hover .room-thumbnail img {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
-        .room-thumbnail-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-
-        .room-thumbnail-placeholder i {
-            font-size: 48px;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .room-live-badge {
+        .room-thumbnail::after {
+            content: '';
             position: absolute;
-            top: 12px;
-            left: 12px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--accent-red);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 6px;
-            background: #EF4444;
-            color: white;
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            animation: livePulse 2s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+            z-index: 2;
         }
 
-        .room-live-badge::before {
+        .live-badge::before {
             content: '';
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             background: white;
             border-radius: 50%;
+            animation: blink 1s infinite;
         }
 
-        .room-viewers {
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .viewer-count {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 6px;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(8px);
-            color: white;
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .room-viewers i {
-            font-size: 11px;
+            backdrop-filter: blur(10px);
+            z-index: 2;
         }
 
         .room-info {
-            padding: 16px;
-        }
-
-        .room-member-name {
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 6px;
+            padding: 20px;
         }
 
         .room-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .room-subtitle {
             font-size: 14px;
-            color: var(--gray-500);
+            color: var(--text-secondary);
             margin-bottom: 16px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 1.5;
         }
 
-        .room-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .room-time {
+        .room-members {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: var(--gray-500);
+            gap: -8px;
         }
 
-        .room-time i {
+        .member-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 3px solid white;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 12px;
-        }
-
-        .btn-watch {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 18px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
             font-weight: 600;
+            color: white;
+            margin-left: -8px;
+            transition: transform 0.3s ease;
+        }
+
+        .member-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .member-avatar:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .member-count {
+            margin-left: 12px;
             font-size: 13px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-watch:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(232, 93, 117, 0.4);
-        }
-
-        .btn-watch i {
-            font-size: 12px;
+            color: var(--text-secondary);
         }
 
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
-            animation: fadeInUp 0.6s ease-out;
+            padding: 80px 20px;
+            animation: fadeInUp 0.6s ease;
         }
 
-        .empty-state-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--gray-100) 0%, #E8E8F0 100%);
+        .empty-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
-        }
-
-        .empty-state-icon i {
-            font-size: 40px;
-            color: var(--gray-300);
+            font-size: 48px;
+            color: var(--text-secondary);
         }
 
         .empty-state h3 {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .empty-state p {
-            font-size: 15px;
-            color: var(--gray-500);
-            max-width: 320px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal {
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            width: 100%;
+            color: var(--text-secondary);
             max-width: 400px;
-            padding: 32px;
-            transform: scale(0.9) translateY(20px);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .modal-overlay.active .modal {
-            transform: scale(1) translateY(0);
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-
-        .modal-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 28px;
-        }
-
-        .modal-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .modal-subtitle {
-            font-size: 14px;
-            color: var(--gray-500);
-            line-height: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid var(--gray-100);
-            border-radius: var(--radius-md);
-            font-size: 15px;
-            font-family: inherit;
-            color: var(--dark);
-            transition: all 0.3s ease;
-            background: var(--white);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(232, 93, 117, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: var(--gray-300);
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 16px 24px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(232, 93, 117, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(232, 93, 117, 0.4);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-secondary {
-            width: 100%;
-            padding: 14px 24px;
-            background: var(--gray-100);
-            color: var(--gray-700);
-            border: none;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 12px;
-        }
-
-        .btn-secondary:hover {
-            background: #E8E8F0;
+            margin: 0 auto;
         }
 
         /* Bottom Navigation */
@@ -743,45 +527,58 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--white);
-            padding: 10px 20px;
-            padding-bottom: calc(10px + env(safe-area-inset-bottom));
-            border-top: 1px solid rgba(0,0,0,0.04);
-            z-index: 100;
-            animation: fadeIn 0.5s ease-out 0.3s both;
-        }
-
-        .nav-content {
-            max-width: 400px;
-            margin: 0 auto;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
-            justify-content: space-around;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 16px;
+            z-index: 1000;
         }
 
         .nav-item {
+            flex: 1;
+            max-width: 120px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            padding: 8px 20px;
+            justify-content: center;
+            padding: 10px;
             border-radius: var(--radius-md);
             text-decoration: none;
-            color: var(--gray-500);
+            color: var(--text-secondary);
             transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .nav-item:hover {
-            color: var(--primary);
+            position: relative;
         }
 
         .nav-item.active {
-            color: var(--primary);
-            background: rgba(232, 93, 117, 0.08);
+            color: var(--accent-red);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--accent-red);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .nav-item:hover {
+            color: var(--accent-red);
+            background: rgba(225, 29, 72, 0.05);
         }
 
         .nav-item i {
-            font-size: 20px;
+            font-size: 22px;
+            margin-bottom: 4px;
         }
 
         .nav-item span {
@@ -789,112 +586,260 @@
             font-weight: 600;
         }
 
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 420px;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            padding: 24px 24px 0;
+            text-align: center;
+        }
+
+        .modal-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(225, 29, 72, 0.2) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: var(--accent-red);
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.1);
+        }
+
+        .modal-footer {
+            padding: 0 24px 24px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-footer .btn {
+            flex: 1;
+            justify-content: center;
+        }
+
         /* Toast */
         .toast-container {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 2000;
+            top: 90px;
+            right: 24px;
+            z-index: 3000;
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
         .toast {
-            background: var(--white);
-            border-radius: var(--radius-md);
+            background: var(--bg-card);
             padding: 16px 20px;
-            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             min-width: 300px;
-            max-width: 400px;
-            animation: slideInRight 0.4s ease-out;
-            border-left: 4px solid var(--accent);
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .toast.show {
+            transform: translateX(0);
         }
 
         .toast.error {
-            border-left-color: #EF4444;
+            border-left-color: var(--accent-red);
         }
 
         .toast-icon {
             width: 36px;
             height: 36px;
-            border-radius: var(--radius-sm);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            flex-shrink: 0;
         }
 
         .toast.success .toast-icon {
-            background: rgba(45, 205, 167, 0.1);
-            color: var(--accent);
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--accent-green);
         }
 
         .toast.error .toast-icon {
-            background: rgba(239, 68, 68, 0.1);
-            color: #EF4444;
+            background: rgba(225, 29, 72, 0.1);
+            color: var(--accent-red);
         }
 
-        .toast-content h4 {
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
             font-size: 14px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 2px;
         }
 
-        .toast-content p {
+        .toast-message {
             font-size: 13px;
-            color: var(--gray-500);
+            color: var(--text-secondary);
+        }
+
+        /* Loading */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .loader-icon {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(225, 29, 72, 0.1);
+            border-top-color: var(--accent-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .header {
-                padding: 14px 16px;
+                padding: 0 16px;
             }
 
             .logo-text {
                 font-size: 18px;
             }
 
-            .btn-membership span {
+            .btn span {
                 display: none;
             }
 
-            .btn-membership {
-                padding: 10px 12px;
+            .hero {
+                padding: 40px 0;
             }
 
-            .main-content {
-                padding: 16px;
+            .hero h1 {
+                font-size: 28px;
             }
 
-            .hero-section {
-                padding: 28px 20px;
+            .hero p {
+                font-size: 15px;
             }
 
-            .hero-title {
-                font-size: 24px;
+            .stats {
+                gap: 32px;
             }
 
-            .hero-subtitle {
-                font-size: 14px;
-            }
-
-            .hero-stats {
-                gap: 16px;
-            }
-
-            .hero-stat-value {
-                font-size: 22px;
-            }
-
-            .section-title {
-                font-size: 18px;
+            .stat-value {
+                font-size: 28px;
             }
 
             .rooms-grid {
@@ -902,204 +847,158 @@
                 gap: 16px;
             }
 
-            .toast-container {
-                left: 16px;
-                right: 16px;
+            .section-title {
+                font-size: 22px;
             }
 
             .toast {
                 min-width: auto;
+                margin: 0 16px;
             }
-        }
 
-        /* Skeleton Loading */
-        .skeleton {
-            background: linear-gradient(90deg, var(--gray-100) 25%, #E8E8F0 50%, var(--gray-100) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-            border-radius: var(--radius-sm);
-        }
-
-        .skeleton-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .skeleton-thumbnail {
-            aspect-ratio: 16/9;
-        }
-
-        .skeleton-text {
-            height: 16px;
-            margin: 16px;
-        }
-
-        .skeleton-text-sm {
-            height: 12px;
-            width: 60%;
-            margin: 8px 16px 16px;
+            .toast-container {
+                right: 0;
+                left: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-spinner"></div>
-        <p class="loading-text">Memuat...</p>
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader">
+            <div class="loader-icon"></div>
+            <div class="loader-text">memuat ikxzu..</div>
+        </div>
     </div>
 
-    <!-- Toast Container -->
-    <div class="toast-container" id="toastContainer"></div>
+    <!-- Background Pattern -->
+    <div class="bg-pattern"></div>
 
     <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="logo">
-                <span class="logo-text">ikazz - 48</span>
+    <header class="header" id="header">
+        <a href="index.html" class="logo">
+            <div class="logo-text">ikxzu <span>stream</span></div>
+        </a>
+        <div class="header-actions">
+            <a href="prof.html" class="btn btn-secondary" id="profileBtn">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
             </a>
-            <div class="header-actions">
-                <button class="btn-membership" id="membershipBtn" onclick="handleMembershipClick()">
-                    <i class="fas fa-crown"></i>
-                    <span>Membership</span>
-                </button>
-            </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
                 <div class="hero-badge">
                     <i class="fas fa-broadcast-tower"></i>
                     Live Streaming Platform
                 </div>
-                <h1 class="hero-title">Saksikan Live Streaming JKT48</h1>
-                <p class="hero-subtitle">Tonton live streaming eksklusif dari member favoritmu kapan saja dan di mana saja dengan kualitas terbaik.</p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value" id="statLive">0</div>
-                        <div class="hero-stat-label">Live Now</div>
+                <h1>Saksikan Live Streaming<br>JKT48 Terbaik</h1>
+                <p>Nikmati pengalaman menonton live streaming eksklusif member JKT48 favorit kamu dengan kualitas terbaik</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalViewers">0<span>+</span></div>
+                        <div class="stat-label">Total Penonton</div>
                     </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value" id="statViewers">0</div>
-                        <div class="hero-stat-label">Viewers</div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalLives">0</div>
+                        <div class="stat-label">Live Aktif</div>
                     </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value" id="statMembers">0</div>
-                        <div class="hero-stat-label">Members</div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalMembers">0<span>+</span></div>
+                        <div class="stat-label">Members</div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Live Rooms Section -->
-        <section class="section">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <i class="fas fa-play-circle"></i>
-                    Sedang Live
-                </h2>
-                <div class="live-badge" id="liveBadge" style="display: none;">
-                    <span class="dot"></span>
-                    <span id="liveCount">0 Live</span>
+            <!-- Live Rooms Section -->
+            <section class="live-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="live-dot"></span>
+                        Sedang Live
+                    </h2>
                 </div>
-            </div>
-
-            <div class="rooms-grid" id="roomsGrid">
-                <!-- Rooms will be loaded here -->
-            </div>
-
-            <div class="empty-state" id="emptyState" style="display: none;">
-                <div class="empty-state-icon">
-                    <i class="fas fa-video-slash"></i>
+                
+                <div class="rooms-grid" id="roomsGrid">
+                    <!-- Rooms will be loaded here -->
                 </div>
-                <h3>Belum Ada Live</h3>
-                <p>Saat ini belum ada member yang sedang live. Cek kembali nanti ya!</p>
-            </div>
-        </section>
+
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <div class="empty-icon">
+                        <i class="fas fa-video-slash"></i>
+                    </div>
+                    <h3>Belum Ada Live Streaming</h3>
+                    <p>Saat ini tidak ada live streaming yang aktif. Cek kembali nanti ya!</p>
+                </div>
+            </section>
+        </div>
     </main>
 
-    <!-- Watch Token Modal -->
-    <div class="modal-overlay" id="watchTokenModal">
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="#" class="nav-item" id="navExplore">
+            <i class="fas fa-compass"></i>
+            <span>Jelajahi</span>
+        </a>
+        <a href="prof.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Token Modal -->
+    <div class="modal-overlay" id="tokenModal">
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-icon">
                     <i class="fas fa-ticket-alt"></i>
                 </div>
                 <h3 class="modal-title">Masukkan Token</h3>
-                <p class="modal-subtitle">Masukkan token untuk menonton live streaming ini</p>
+                <p class="modal-subtitle">Token diperlukan untuk menonton live streaming ini</p>
             </div>
-            <form id="watchTokenForm">
-                <input type="hidden" id="selectedRoomId">
+            <div class="modal-body">
                 <div class="form-group">
-                    <label class="form-label">Token Nonton</label>
-                    <input type="text" class="form-input" id="watchTokenInput" placeholder="Contoh: WTC-XXXXXXXXXXXX" required autocomplete="off">
+                    <label>Token Akses</label>
+                    <input type="text" class="form-control" id="tokenInput" placeholder="Masukkan token Anda...">
                 </div>
-                <button type="submit" class="btn-primary" id="btnWatchSubmit">
-                    <i class="fas fa-play"></i>
-                    Tonton Sekarang
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeTokenModal()">Batal</button>
+                <button class="btn btn-primary" onclick="verifyToken()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Masuk
                 </button>
-            </form>
-            <button class="btn-secondary" onclick="closeModal('watchTokenModal')">Batal</button>
+            </div>
         </div>
     </div>
 
-    <!-- Membership Login Modal -->
-    <div class="modal-overlay" id="membershipModal">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-icon">
-                    <i class="fas fa-crown"></i>
-                </div>
-                <h3 class="modal-title">Login Membership</h3>
-                <p class="modal-subtitle">Masukkan token membership Anda untuk akses tanpa batas</p>
-            </div>
-            <form id="membershipForm">
-                <div class="form-group">
-                    <label class="form-label">Token Membership</label>
-                    <input type="text" class="form-input" id="membershipTokenInput" placeholder="Contoh: MBR-XXXXXXXXXXXX" required autocomplete="off">
-                </div>
-                <button type="submit" class="btn-primary" id="btnMembershipSubmit">
-                    <i class="fas fa-unlock"></i>
-                    Aktivasi Membership
-                </button>
-            </form>
-            <button class="btn-secondary" onclick="closeModal('membershipModal')">Batal</button>
-        </div>
-    </div>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav">
-        <div class="nav-content">
-            <a href="index.html" class="nav-item active">
-                <i class="fas fa-home"></i>
-                <span>Beranda</span>
-            </a>
-            <a href="prof.html" class="nav-item">
-                <i class="fas fa-user"></i>
-                <span>Profil</span>
-            </a>
-        </div>
-    </nav>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <script>
         // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyAl6WmsHrmYkyotYYu_VIEqX5buTrMa-ec",
-            authDomain: "live-abd72.firebaseapp.com",
-            projectId: "live-abd72",
-            storageBucket: "live-abd72.firebasestorage.app",
-            messagingSenderId: "705044265931",
-            appId: "1:705044265931:web:402b9615df1d38863f944e"
+            apiKey: "AIzaSyDfUUE_VB24rB0kxmdKfQpt1LDP1aiWs-g",
+            authDomain: "liveeekuuu.firebaseapp.com",
+            projectId: "liveeekuuu",
+            storageBucket: "liveeekuuu.firebasestorage.app",
+            messagingSenderId: "489359473906",
+            appId: "1:489359473906:web:219f16ef1da568353fe46b"
         };
 
         // Initialize Firebase
@@ -1107,368 +1006,317 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
 
-        // Device ID
+        // State
+        let currentRoom = null;
+        let currentUser = null;
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', async () => {
+            await checkUserSession();
+            await loadRooms();
+            await loadStats();
+            initScrollEffects();
+            
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Check user session
+        async function checkUserSession() {
+            const session = localStorage.getItem('ikazz_session');
+            if (session) {
+                try {
+                    const sessionData = JSON.parse(session);
+                    const memberDoc = await db.collection('members').doc(sessionData.memberId).get();
+                    
+                    if (memberDoc.exists) {
+                        const memberData = memberDoc.data();
+                        
+                        // Check device ID
+                        const deviceId = getDeviceId();
+                        if (memberData.deviceId && memberData.deviceId !== deviceId) {
+                            localStorage.removeItem('ikazz_session');
+                            showToast('error', 'Sesi Berakhir', 'Token digunakan di perangkat lain');
+                            return;
+                        }
+                        
+                        // Check expiry
+                        if (memberData.expiryDate && memberData.expiryDate.toDate() < new Date()) {
+                            localStorage.removeItem('ikazz_session');
+                            showToast('error', 'Membership Expired', 'Membership Anda telah berakhir');
+                            return;
+                        }
+                        
+                        currentUser = {
+                            id: memberDoc.id,
+                            ...memberData
+                        };
+                    }
+                } catch (error) {
+                    console.error('Session check error:', error);
+                }
+            }
+        }
+
+        // Get device ID
         function getDeviceId() {
-            let deviceId = localStorage.getItem('ikazz_device_id');
+            let deviceId = localStorage.getItem('device_id');
             if (!deviceId) {
-                deviceId = 'DEV_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
-                localStorage.setItem('ikazz_device_id', deviceId);
+                deviceId = 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('device_id', deviceId);
             }
             return deviceId;
         }
 
-        // Toast notification
-        function showToast(title, message, type = 'success') {
+        // Load rooms
+        async function loadRooms() {
+            const roomsGrid = document.getElementById('roomsGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            try {
+                db.collection('rooms')
+                    .where('isLive', '==', true)
+                    .onSnapshot(snapshot => {
+                        roomsGrid.innerHTML = '';
+                        
+                        if (snapshot.empty) {
+                            emptyState.style.display = 'block';
+                            document.getElementById('totalLives').textContent = '0';
+                            return;
+                        }
+                        
+                        emptyState.style.display = 'none';
+                        document.getElementById('totalLives').textContent = snapshot.size;
+                        
+                        snapshot.forEach((doc, index) => {
+                            const room = { id: doc.id, ...doc.data() };
+                            roomsGrid.appendChild(createRoomCard(room, index));
+                        });
+                    });
+            } catch (error) {
+                console.error('Error loading rooms:', error);
+                showToast('error', 'Error', 'Gagal memuat daftar live');
+            }
+        }
+
+        // Create room card
+        function createRoomCard(room, index) {
+            const card = document.createElement('div');
+            card.className = 'room-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            card.onclick = () => openRoom(room);
+            
+            const membersHtml = (room.lineup || []).slice(0, 4).map((member, i) => `
+                <div class="member-avatar" style="background: hsl(${i * 60}, 70%, 60%);">
+                    ${member.photo ? `<img src="${member.photo}" alt="${member.name}">` : member.name.charAt(0)}
+                </div>
+            `).join('');
+            
+            card.innerHTML = `
+                <div class="room-thumbnail">
+                    <img src="${room.thumbnail || 'https://picsum.photos/640/360?random=' + room.id}" alt="${room.title}">
+                    <div class="live-badge">LIVE</div>
+                    <div class="viewer-count">
+                        <i class="fas fa-eye"></i>
+                        ${room.viewers || 0}
+                    </div>
+                </div>
+                <div class="room-info">
+                    <h3 class="room-title">${room.title}</h3>
+                    <p class="room-subtitle">${room.subtitle || 'JKT48 Live Streaming'}</p>
+                    <div class="room-members">
+                        ${membersHtml}
+                        ${(room.lineup || []).length > 4 ? `<span class="member-count">+${room.lineup.length - 4} lainnya</span>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Open room
+        function openRoom(room) {
+            currentRoom = room;
+            
+            // Check if user is logged in with membership
+            if (currentUser && currentUser.type === 'membership') {
+                // Direct access for members
+                window.location.href = `room.html?id=${room.id}`;
+                return;
+            }
+            
+            // Show token modal for non-members
+            document.getElementById('tokenModal').classList.add('active');
+            document.getElementById('tokenInput').value = '';
+            document.getElementById('tokenInput').focus();
+        }
+
+        // Close token modal
+        function closeTokenModal() {
+            document.getElementById('tokenModal').classList.remove('active');
+            currentRoom = null;
+        }
+
+        // Verify token
+        async function verifyToken() {
+            const token = document.getElementById('tokenInput').value.trim();
+            
+            if (!token) {
+                showToast('error', 'Error', 'Masukkan token terlebih dahulu');
+                return;
+            }
+            
+            try {
+                // Check watch token
+                const watchTokenQuery = await db.collection('watchTokens')
+                    .where('token', '==', token)
+                    .where('roomId', '==', currentRoom.id)
+                    .where('used', '==', false)
+                    .get();
+                
+                if (!watchTokenQuery.empty) {
+                    const tokenDoc = watchTokenQuery.docs[0];
+                    const tokenData = tokenDoc.data();
+                    
+                    // Check if token is for single device
+                    const deviceId = getDeviceId();
+                    if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
+                        showToast('error', 'Error', 'Token sudah digunakan di perangkat lain');
+                        return;
+                    }
+                    
+                    // Mark as used and set device
+                    await tokenDoc.ref.update({
+                        used: true,
+                        deviceId: deviceId,
+                        usedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    
+                    showToast('success', 'Berhasil', 'Token valid, mengarahkan ke live...');
+                    closeTokenModal();
+                    
+                    setTimeout(() => {
+                        window.location.href = `room.html?id=${currentRoom.id}&token=${token}`;
+                    }, 1000);
+                    return;
+                }
+                
+                // Check membership token
+                const memberQuery = await db.collection('members')
+                    .where('token', '==', token)
+                    .get();
+                
+                if (!memberQuery.empty) {
+                    const memberDoc = memberQuery.docs[0];
+                    const memberData = memberDoc.data();
+                    
+                    // Check device
+                    const deviceId = getDeviceId();
+                    if (memberData.deviceId && memberData.deviceId !== deviceId) {
+                        showToast('error', 'Error', 'Token sudah digunakan di perangkat lain');
+                        return;
+                    }
+                    
+                    // Check expiry
+                    if (memberData.expiryDate && memberData.expiryDate.toDate() < new Date()) {
+                        showToast('error', 'Error', 'Membership Anda telah berakhir');
+                        return;
+                    }
+                    
+                    // Update device ID
+                    await memberDoc.ref.update({
+                        deviceId: deviceId,
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    
+                    // Save session
+                    localStorage.setItem('ikazz_session', JSON.stringify({
+                        memberId: memberDoc.id,
+                        token: token
+                    }));
+                    
+                    currentUser = { id: memberDoc.id, ...memberData };
+                    
+                    showToast('success', 'Berhasil', 'Login berhasil, mengarahkan ke live...');
+                    closeTokenModal();
+                    
+                    setTimeout(() => {
+                        window.location.href = `room.html?id=${currentRoom.id}`;
+                    }, 1000);
+                    return;
+                }
+                
+                showToast('error', 'Error', 'Token tidak valid atau sudah digunakan');
+                
+            } catch (error) {
+                console.error('Token verification error:', error);
+                showToast('error', 'Error', 'Gagal memverifikasi token');
+            }
+        }
+
+        // Load stats
+        async function loadStats() {
+            try {
+                // Get total members
+                const membersSnap = await db.collection('members').get();
+                document.getElementById('totalMembers').innerHTML = membersSnap.size + '<span>+</span>';
+                
+                // Get total viewers (sum from all rooms)
+                const roomsSnap = await db.collection('rooms').get();
+                let totalViewers = 0;
+                roomsSnap.forEach(doc => {
+                    totalViewers += doc.data().totalViewers || 0;
+                });
+                document.getElementById('totalViewers').innerHTML = totalViewers + '<span>+</span>';
+                
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Scroll effects
+        function initScrollEffects() {
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Show toast
+        function showToast(type, title, message) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             toast.innerHTML = `
                 <div class="toast-icon">
-                    <i class="fas ${type === 'success' ? 'fa-check' : 'fa-exclamation'}"></i>
+                    <i class="fas fa-${type === 'success' ? 'check' : 'exclamation-triangle'}"></i>
                 </div>
                 <div class="toast-content">
-                    <h4>${title}</h4>
-                    <p>${message}</p>
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
                 </div>
             `;
+            
             container.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            
             setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateX(100%)';
-                setTimeout(() => toast.remove(), 300);
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
             }, 4000);
         }
 
-        // Modal functions
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-
-        // Check membership status
-        async function checkMembershipStatus() {
-            const memberToken = localStorage.getItem('ikazz_membership_token');
-            const deviceId = getDeviceId();
-
-            if (!memberToken) return { valid: false };
-
-            try {
-                const tokenDoc = await db.collection('membershipTokens').doc(memberToken).get();
-                if (!tokenDoc.exists) {
-                    localStorage.removeItem('ikazz_membership_token');
-                    return { valid: false };
-                }
-
-                const tokenData = tokenDoc.data();
-                const expiryDate = tokenData.expiryDate?.toDate();
-
-                if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
-                    localStorage.removeItem('ikazz_membership_token');
-                    return { valid: false, reason: 'different_device' };
-                }
-
-                if (expiryDate && expiryDate < new Date()) {
-                    return { valid: false, reason: 'expired' };
-                }
-
-                return { valid: true, data: tokenData, token: memberToken };
-            } catch (error) {
-                console.error('Check membership error:', error);
-                return { valid: false };
+        // Enter key for token input
+        document.getElementById('tokenInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verifyToken();
             }
-        }
-
-        // Update membership button
-        async function updateMembershipButton() {
-            const status = await checkMembershipStatus();
-            const btn = document.getElementById('membershipBtn');
-
-            if (status.valid) {
-                btn.classList.add('active');
-                btn.innerHTML = `<i class="fas fa-check-circle"></i><span>Member</span>`;
-            } else {
-                btn.classList.remove('active');
-                btn.innerHTML = `<i class="fas fa-crown"></i><span>Membership</span>`;
-            }
-        }
-
-        // Handle membership button click
-        async function handleMembershipClick() {
-            const status = await checkMembershipStatus();
-            if (status.valid) {
-                window.location.href = 'prof.html';
-            } else {
-                openModal('membershipModal');
-            }
-        }
-
-        // Load rooms
-        async function loadRooms() {
-            try {
-                const roomsRef = db.collection('rooms').where('isLive', '==', true);
-                
-                roomsRef.onSnapshot((snapshot) => {
-                    const roomsGrid = document.getElementById('roomsGrid');
-                    const emptyState = document.getElementById('emptyState');
-                    const liveBadge = document.getElementById('liveBadge');
-                    const liveCount = document.getElementById('liveCount');
-
-                    if (snapshot.empty) {
-                        roomsGrid.innerHTML = '';
-                        emptyState.style.display = 'block';
-                        liveBadge.style.display = 'none';
-                        document.getElementById('statLive').textContent = '0';
-                        document.getElementById('statViewers').textContent = '0';
-                    } else {
-                        emptyState.style.display = 'none';
-                        liveBadge.style.display = 'flex';
-                        
-                        let totalViewers = 0;
-                        let html = '';
-
-                        snapshot.forEach((doc, index) => {
-                            const room = doc.data();
-                            totalViewers += room.viewerCount || 0;
-                            html += createRoomCard(doc.id, room, index);
-                        });
-
-                        roomsGrid.innerHTML = html;
-                        liveCount.textContent = `${snapshot.size} Live`;
-                        document.getElementById('statLive').textContent = snapshot.size;
-                        document.getElementById('statViewers').textContent = totalViewers;
-                    }
-
-                    hideLoading();
-                });
-
-                // Load members count
-                const membersSnapshot = await db.collection('membershipTokens')
-                    .where('deviceId', '!=', null)
-                    .get();
-                document.getElementById('statMembers').textContent = membersSnapshot.size;
-
-            } catch (error) {
-                console.error('Load rooms error:', error);
-                hideLoading();
-                showToast('Error', 'Gagal memuat data', 'error');
-            }
-        }
-
-        // Create room card HTML
-        function createRoomCard(roomId, room, index) {
-            const startTime = room.startTime ? formatTime(room.startTime.toDate()) : 'Baru mulai';
-            
-            return `
-                <div class="room-card" onclick="watchRoom('${roomId}')" style="animation-delay: ${0.1 + index * 0.05}s">
-                    <div class="room-thumbnail">
-                        ${room.thumbnail 
-                            ? `<img src="${room.thumbnail}" alt="${room.memberName}" onerror="this.parentElement.innerHTML='<div class=\\'room-thumbnail-placeholder\\'><i class=\\'fas fa-user\\'></i></div>'">`
-                            : `<div class="room-thumbnail-placeholder"><i class="fas fa-user"></i></div>`
-                        }
-                        <div class="room-live-badge">Live</div>
-                        <div class="room-viewers">
-                            <i class="fas fa-eye"></i>
-                            ${room.viewerCount || 0}
-                        </div>
-                    </div>
-                    <div class="room-info">
-                        <h3 class="room-member-name">${room.memberName || 'Member'}</h3>
-                        <p class="room-title">${room.title || 'Live Streaming'}</p>
-                        <div class="room-footer">
-                            <span class="room-time">
-                                <i class="fas fa-clock"></i>
-                                ${startTime}
-                            </span>
-                            <button class="btn-watch" onclick="event.stopPropagation(); watchRoom('${roomId}')">
-                                <i class="fas fa-play"></i>
-                                Tonton
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Format time
-        function formatTime(date) {
-            const now = new Date();
-            const diff = Math.floor((now - date) / 1000 / 60);
-            
-            if (diff < 1) return 'Baru mulai';
-            if (diff < 60) return `${diff} menit`;
-            if (diff < 1440) return `${Math.floor(diff / 60)} jam`;
-            return date.toLocaleDateString('id-ID');
-        }
-
-        // Watch room
-        async function watchRoom(roomId) {
-            const status = await checkMembershipStatus();
-
-            if (status.valid) {
-                // Member can watch directly
-                window.location.href = `room.html?id=${roomId}&type=member`;
-            } else {
-                // Show token modal
-                document.getElementById('selectedRoomId').value = roomId;
-                openModal('watchTokenModal');
-            }
-        }
-
-        // Watch token form submit
-        document.getElementById('watchTokenForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const token = document.getElementById('watchTokenInput').value.trim().toUpperCase();
-            const roomId = document.getElementById('selectedRoomId').value;
-            const deviceId = getDeviceId();
-            const btn = document.getElementById('btnWatchSubmit');
-
-            if (!token) {
-                showToast('Error', 'Masukkan token', 'error');
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
-
-            try {
-                const tokenRef = db.collection('watchTokens').doc(token);
-                const tokenDoc = await tokenRef.get();
-
-                if (!tokenDoc.exists) {
-                    showToast('Error', 'Token tidak valid', 'error');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
-                    return;
-                }
-
-                const tokenData = tokenDoc.data();
-
-                if (tokenData.roomId !== roomId) {
-                    showToast('Error', 'Token tidak valid untuk room ini', 'error');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
-                    return;
-                }
-
-                if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
-                    showToast('Error', 'Token sudah digunakan di perangkat lain', 'error');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
-                    return;
-                }
-
-                // Bind token to device
-                if (!tokenData.deviceId) {
-                    await tokenRef.update({
-                        deviceId: deviceId,
-                        usedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                }
-
-                closeModal('watchTokenModal');
-                window.location.href = `room.html?id=${roomId}&token=${token}`;
-
-            } catch (error) {
-                console.error('Watch token error:', error);
-                showToast('Error', 'Terjadi kesalahan', 'error');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-play"></i> Tonton Sekarang';
-            }
-        });
-
-        // Membership form submit
-        document.getElementById('membershipForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const token = document.getElementById('membershipTokenInput').value.trim().toUpperCase();
-            const deviceId = getDeviceId();
-            const btn = document.getElementById('btnMembershipSubmit');
-
-            if (!token) {
-                showToast('Error', 'Masukkan token', 'error');
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
-
-            try {
-                const tokenRef = db.collection('membershipTokens').doc(token);
-                const tokenDoc = await tokenRef.get();
-
-                if (!tokenDoc.exists) {
-                    showToast('Error', 'Token tidak valid', 'error');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-unlock"></i> Aktivasi Membership';
-                    return;
-                }
-
-                const tokenData = tokenDoc.data();
-                const expiryDate = tokenData.expiryDate?.toDate();
-
-                if (expiryDate && expiryDate < new Date()) {
-                    showToast('Error', 'Token sudah kadaluarsa', 'error');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-unlock"></i> Aktivasi Membership';
-                    return;
-                }
-
-                if (tokenData.deviceId && tokenData.deviceId !== deviceId) {
-                    showToast('Error', 'Token sudah digunakan di perangkat lain', 'error');
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-unlock"></i> Aktivasi Membership';
-                    return;
-                }
-
-                // Bind token to device
-                if (!tokenData.deviceId) {
-                    await tokenRef.update({
-                        deviceId: deviceId,
-                        activatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                }
-
-                localStorage.setItem('ikazz_membership_token', token);
-                closeModal('membershipModal');
-                showToast('Sukses', 'Membership berhasil diaktifkan!', 'success');
-                updateMembershipButton();
-
-                setTimeout(() => {
-                    window.location.href = 'prof.html';
-                }, 1500);
-
-            } catch (error) {
-                console.error('Membership error:', error);
-                showToast('Error', 'Terjadi kesalahan', 'error');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-unlock"></i> Aktivasi Membership';
-            }
-        });
-
-        // Hide loading
-        function hideLoading() {
-            setTimeout(() => {
-                document.getElementById('loadingScreen').classList.add('hidden');
-            }, 500);
-        }
-
-        // Close modal on overlay click
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.remove('active');
-                }
-            });
-        });
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            loadRooms();
-            updateMembershipButton();
         });
     </script>
 </body>
