@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* [SAME STYLES AS BEFORE - keep all existing styles] */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -41,31 +42,1628 @@
             line-height: 1.5;
         }
 
-        /* Animations */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideInLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
-        @keyframes slideInUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         @keyframes livePulse {
             0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
             70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
             100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary); }
-            50% { box-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary); }
-        }
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
 
-        /* ==================== MOBILE NAVBAR ==================== */
+        /* Mobile Navbar */
         .mobile-navbar {
             display: none;
             position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0 20px;
+            z-index: 1000;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mobile-navbar .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .mobile-navbar .logo-text {
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-hamburger {
+            width: 48px;
+            height: 48px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Sidebar */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            background: var(--dark-light);
+            z-index: 1002;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            overflow-y: auto;
+            padding: 24px;
+            border-right: 1px solid var(--glass-border);
+        }
+
+        .mobile-sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .sidebar-logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-close-sidebar {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            color: var(--gray-300);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-menu-item:hover {
+            background: var(--glass);
+            border-color: var(--glass-border);
+            color: white;
+        }
+
+        .sidebar-menu-item.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        /* Desktop Sidebar */
+        .desktop-sidebar {
+            width: 280px;
+            background: var(--dark-light);
+            padding: 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+            border-right: 1px solid var(--glass-border);
+            z-index: 100;
+        }
+
+        .desktop-sidebar .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            margin-left: 280px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Video Section */
+        .video-section {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        #remoteVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .video-overlay-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            pointer-events: auto;
+        }
+
+        .video-overlay-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            pointer-events: auto;
+        }
+
+        .badge-live {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #EF4444;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: livePulse 2s infinite;
+        }
+
+        .badge-live::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+        }
+
+        .badge-viewers {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-video-control {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            background: var(--dark-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .tabs-header {
+            display: flex;
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 4px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 16px;
+            background: transparent;
+            border: none;
+            color: var(--gray-300);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 24px;
+            animation: slideUp 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Live Info */
+        .live-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .live-info-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .member-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+        }
+
+        .live-info-title h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .live-info-title p {
+            font-size: 15px;
+            color: var(--gray-300);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .live-description {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            line-height: 1.7;
+            color: var(--gray-300);
+            font-size: 15px;
+        }
+
+        .live-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Lineup Grid */
+        .lineup-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .member-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .member-card.active {
+            border: 2px solid var(--primary);
+        }
+
+        .member-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            position: relative;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .online-dot {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 2px solid var(--dark-card);
+        }
+
+        .performer-badge {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .member-name {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .member-role {
+            font-size: 12px;
+            color: var(--gray-300);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 18px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-action.primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .btn-action.exit {
+            background: rgba(239, 68, 68, 0.1);
+            color: #FF6B6B;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-action.fullscreen {
+            background: var(--glass);
+            color: white;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Overlays */
+        .connecting-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .connecting-overlay.hidden { display: none; }
+
+        .connecting-spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.05);
+            border-top-color: var(--primary);
+            border-right-color: var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 32px;
+        }
+
+        .connecting-text {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .connecting-subtext {
+            font-size: 16px;
+            color: var(--gray-300);
+            text-align: center;
+            max-width: 320px;
+        }
+
+        .error-overlay, .end-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .error-overlay.active, .end-overlay.active { display: flex; }
+
+        .error-icon, .end-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            margin-bottom: 32px;
+        }
+
+        .error-icon {
+            background: rgba(239, 68, 68, 0.1);
+            color: #FF6B6B;
+            border: 2px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .end-icon {
+            background: rgba(124, 106, 239, 0.1);
+            color: #7C6AEF;
+            border: 2px solid rgba(124, 106, 239, 0.3);
+        }
+
+        .error-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .error-message {
+            font-size: 16px;
+            color: var(--gray-300);
+            margin-bottom: 32px;
+            max-width: 400px;
+        }
+
+        .btn-retry, .btn-home {
+            padding: 18px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-retry {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, var(--secondary) 0%, #9D8DF7 100%);
+            color: white;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4000;
+            width: calc(100% - 40px);
+            max-width: 400px;
+        }
+
+        .toast {
+            background: rgba(20, 20, 28, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 60px;
+            padding: 16px 24px;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideUp 0.4s ease;
+            color: white;
+        }
+
+        .toast.success i { color: var(--accent); }
+        .toast.error i { color: #FF6B6B; }
+
+        /* Debug */
+        .btn-debug {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .debug-panel {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 360px;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1500;
+            display: none;
+        }
+
+        .debug-panel.show { display: block; }
+
+        .debug-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .debug-header h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .btn-clear-debug {
+            background: transparent;
+            border: none;
+            color: var(--gray-300);
+            cursor: pointer;
+        }
+
+        .debug-panel .log-entry {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray-300);
+            font-size: 11px;
+        }
+
+        .debug-panel .log-entry.success { color: var(--accent); }
+        .debug-panel .log-entry.error { color: #FF6B6B; }
+        .debug-panel .log-entry.info { color: var(--secondary); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .mobile-navbar { display: flex; }
+            .desktop-sidebar { display: none; }
+            .sidebar-overlay { display: block; }
+            .content-area { margin-left: 0; padding: 90px 16px 80px; }
+            .lineup-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .lineup-grid { grid-template-columns: repeat(2, 1fr); }
+            .live-meta { grid-template-columns: 1fr; }
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Navbar -->
+    <nav class="mobile-navbar">
+        <div class="logo">
+            <div class="logo-icon">48</div>
+            <span class="logo-text">ikazz - 48</span>
+        </div>
+        <button class="btn-hamburger" onclick="toggleMobileSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMobileSidebar()"></div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">48</div>
+                <span class="sidebar-logo-text">ikazz - 48</span>
+            </div>
+            <button class="btn-close-sidebar" onclick="toggleMobileSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="sidebar-menu-item">
+                <i class="fas fa-home"></i> Beranda
+            </a>
+            <a href="#" class="sidebar-menu-item active">
+                <i class="fas fa-video"></i> Live Room
+            </a>
+            <a href="prof.html" class="sidebar-menu-item">
+                <i class="fas fa-user"></i> Profil
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Desktop Sidebar -->
+        <aside class="desktop-sidebar">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">48</div>
+                <span class="sidebar-logo-text">ikazz - 48</span>
+            </div>
+
+            <div class="sidebar-menu">
+                <a href="index.html" class="sidebar-menu-item">
+                    <i class="fas fa-home"></i> Beranda
+                </a>
+                <a href="#" class="sidebar-menu-item active">
+                    <i class="fas fa-video"></i> Live Room
+                </a>
+                <a href="prof.html" class="sidebar-menu-item">
+                    <i class="fas fa-user"></i> Profil
+                </a>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content-area">
+            <!-- Video Section -->
+            <div class="video-section">
+                <video id="remoteVideo" autoplay playsinline></video>
+                
+                <div class="video-overlay">
+                    <div class="video-overlay-top">
+                        <div class="badge-live" id="liveBadge">LIVE</div>
+                        <div class="video-controls">
+                            <button class="btn-video-control" onclick="toggleFullscreen()">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="video-overlay-bottom">
+                        <div></div>
+                        <div class="badge-viewers" id="viewerBadge">
+                            <i class="fas fa-eye"></i>
+                            <span id="viewerCount">0</span> viewers
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs Section -->
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" onclick="switchTab('info')">
+                        <i class="fas fa-info-circle"></i> Deskripsi
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('lineup')">
+                        <i class="fas fa-users"></i> Line Up
+                    </button>
+                </div>
+
+                <!-- Info Tab -->
+                <div class="tab-content active" id="infoTab">
+                    <div class="live-info">
+                        <div class="live-info-header">
+                            <div class="member-avatar" id="memberAvatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="live-info-title">
+                                <h1 id="streamTitle">Loading...</h1>
+                                <p id="streamMember">
+                                    <i class="fas fa-user-circle"></i>
+                                    <span>Member</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="live-description" id="streamDescription">
+                            Memuat deskripsi...
+                        </div>
+
+                        <div class="live-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Durasi</span>
+                                <span class="meta-value" id="streamDuration">
+                                    <i class="fas fa-clock"></i>
+                                    00:00:00
+                                </span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Dimulai</span>
+                                <span class="meta-value" id="streamStartTime">
+                                    <i class="fas fa-calendar"></i>
+                                    -
+                                </span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Performer</span>
+                                <span class="meta-value" id="currentPerformer">
+                                    <i class="fas fa-star" style="color: var(--primary);"></i>
+                                    -
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lineup Tab -->
+                <div class="tab-content" id="lineupTab">
+                    <div class="lineup-grid" id="lineupGrid">
+                        <!-- Lineup akan di-load di sini -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn-action exit" onclick="exitRoom()">
+                    <i class="fas fa-sign-out-alt"></i> Keluar Room
+                </button>
+                <button class="btn-action fullscreen" onclick="toggleFullscreen()">
+                    <i class="fas fa-expand"></i> Fullscreen
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Connecting Overlay -->
+    <div class="connecting-overlay" id="connectingOverlay">
+        <div class="connecting-spinner"></div>
+        <div class="connecting-text" id="connectingText">Menghubungkan...</div>
+        <div class="connecting-subtext" id="connectingStatus">Mempersiapkan stream untuk Anda</div>
+    </div>
+
+    <!-- Error Overlay -->
+    <div class="error-overlay" id="errorOverlay">
+        <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <h2 class="error-title">Koneksi Gagal</h2>
+        <p class="error-message" id="errorMessage">Tidak dapat terhubung ke stream.</p>
+        <button class="btn-retry" onclick="retryConnection()">
+            <i class="fas fa-redo"></i> Coba Lagi
+        </button>
+    </div>
+
+    <!-- End Overlay -->
+    <div class="end-overlay" id="endOverlay">
+        <div class="end-icon"><i class="fas fa-heart"></i></div>
+        <h2 class="error-title">Live Telah Berakhir</h2>
+        <p class="error-message">Terima kasih telah menonton!</p>
+        <a href="index.html" class="btn-home">
+            <i class="fas fa-home"></i> Kembali ke Beranda
+        </a>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Debug Button -->
+    <button class="btn-debug" onclick="toggleDebug()">
+        <i class="fas fa-bug"></i>
+    </button>
+
+    <!-- Debug Panel -->
+    <div class="debug-panel" id="debugPanel">
+        <div class="debug-header">
+            <h4>Debug Log</h4>
+            <button class="btn-clear-debug" onclick="clearDebug()">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        <div id="debugLog"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        // ==================== FIREBASE CONFIG ====================
+        const firebaseConfig = {
+            apiKey: "AIzaSyAl6WmsHrmYkyotYYu_VIEqX5buTrMa-ec",
+            authDomain: "live-abd72.firebaseapp.com",
+            projectId: "live-abd72",
+            storageBucket: "live-abd72.firebasestorage.app",
+            messagingSenderId: "705044265931",
+            appId: "1:705044265931:web:402b9615df1d38863f944e"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ==================== STATE ====================
+        let peerConnection = null;
+        let roomId = null;
+        let viewerId = null;
+        let unsubscribers = [];
+        let streamStartTime = null;
+        let durationInterval = null;
+        let reconnectAttempts = 0;
+        const MAX_RECONNECT_ATTEMPTS = 3;
+        let isConnecting = false;
+
+        // STUN Servers for WebRTC
+        const rtcConfig = {
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' },
+                { urls: 'stun:stun2.l.google.com:19302' },
+                { urls: 'stun:stun3.l.google.com:19302' },
+                { urls: 'stun:stun4.l.google.com:19302' }
+            ],
+            iceCandidatePoolSize: 10
+        };
+
+        // Sample lineup data sebagai fallback
+        const defaultLineup = [
+            { name: 'Shani', role: 'Kapten', photoURL: null, isOnline: true, isActive: true },
+            { name: 'Freya', role: 'Member', photoURL: null, isOnline: true, isActive: false },
+            { name: 'Lia', role: 'Member', photoURL: null, isOnline: true, isActive: false },
+            { name: 'Gracia', role: 'Member', photoURL: null, isOnline: true, isActive: false },
+            { name: 'Zee', role: 'Member', photoURL: null, isOnline: true, isActive: false },
+            { name: 'Christy', role: 'Member', photoURL: null, isOnline: false, isActive: false },
+        ];
+
+        // ==================== UTILITY FUNCTIONS ====================
+        function getDeviceId() {
+            let deviceId = localStorage.getItem('ikazz_device_id');
+            if (!deviceId) {
+                deviceId = 'DEV_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
+                localStorage.setItem('ikazz_device_id', deviceId);
+            }
+            return deviceId;
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>${message}`;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function debugLog(message, type = 'info') {
+            const log = document.getElementById('debugLog');
+            if (!log) return;
+            
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${time}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+            console.log(`[VIEWER] ${message}`);
+        }
+
+        function updateConnectingStatus(text) {
+            document.getElementById('connectingStatus').textContent = text;
+        }
+
+        // ==================== UI FUNCTIONS ====================
+        window.toggleMobileSidebar = function() {
+            document.getElementById('mobileSidebar').classList.toggle('active');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        };
+
+        window.switchTab = function(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('infoTab').classList.remove('active');
+            document.getElementById('lineupTab').classList.remove('active');
+            document.getElementById(tab === 'info' ? 'infoTab' : 'lineupTab').classList.add('active');
+        };
+
+        window.toggleDebug = function() {
+            document.getElementById('debugPanel').classList.toggle('show');
+        };
+
+        window.clearDebug = function() {
+            document.getElementById('debugLog').innerHTML = '';
+        };
+
+        // ==================== ROOM INITIALIZATION ====================
+        async function init() {
+            try {
+                // Get room ID from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                roomId = urlParams.get('id');
+
+                if (!roomId) {
+                    showError('Room ID tidak ditemukan');
+                    return;
+                }
+
+                viewerId = 'viewer_' + getDeviceId() + '_' + Date.now();
+                debugLog(`Connecting to room: ${roomId}`);
+                debugLog(`Viewer ID: ${viewerId}`);
+
+                updateConnectingStatus('Memeriksa ketersediaan room...');
+
+                // Check if room exists
+                const roomDoc = await db.collection('rooms').doc(roomId).get();
+
+                if (!roomDoc.exists) {
+                    showError('Room tidak ditemukan');
+                    return;
+                }
+
+                const roomData = roomDoc.data();
+                debugLog('Room found: ' + roomData.memberName);
+
+                // Update UI with room data
+                updateRoomInfo(roomData);
+
+                // Check if room is live
+                if (!roomData.isLive) {
+                    showEnd();
+                    return;
+                }
+
+                // Load lineup
+                await loadLineup();
+
+                // Set stream start time if available
+                if (roomData.startTime) {
+                    streamStartTime = roomData.startTime.toDate();
+                    document.getElementById('streamStartTime').innerHTML = `
+                        <i class="fas fa-calendar"></i>
+                        ${streamStartTime.toLocaleDateString('id-ID', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        })}
+                    `;
+                    startDurationCounter();
+                }
+
+                // Connect to stream
+                await connectToStream();
+
+            } catch (error) {
+                debugLog('Init error: ' + error.message, 'error');
+                showError('Gagal memuat room: ' + error.message);
+            }
+        }
+
+        function updateRoomInfo(roomData) {
+            document.getElementById('streamTitle').textContent = roomData.title || 'Live Streaming';
+            document.getElementById('streamMember').querySelector('span').textContent = roomData.memberName || 'Member';
+            document.getElementById('streamDescription').textContent = roomData.description || 'Tidak ada deskripsi';
+            
+            // Update avatar
+            const avatar = document.getElementById('memberAvatar');
+            if (roomData.memberName) {
+                const initial = roomData.memberName.charAt(0).toUpperCase();
+                avatar.innerHTML = `<span style="font-size: 28px; font-weight: 800;">${initial}</span>`;
+            }
+        }
+
+        // ==================== LINEUP ====================
+        async function loadLineup() {
+            try {
+                const lineupRef = db.collection('rooms').doc(roomId).collection('lineup');
+                const snapshot = await lineupRef.orderBy('order').get();
+
+                const grid = document.getElementById('lineupGrid');
+
+                if (snapshot.empty) {
+                    renderLineup(defaultLineup);
+                    return;
+                }
+
+                const lineup = [];
+                snapshot.forEach(doc => {
+                    lineup.push(doc.data());
+                });
+                
+                renderLineup(lineup);
+
+                // Find active performer
+                const activePerformer = lineup.find(m => m.isActive);
+                if (activePerformer) {
+                    document.getElementById('currentPerformer').innerHTML = `
+                        <i class="fas fa-star" style="color: var(--primary);"></i>
+                        ${activePerformer.name}
+                    `;
+                }
+
+            } catch (error) {
+                debugLog('Error loading lineup: ' + error.message, 'error');
+                renderLineup(defaultLineup);
+            }
+        }
+
+        function renderLineup(lineup) {
+            const grid = document.getElementById('lineupGrid');
+            
+            if (!lineup || lineup.length === 0) {
+                grid.innerHTML = '<div class="empty-state">Belum ada lineup</div>';
+                return;
+            }
+
+            let html = '';
+            lineup.forEach(member => {
+                html += `
+                    <div class="member-card ${member.isActive ? 'active' : ''}">
+                        ${member.isActive ? '<div class="performer-badge"><i class="fas fa-star"></i> LIVE</div>' : ''}
+                        <div class="member-photo">
+                            ${member.photoURL 
+                                ? `<img src="${member.photoURL}" alt="${member.name}">`
+                                : `<i class="fas fa-user"></i>`
+                            }
+                            ${member.isOnline ? '<div class="online-dot"></div>' : ''}
+                        </div>
+                        <div class="member-name">${member.name}</div>
+                        <div class="member-role">${member.role || 'Member'}</div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+        }
+
+        // ==================== DURATION COUNTER ====================
+        function startDurationCounter() {
+            if (durationInterval) {
+                clearInterval(durationInterval);
+            }
+            durationInterval = setInterval(updateDuration, 1000);
+            updateDuration();
+        }
+
+        function updateDuration() {
+            if (!streamStartTime) return;
+            
+            const now = new Date();
+            const diff = Math.floor((now - streamStartTime) / 1000);
+            
+            const hours = Math.floor(diff / 3600).toString().padStart(2, '0');
+            const minutes = Math.floor((diff % 3600) / 60).toString().padStart(2, '0');
+            const seconds = (diff % 60).toString().padStart(2, '0');
+            
+            document.getElementById('streamDuration').innerHTML = `
+                <i class="fas fa-clock"></i>
+                ${hours}:${minutes}:${seconds}
+            `;
+        }
+
+        // ==================== WEBRTC CONNECTION ====================
+        async function connectToStream() {
+            if (isConnecting) return;
+            isConnecting = true;
+
+            try {
+                updateConnectingStatus('Membuat koneksi...');
+                debugLog('Creating peer connection...');
+
+                // Create new RTCPeerConnection
+                peerConnection = new RTCPeerConnection(rtcConfig);
+
+                // Handle incoming tracks
+                peerConnection.ontrack = (event) => {
+                    debugLog('Track received: ' + event.track.kind, 'success');
+                    const video = document.getElementById('remoteVideo');
+                    
+                    if (event.streams && event.streams[0]) {
+                        video.srcObject = event.streams[0];
+                        video.play()
+                            .then(() => {
+                                hideConnecting();
+                                showToast('Terhubung ke stream');
+                                debugLog('Stream connected successfully!', 'success');
+                                reconnectAttempts = 0;
+                            })
+                            .catch(e => {
+                                debugLog('Autoplay blocked: ' + e.message, 'error');
+                                // Add click handler to play
+                                video.addEventListener('click', () => video.play());
+                            });
+                    }
+                };
+
+                // Handle ICE candidates
+                peerConnection.onicecandidate = async (event) => {
+                    if (event.candidate) {
+                        debugLog('Sending ICE candidate');
+                        try {
+                            await db.collection('rooms').doc(roomId)
+                                .collection('viewers').doc(viewerId)
+                                .collection('viewerCandidates')
+                                .add(event.candidate.toJSON());
+                        } catch (e) {
+                            debugLog('Error sending ICE: ' + e.message, 'error');
+                        }
+                    }
+                };
+
+                // Monitor connection state
+                peerConnection.onconnectionstatechange = () => {
+                    debugLog('Connection state: ' + peerConnection.connectionState);
+                    
+                    if (peerConnection.connectionState === 'connected') {
+                        hideConnecting();
+                        incrementViewerCount();
+                    } else if (peerConnection.connectionState === 'failed' || 
+                               peerConnection.connectionState === 'disconnected') {
+                        handleConnectionFailure();
+                    }
+                };
+
+                peerConnection.oniceconnectionstatechange = () => {
+                    debugLog('ICE state: ' + peerConnection.iceConnectionState);
+                    
+                    if (peerConnection.iceConnectionState === 'failed') {
+                        handleConnectionFailure();
+                    }
+                };
+
+                // Create viewer document
+                updateConnectingStatus('Mendaftarkan viewer...');
+                
+                const viewerRef = db.collection('rooms').doc(roomId).collection('viewers').doc(viewerId);
+                await viewerRef.set({
+                    deviceId: getDeviceId(),
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                debugLog('Viewer document created');
+
+                updateConnectingStatus('Menunggu offer dari broadcaster...');
+
+                // Listen for offer from broadcaster
+                const unsubOffer = viewerRef.onSnapshot(async (doc) => {
+                    const data = doc.data();
+                    
+                    if (data?.offer && !peerConnection.currentRemoteDescription) {
+                        debugLog('Offer received from broadcaster', 'success');
+                        updateConnectingStatus('Menerima offer...');
+
+                        try {
+                            // Set remote description
+                            await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
+                            debugLog('Remote description set');
+
+                            // Create answer
+                            updateConnectingStatus('Membuat answer...');
+                            const answer = await peerConnection.createAnswer();
+                            await peerConnection.setLocalDescription(answer);
+                            debugLog('Local description set');
+
+                            // Send answer to broadcaster
+                            await viewerRef.update({
+                                answer: {
+                                    type: answer.type,
+                                    sdp: answer.sdp
+                                }
+                            });
+                            debugLog('Answer sent to broadcaster');
+                            updateConnectingStatus('Menghubungkan stream...');
+
+                        } catch (e) {
+                            debugLog('Error handling offer: ' + e.message, 'error');
+                        }
+                    }
+                });
+                unsubscribers.push(unsubOffer);
+
+                // Listen for broadcaster ICE candidates
+                const unsubCandidates = viewerRef.collection('broadcasterCandidates')
+                    .onSnapshot((snapshot) => {
+                        snapshot.docChanges().forEach(async (change) => {
+                            if (change.type === 'added') {
+                                try {
+                                    const candidate = new RTCIceCandidate(change.doc.data());
+                                    await peerConnection.addIceCandidate(candidate);
+                                    debugLog('Broadcaster ICE candidate added');
+                                } catch (e) {
+                                    debugLog('Error adding ICE: ' + e.message, 'error');
+                                }
+                            }
+                        });
+                    });
+                unsubscribers.push(unsubCandidates);
+
+                // Listen for room status changes
+                const unsubRoom = db.collection('rooms').doc(roomId)
+                    .onSnapshot((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            document.getElementById('viewerCount').textContent = data.viewerCount || 0;
+                            
+                            if (!data.isLive) {
+                                showEnd();
+                            }
+                        }
+                    });
+                unsubscribers.push(unsubRoom);
+
+                // Set timeout for connection
+                setTimeout(() => {
+                    if (isConnecting && !peerConnection?.currentRemoteDescription) {
+                        debugLog('Connection timeout - no offer received', 'error');
+                        handleConnectionFailure();
+                    }
+                }, 15000);
+
+            } catch (error) {
+                debugLog('Connect error: ' + error.message, 'error');
+                handleConnectionFailure();
+            } finally {
+                isConnecting = false;
+            }
+        }
+
+        // ==================== VIEWER COUNT ====================
+        async function incrementViewerCount() {
+            try {
+                await db.collection('rooms').doc(roomId).update({
+                    viewerCount: firebase.firestore.FieldValue.increment(1)
+                });
+                debugLog('Viewer count incremented');
+            } catch (e) {
+                debugLog('Increment error: ' + e.message, 'error');
+            }
+        }
+
+        async function decrementViewerCount() {
+            try {
+                await db.collection('rooms').doc(roomId).update({
+                    viewerCount: firebase.firestore.FieldValue.increment(-1)
+                });
+                debugLog('Viewer count decremented');
+            } catch (e) {
+                debugLog('Decrement error: ' + e.message, 'error');
+            }
+        }
+
+        // ==================== CONNECTION HANDLING ====================
+        function handleConnectionFailure() {
+            if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+                reconnectAttempts++;
+                debugLog(`Reconnecting... Attempt ${reconnectAttempts}/${MAX_RECONNECT_ATTEMPTS}`);
+                updateConnectingStatus(`Mencoba reconnect (${reconnectAttempts}/${MAX_RECONNECT_ATTEMPTS})...`);
+                
+                setTimeout(() => {
+                    cleanup();
+                    connectToStream();
+                }, 2000 * reconnectAttempts);
+            } else {
+                showError('Koneksi gagal setelah beberapa kali percobaan');
+            }
+        }
+
+        // ==================== CLEANUP ====================
+        async function cleanup() {
+            debugLog('Cleaning up...');
+
+            // Clear duration interval
+            if (durationInterval) {
+                clearInterval(durationInterval);
+                durationInterval = null;
+            }
+
+            // Unsubscribe all listeners
+            unsubscribers.forEach(unsub => {
+                if (typeof unsub === 'function') unsub();
+            });
+            unsubscribers = [];
+
+            // Close peer connection
+            if (peerConnection) {
+                peerConnection.close();
+                peerConnection = null;
+            }
+
+            // Delete viewer document and subcollections
+            if (roomId && viewerId) {
+                try {
+                    const viewerRef = db.collection('rooms').doc(roomId).collection('viewers').doc(viewerId);
+
+                    // Delete viewer candidates
+                    const viewerCands = await viewerRef.collection('viewerCandidates').get();
+                    for (const doc of viewerCands.docs) {
+                        await doc.ref.delete();
+                    }
+
+                    // Delete broadcaster candidates
+                    const broadCands = await viewerRef.collection('broadcasterCandidates').get();
+                    for (const doc of broadCands.docs) {
+                        await doc.ref.delete();
+                    }
+
+                    // Delete viewer document
+                    await viewerRef.delete();
+                    debugLog('Viewer document deleted');
+                } catch (e) {
+                    debugLog('Cleanup error: ' + e.message, 'error');
+                }
+            }
+        }
+
+        // ==================== NAVIGATION ====================
+        window.exitRoom = async function() {
+            await decrementViewerCount();
+            await cleanup();
+            window.location.href = 'index.html';
+        };
+
+        window.retryConnection = async function() {
+            document.getElementById('errorOverlay').classList.remove('active');
+            document.getElementById('connectingOverlay').classList.remove('hidden');
+            reconnectAttempts = 0;
+            await cleanup();
+            await init();
+        };
+
+        window.toggleFullscreen = function() {
+            const video = document.getElementById('remoteVideo');
+            if (!document.fullscreenElement) {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        };
+
+        // ==================== UI HELPERS ====================
+        function hideConnecting() {
+            document.getElementById('connectingOverlay').classList.add('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('connectingOverlay').classList.add('hidden');
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorOverlay').classList.add('active');
+        }
+
+        function showEnd() {
+            cleanup();
+            document.getElementById('connectingOverlay').classList.add('hidden');
+            document.getElementById('endOverlay').classList.add('active');
+        }
+
+        // ==================== EVENT HANDLERS ====================
+        window.addEventListener('beforeunload', async () => {
+            await decrementViewerCount();
+            await cleanup();
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                const video = document.getElementById('remoteVideo');
+                if (video.paused && video.srcObject) {
+                    video.play().catch(e => debugLog('Resume play error: ' + e.message, 'error'));
+                }
+            }
+        });
+
+        // ==================== INITIALIZE ====================
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>            position: fixed;
             top: 0;
             left: 0;
             right: 0;
